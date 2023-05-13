@@ -40,17 +40,16 @@ a :hover {
 .menu {
     display: flex;
     justify-content: flex-start;
-    vertical-align: baseline;
     align-items: center;
 }
 
-.menu :hover {
-    color: rgb(228, 15, 52);
+.header-nav__icone svg {
+    display: block;
+    width: 80%;
 }
 
-.header-nav__icone {
-    display: block;
-    width: 40%;
+.header-nav__icone :hover {
+    color: rgb(228, 15, 52);
 }
 
 .header-nav__title {
@@ -147,7 +146,7 @@ a :hover {
 
 .calendrier-item__flag img {
     display: block;
-    margin: auto;
+    margin-right: 50%;
     width: 1.6rem;
     height: 1rem;
 }
@@ -182,7 +181,7 @@ a :hover {
     }
 
     .calendrier-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .calendrier td, .calendrier th {
@@ -207,7 +206,6 @@ a :hover {
     }
 
     .calendrier td, .calendrier th {
-        padding: 2rem;
         font-size: 1.5rem;
     }
 }
@@ -248,13 +246,21 @@ a :hover {
         line-height: 2rem;
     }
 
+    .calendrier {
+        padding: 0 12%;
+    }
+
+    .calendrier-title {
+        padding: 5rem 0;
+    }
+
+    .calendrier td, .calendrier th {
+        font-size: 1.4rem;
+    }
+
     .calendrier-item__flag img {
         width: 3.2rem;
         height: 2rem;
-    }
-
-    .calendrier {
-        padding: 0 2rem;
     }
 }
 
@@ -264,9 +270,5 @@ a :hover {
         flex-direction: row;
         flex-wrap: nowrap;
         gap: 1rem;
-    }
-
-    .calendrier {
-        padding: 0 5rem;
     }
 }
