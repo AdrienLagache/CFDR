@@ -17,7 +17,7 @@
             <?php foreach ($dataEventList as $Event) :?>
             <tr>
             <th class="calendrier-item__flag" scope="row"><img src="../images/<?= $Event->flag()?>" alt="drapeaux des émirats arabes unis"></th>
-            <td class="calendrier-item__race"><?= $Event->race()?></td>
+            <td class="calendrier-item__race">R<?= $Event->race()?></td>
             <td class="calendrier-item__country"><?= $Event->country()?></td>
             <td class="calendrier-item__track"><?= $Event->track()?></td>
             <td class="calendrier-item__date"><?= $Event->date()?></td>
