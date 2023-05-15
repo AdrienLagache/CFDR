@@ -44,7 +44,7 @@ $dataEventList = [
     'Flag_of_Sweden.png',
     'R6',
     'Suède',
-    'Hoĺjes',
+    'Höljes',
     '7 Avril'
   ),
 

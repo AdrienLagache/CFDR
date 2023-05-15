@@ -167,6 +167,19 @@ a :hover {
     margin-top: 1.5rem;
 }
 
+.footer {
+    background-color: black;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer img {
+    display: block;
+    height: 1rem;
+}
+
 @media (min-width: 450px) {
     .header-register__item {
         line-height: 2rem;

@@ -33,4 +33,21 @@ class Event {
   public function date() {
     return $this->date;
   }
+
+  public function setFlag($newFlag) {
+    $this->flag = $newFlag;
+  }
+
+  public function setRace($newRace) {
+    $this->race = $newRace;
+  }
+
+  public function setCountry($newCountry) {
+    $this->country = $newCountry;
+  }
+
+  public function setTrack($newtrack) {
+    $this->track = $newtrack;
+  }
+
 }
