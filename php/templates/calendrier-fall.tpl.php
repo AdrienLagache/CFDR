@@ -1,5 +1,5 @@
 <main class="calendrier">
-    <h2 class="calendrier-title">Calendrier saison sping 2023</h2>
+    <h2 class="calendrier-title">Calendrier saison Fall 2023</h2>
     
     <div class="table-responsive">
         <table class="table table-dark table-striped table-hover">
@@ -14,7 +14,7 @@
             </thead>
             <tbody class="table-group-divider">
     
-            <?php foreach ($dataEventList as $Event) :?>
+            <?php foreach ($fallSeason as $Event) :?>
             <tr>
             <th class="calendrier-item__flag" scope="row"><img src="../images/<?= $Event->flag()?>" alt="drapeaux des émirats arabes unis"></th>
             <td class="calendrier-item__race">R<?= $Event->race()?></td>
