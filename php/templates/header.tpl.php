@@ -32,8 +32,8 @@
                 <img class="header-register__icon" src="../images/profil-icon.png">
                 <nav class="header-register" id="header-register">
                     <ul class="header-register__items">
-                        <a href=""><li class="header-register__item">Se&nbsp;connecter</li></a>
-                        <a href=""><li class="header-register__item">S'inscrire</li></a>
+                        <a href="./index.php?page=admin"><li class="header-register__item">Se&nbsp;connecter</li></a>
+                        <a href="./index.php"><li class="header-register__item">S'inscrire</li></a>
                     </ul>
                 </nav>
             </div>

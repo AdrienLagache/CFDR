@@ -185,6 +185,36 @@ a :hover {
     height: 1.2rem;
 }
 
+
+/******** TESTS ADMIN  ********/
+
+.calendrier-fall {
+    padding-bottom: 10rem;
+}
+
+.admin {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 50%;
+    padding: 1rem;
+}
+
+.admin label {
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.admin-submit {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem 0;
+    height: 2.5rem;
+}
+
+
+
+
 @media (min-width: 450px) {
     .header-register__item {
         line-height: 2rem;
