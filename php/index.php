@@ -43,9 +43,10 @@ foreach ($fetchFallResults as $fallArr) {
 
 if (isset($_GET) && !empty($_GET)) {
     switch ($_GET['page']) {
-        case 'admin':
+        case 'admin': // cliquer sur 'se connecter' => 's'inscrire" pour revenir à index.php
             require __DIR__."/templates/header.tpl.php";
             require __DIR__."/templates/admin-form.tpl.php";
+            require __DIR__."/admin-test.php";
             require __DIR__."/templates/footer.tpl.php";
             break;
         default:

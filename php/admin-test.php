@@ -1,6 +1,4 @@
-<?
-require __DIR__."/inc/pdo.php";
-require __DIR__."/classes/Event.php";
+<?php
 
 if (!empty($_POST)) {
     $flag = isset($_POST['flag']) ? $_POST['flag'] : '';
@@ -28,4 +26,11 @@ if (!empty($_POST)) {
     }
 }
 
-require __DIR__."/templates/footer.tpl.php";
+if (isset($_GET['request'])) {
+    var_dump('on est dans le if');
+    switch ($_GET['request']) {
+        case 'delete-all':
+            echo PHP_EOL.'on supprime tout !? :)'.PHP_EOL;
+            break;
+    }
+}
