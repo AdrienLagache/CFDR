@@ -7,7 +7,7 @@ const menus = {
         const loginIcon = document.querySelector(".header-register__icon");
         loginIcon.addEventListener("click", this.handleLoginMenu);
     },
-
+    
     handleMainMenu : function() {
         const scrollingMenu = document.querySelector("#menu-nav");
         
