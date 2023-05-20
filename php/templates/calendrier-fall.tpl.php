@@ -1,8 +1,8 @@
-    <section class="calendrier-fall">
+    <section class="calendrier">
         <h2 class="calendrier-title">Calendrier saison Fall 2023</h2>
         
         <div class="table-responsive">
-            <table class="table table-dark table-striped table-hover">
+            <table class="table table-dark table-striped">
                 <thead>
                     <tr>
                     <th class="thead-flag" scope="col">Flag</th>
@@ -28,4 +28,3 @@
             </table>
         </div>
     </section>   
-</main>

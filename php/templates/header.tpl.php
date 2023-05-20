@@ -25,7 +25,7 @@
                 </svg>
                 </div>
 
-                <h2 class="header-nav__title">MENU</h2>
+                <h3 class="header-nav__title">MENU</h3>
             </div>
         
             <div class="header-register__wrapper">
@@ -43,12 +43,14 @@
     <div class="nav-main__wrapper">
         <nav class="menu-nav" id="menu-nav">
             <ul class="menu-nav__items">
-                <a href=""><li class="menu-nav__item">Infos pilote</li></a>
-                <a href=""><li class="menu-nav__item">Calendrier</li></a>
-                <a href=""><li class="menu-nav__item">Météo</li></a>
-                <a href=""><li class="menu-nav__item">Line-up</li></a>
-                <a href=""><li class="menu-nav__item">Classement</li></a>
-                <a href=""><li class="menu-nav__item">Live</li></a>
+                <a href="index.php?page=infos"><li class="menu-nav__item">Infos pilote</li></a>
+                <a href="index.php"><li class="menu-nav__item">Calendrier</li></a>
+                <a href="index.php?page=meteo"><li class="menu-nav__item">Météo</li></a>
+                <a href="index.php?page=infos"><li class="menu-nav__item">Line-up</li></a>
+                <a href="index.php?page=classements"><li class="menu-nav__item">Classement</li></a>
+                <a href="index.php?page=live"><li class="menu-nav__item">Live</li></a>
             </ul>
             <img id="benjx" src="../images/benjx_logo.png" alt="logo de la chaîne Twitch Benjxmotorsport">
-        </nav>
+        </nav> 
+        
+        <main>

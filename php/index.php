@@ -39,18 +39,10 @@ foreach ($fetchFallResults as $fallArr) {
         $fallArr['date'],
     );
 }
-// redirection vers le formulaire admin
-if (isset($_GET) && !empty($_GET)) {
-    if( $_GET['page'] === 'admin' && count($_GET) === 1) { // cliquer sur 'se connecter' => 's'inscrire" pour revenir à index.php
-        require __DIR__."/templates/header.tpl.php";
-        require __DIR__."/admin-test.php";
-        require __DIR__."/templates/admin-form.tpl.php";
-        require __DIR__."/templates/footer.tpl.php";
-    }
 
     // !! ADMIN-TEST !!! //
 // ajout d'une course a l'aide du formulaire admin pour le calendrier Fall
-} else if (!empty($_POST)) {
+if (!empty($_POST)) {
     $flag = isset($_POST['flag']) ? $_POST['flag'] : '';
     $race = isset($_POST['race']) ? intval($_POST['race']) : '';
     $country = isset($_POST['country']) ? $_POST['country'] : '';
@@ -75,18 +67,9 @@ if (isset($_GET) && !empty($_GET)) {
         echo 'Erreur insertion nouvel événement';
         exit();
     }
+}
 
     // !! NE PAS EFFACER !! //
-// pas d'instruction particuliere, url = index.php
-} else {
-    require __DIR__."/templates/header.tpl.php";
-    require __DIR__."/templates/calendrier-spring.tpl.php";
-    //je vérifie qu'au moins une course à été renseigné pour la saison fall
-    if (!empty($fetchFallResults)) {
-        require __DIR__."/templates/calendrier-fall.tpl.php";
-    }
-    require __DIR__."/templates/footer.tpl.php";
-}
 
     // !! TEST BOUTTONS DELETE-ALL ET DELETE-LAST !! //
 
@@ -101,7 +84,7 @@ if (isset($_GET['request'])) {
         $resetIncResult = $pdo->exec($sqlResetInc);
 
         if ($deletedLines > 1 && $resetIncResult === 0) {
-            header('Location: ./index.php');
+            header('Location: ./index.php?admin');
             exit();
         } else {
             echo 'Erreur lors de la suppression';
@@ -117,7 +100,7 @@ if (isset($_GET['request'])) {
         $resetIncResult = $pdo->exec($sqlResetInc);
 
         if ($deletedLine === 1 && $resetIncResult === 0) {
-            header('Location: ./index.php');
+            header('Location: ./index.php?admin');
             exit('la dernière course a bien été supprimée');
         } else {
             echo 'Erreur lors de la suppression';
@@ -130,6 +113,27 @@ if (isset($_GET['request'])) {
         break;
     }
 }
-
     // !! NE PAS EFFACER !! //
+
+require __DIR__."/templates/header.tpl.php";
+
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    switch ($_GET['page']) {
+
+        case 'admin': // cliquer sur 'se connecter' => 's'inscrire" pour revenir à index.php
+            require __DIR__."/templates/admin-form.tpl.php";
+            break;
+        case 'meteo':
+            require __DIR__."/templates/meteo.tpl.php";
+            break;
+    }
+} else {
+    require __DIR__."/templates/calendrier-spring.tpl.php";
+    //je vérifie qu'au moins une course à été renseigné pour la saison fall
+    if (!empty($fetchFallResults)) {
+        require __DIR__."/templates/calendrier-fall.tpl.php";
+    }
+}
+
+require __DIR__."/templates/footer.tpl.php";
 ?>

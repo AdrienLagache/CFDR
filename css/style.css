@@ -115,14 +115,14 @@ a :hover {
     font-size: 1.2rem;
 }
 
-.calendrier {
+.calendrier, .meteo {
     z-index: -1;
     background-image: url('../images/dark_wall.png');
     position: relative;
     padding-bottom: 10%;
 }
 
-.calendrier-title {
+.calendrier-title, .meteo-title {
     font-size: 1rem;
     padding: 2rem 0;
     text-align: center;
@@ -151,6 +151,11 @@ a :hover {
     margin-right: 50%;
     width: 1.6rem;
     height: 1rem;
+}
+
+.meteo_widget {
+    display: inline-block;
+    margin-left: calc(50% - 290px/2);
 }
 
 .form {
@@ -313,8 +318,8 @@ a :hover {
     .calendrier {
         padding: 0 12% 3% 12%;
     }
-
-    /* .calendrier-title {
+/* 
+    .calendrier-title {
         padding: 5rem 0;
     } */
 

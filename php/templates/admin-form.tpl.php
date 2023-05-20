@@ -1,5 +1,5 @@
 <main class="admin"> 
-    <form class="admin-submit" action="./index.php?" method="post">
+    <form class="admin-submit" action="./index.php" method="post">
         <label for="flag">nom de l'image du drapeau</label>
         <input type="text" id="flag" name="flag">
         <label for="race">Numero de course</label>
