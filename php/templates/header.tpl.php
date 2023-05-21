@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>CFDR</title>
 </head>
-<body>
+<body class="body">
     <header class="header">
 
         <img class="header-logo__thumbnail" src="../images/CFDR_logo.png" alt="le logo du CFDR">
@@ -39,18 +39,17 @@
             </div>
         </div>     
     </header>
-
-    <div class="nav-main__wrapper">
-        <nav class="menu-nav" id="menu-nav">
-            <ul class="menu-nav__items">
-                <a href="./admin"><li class="menu-nav__item">Infos pilote</li></a>
-                <a href="./"><li class="menu-nav__item">Calendrier</li></a>
-                <a href="./meteo"><li class="menu-nav__item">Météo</li></a>
-                <a href="index.php?page=infos"><li class="menu-nav__item">Line-up</li></a>
-                <a href="index.php?page=classements"><li class="menu-nav__item">Classement</li></a>
-                <a href="index.php?page=live"><li class="menu-nav__item">Live</li></a>
-            </ul>
-            <img id="benjx" src="../images/benjx_logo.png" alt="logo de la chaîne Twitch Benjxmotorsport">
-        </nav> 
+    
+    <nav class="menu-nav" id="menu-nav">
+        <ul class="menu-nav__items">
+            <a href="./admin"><li class="menu-nav__item">Infos pilote</li></a>
+            <a href="./"><li class="menu-nav__item">Calendrier</li></a>
+            <a href="./meteo"><li class="menu-nav__item">Météo</li></a>
+            <a href="index.php?page=infos"><li class="menu-nav__item">Line-up</li></a>
+            <a href="index.php?page=classements"><li class="menu-nav__item">Classement</li></a>
+            <a href="index.php?page=live"><li class="menu-nav__item">Live</li></a>
+        </ul>
+        <img id="benjx" src="../images/benjx_logo.png" alt="logo de la chaîne Twitch Benjxmotorsport">
+    </nav>
         
-        <main>
+    <main class="main">

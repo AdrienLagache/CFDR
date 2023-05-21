@@ -2,8 +2,9 @@ html {
     font-family: sans-serif;
 }
 
-body {
+.body {
     background-image: url('../images/dark_wall.png');
+    background-size: 25%;
 }
 
 a {
@@ -78,10 +79,6 @@ a :hover {
     font-size: 1.2rem;
 }
 
-.nav-main__wrapper {
-    position: relative;
-}
-
 .menu-nav {
     display: none;
 }
@@ -112,7 +109,15 @@ a :hover {
     font-size: 1.2rem;
 }
 
+/* .main {
+    height: 100%;
+} */
+
 section {
+    min-height: 86vh;
+}
+
+.calendrier {
     z-index: -1;
     margin-bottom: 2rem;
     position: relative;
@@ -153,9 +158,36 @@ section {
     height: 1rem;
 }
 
-.meteo_widget {
-    display: inline-block;
+.meteo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5rem;
+}
+
+.meteo-location {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.meteo-location select {
+    width: 150%;
+    height: 3rem;
+    text-align: center;
+}
+
+/* .meteo-widget {
     margin-left: calc(50% - 290px/2);
+} */
+
+.meteo-widget iframe {
+    padding: 1rem;
+    border: 0;
 }
 
 .form {
@@ -174,18 +206,15 @@ section {
     margin-top: 1.5rem;
 }
 
-.footer {
+#footer {
     background-color: rgba(0, 0, 0, 0.4);
     height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    /* position: absolute;
-    bottom: 0; */
 }
 
-.footer img {
+#footer img {
     display: block;
     height: 1.5rem;
 }
@@ -255,6 +284,15 @@ section {
         padding: 1.2rem;
         font-size: 1.2rem;
     }
+
+    /* .meteo-widget {
+        margin-left: calc(50% - 450px/2);
+    } */
+
+    .meteo-widget iframe {
+        width: 450px;
+        height: 450px;
+    }
 }
 
 @media (min-width: 800px) {
@@ -311,7 +349,7 @@ section {
     .header-register__item {
         font-size: 1.5rem;
         line-height: 2rem;
-    }
+    }    
 
     .calendrier {
         padding: 0 10%;
