@@ -1,5 +1,5 @@
 <main class="admin"> 
-    <form class="admin-submit" action="./index.php/fallSubmit" method="post">
+    <form class="admin-submit" action="./admin" method="post">
         <label for="flag">drapeau</label>
         <select id="flag" name="flag">
             <option value="">--choisir un drapeau--</option>
@@ -26,10 +26,12 @@
         <input type="text" id="date" name="date">
         <input id="admin_add" type="submit" value="Ajouter course">
     </form>
-    <form class="admin-submit" action="./index.php/lastFallDelete" method="post">
+    <form class="admin-submit" action="./admin" method="get">
+        <input type="hidden" name="request" value="lastFallDelete">
         <input id="admin-delete_last" type="submit" value="Effacer dernière course">
     </form>
-    <form class="admin-submit" action="./index.php/AllFallDelete" method="post">
+    <form class="admin-submit" action="./admin" method="get">
+        <input type="hidden" name="request" value="allFallDelete">
         <input id="admin-delete_all" type="submit" value="Effacer le calendrier Fall">
     </form>
 </main>

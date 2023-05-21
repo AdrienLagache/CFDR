@@ -3,8 +3,7 @@ html {
 }
 
 body {
-    background-color: rgb(255, 255, 255);
-    position: relative;
+    background-image: url('../images/dark_wall.png');
 }
 
 a {
@@ -115,9 +114,12 @@ a :hover {
 
 section {
     z-index: -1;
-    background-image: url('../images/dark_wall.png');
-    /* position: relative; */
-    /* min-height: 80vh; */
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.table {
+    margin: 0;
 }
 
 .calendrier-title, .meteo-title {
@@ -178,9 +180,9 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    /* position: absolute;
+    bottom: 0; */
 }
 
 .footer img {
@@ -219,6 +221,7 @@ section {
 .admin label {
     font-weight: bold;
     margin: 1rem 0;
+    color: white;
 }
 
 /* .admin-submit {
@@ -311,12 +314,12 @@ section {
     }
 
     .calendrier {
-        padding: 0 12% 3% 12%;
+        padding: 0 10%;
     }
-/* 
+
     .calendrier-title {
         padding: 5rem 0;
-    } */
+    }
 
     .calendrier td, .calendrier th {
         font-size: 1.4rem;

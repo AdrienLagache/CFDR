@@ -2,7 +2,7 @@
         <h2 class="calendrier-title">Calendrier saison Spring 2023</h2>
         
         <div class="table-responsive">
-            <table class="table table-dark table-striped">
+            <table class="table table-dark table-striped table-hover">
                 <thead>
                     <tr>
                         <th class="thead-flag" scope="col">Flag</th>
@@ -34,7 +34,7 @@
         <h2 class="calendrier-title">Calendrier saison Fall 2023</h2>
         
         <div class="table-responsive">
-            <table class="table table-dark table-striped">
+            <table class="table table-dark table-striped table-hover">
                 <thead>
                     <tr>
                         <th class="thead-flag" scope="col">Flag</th>
