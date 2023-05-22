@@ -16,7 +16,7 @@
         
                 <?php foreach ($viewDatas['spring'] as $Event) :?>
                     <tr>
-                        <th class="calendrier-item__flag" scope="row"><img src="../images/<?= $Event->flag()?>" alt="drapeaux des émirats arabes unis"></th>
+                        <th class="calendrier-item__flag" scope="row"><img src="assets/images/<?= $Event->flag()?>" alt="drapeaux des émirats arabes unis"></th>
                         <td class="calendrier-item__race">R<?= $Event->race()?></td>
                         <td class="calendrier-item__country"><?= $Event->country()?></td>
                         <td class="calendrier-item__track"><?= $Event->track()?></td>
@@ -48,7 +48,7 @@
         
                 <?php foreach ($viewDatas['fall'] as $Event) :?>
                     <tr>
-                        <th class="calendrier-item__flag" scope="row"><img src="../images/<?= $Event->flag()?>" alt="drapeaux des émirats arabes unis"></th>
+                        <th class="calendrier-item__flag" scope="row"><img src="assets/images/<?= $Event->flag()?>" alt="drapeaux des émirats arabes unis"></th>
                         <td class="calendrier-item__race">R<?= $Event->race()?></td>
                         <td class="calendrier-item__country"><?= $Event->country()?></td>
                         <td class="calendrier-item__track"><?= $Event->track()?></td>
