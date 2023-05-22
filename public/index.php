@@ -1,5 +1,5 @@
 <?php
-require __DIR__."/../app/inc/pdo.php";
+require __DIR__."/../app/TEMPORARY/pdo.php";
 require __DIR__."/../app/Classes/Event.php";
 require __DIR__."/../app/Controllers/MainController.php";
 
