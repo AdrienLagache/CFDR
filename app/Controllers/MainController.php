@@ -30,6 +30,7 @@ class MainController {
     }
 
     public function live() {
+        
         $this->show('live');
     }
 }
