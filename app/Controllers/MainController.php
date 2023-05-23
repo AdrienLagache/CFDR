@@ -8,6 +8,16 @@ class MainController {
 
     }
 
+    public function home() {
+        require __DIR__."/../TEMPORARY/calendrierFunction.php";
+        $calendarDatas = [
+            'spring' => $springSeason,
+            'fall' => $fallSeason
+        ];
+
+        $this->show('calendrier', $calendarDatas);
+    }
+
     public function admin() {        
         require __DIR__."/../TEMPORARY/adminFunctions.php";
 
