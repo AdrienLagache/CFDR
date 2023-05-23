@@ -1,8 +1,8 @@
 <section class="meteo">
     <h2 class="meteo-title">Météo</h2>
 
-    <form class="meteo-location" action="./meteo" method="get">
-        <select id="meteo"  onchange="this.form.submit()" name="meteo">
+        <form class="meteo" action="./meteo" method="get">
+            <select id="meteo-location" onchange="this.form.submit()" name="meteo">
                 <option value="18276642">--choisir un circuit--</option>
                 <option value="15472914">Yas Marina</option>
                 <option value="9038451">Barcelona-Catalunya</option>
@@ -26,6 +26,7 @@
         <iframe src="https://api.wo-cloud.com/content/widget/?geoObjectKey=<?=$location?>&language=fr&region=FR&timeFormat=HH:mm&windUnit=kmh&systemOfMeasurement=metric&temperatureUnit=celsius" name="CW2" scrolling="no" width="290" height="318" frameborder="0" style="border: border-radius: 8px"></iframe>
     </div>
 </section>
+
 
 <!-- url site du widget : https://www.meteoetradar.com/widget-meteo -->
 

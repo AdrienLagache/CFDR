@@ -4,7 +4,8 @@ html {
 
 .body {
     background-image: url('../images/dark_wall.png');
-    background-size: 25%;
+    background-size: 20%;
+    background-attachment: fixed;
 }
 
 a {
@@ -166,7 +167,7 @@ section {
     gap: 5rem;
 }
 
-.meteo-location {
+.meteo {
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -175,7 +176,7 @@ section {
     gap: 1rem;
 }
 
-.meteo-location select {
+#meteo-location {
     width: 150%;
     height: 3rem;
     text-align: center;
