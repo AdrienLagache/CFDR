@@ -1,5 +1,5 @@
 <?php
-        require __DIR__."/pdo.php";
+        require __DIR__."/../Utils/pdo.php";
         // requete permettant de récupérer les données du calendrier Spring dans la table spring_season
         $sqlSpringSeason = 'SELECT * FROM spring_season';
         $pdoSpringResult = $pdo->query($sqlSpringSeason);

@@ -2,14 +2,14 @@
 
 class MainController {
     public function show($viewName, $viewDatas = []) {
-        require __DIR__."/../templates/header.tpl.php";
-        require __DIR__."/../templates/".$viewName.".tpl.php";
-        require __DIR__."/../templates/footer.tpl.php";
+        require __DIR__."/../views/header.tpl.php";
+        require __DIR__."/../views/".$viewName.".tpl.php";
+        require __DIR__."/../views/footer.tpl.php";
 
     }
 
     public function home() {
-        require __DIR__."/../TEMPORARY/calendrierFunction.php";
+        // require __DIR__."/../TEMPORARY/calendrierFunction.php";
         $calendarDatas = [
             'spring' => $springSeason,
             'fall' => $fallSeason

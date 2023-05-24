@@ -13,7 +13,7 @@ a {
     color: white;
 }
 
-a :hover {
+a:hover {
     color: rgb(228, 15, 52);
 }
 
@@ -121,7 +121,7 @@ section {
 .calendrier {
     z-index: -1;
     margin-bottom: 2rem;
-    position: relative;
+    /* position: relative; */
 }
 
 .table {
@@ -167,24 +167,11 @@ section {
     gap: 5rem;
 }
 
-.meteo {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-
 #meteo-location {
     width: 150%;
     height: 3rem;
     text-align: center;
 }
-
-/* .meteo-widget {
-    margin-left: calc(50% - 290px/2);
-} */
 
 .meteo-widget iframe {
     padding: 1rem;
@@ -285,10 +272,6 @@ section {
         padding: 1.2rem;
         font-size: 1.2rem;
     }
-
-    /* .meteo-widget {
-        margin-left: calc(50% - 450px/2);
-    } */
 
     .meteo-widget iframe {
         width: 450px;

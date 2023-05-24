@@ -1,6 +1,6 @@
 <?php
-require __DIR__."/../app/TEMPORARY/pdo.php";
-require __DIR__."/../app/Classes/Event.php";
+require __DIR__."/../app/Utils/Database.php";
+// require __DIR__."/../app/Classes/Event.php";
 require __DIR__."/../app/Controllers/MainController.php";
 require __DIR__."/../vendor/autoload.php";
 
@@ -77,7 +77,7 @@ dump($match);
 if($match) {
     $controllerToUse = $match['target']['controller'];
     $methodToUse = $match['target']['method'];
-
+    dump($methodToUse);
     $controller = new $controllerToUse();
     $controller->$methodToUse();
 } else {

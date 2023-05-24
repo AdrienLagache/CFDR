@@ -1,5 +1,5 @@
 <?php
-require __DIR__."/pdo.php";
+// require __DIR__."/../Utils/Database.php";
 
 if (!empty($_POST)) {
     $flag = isset($_POST['flag']) ? $_POST['flag'] : '';

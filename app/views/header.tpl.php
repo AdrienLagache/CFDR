@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>CFDR</title>
 </head>
@@ -33,7 +33,7 @@
                 <nav class="header-register" id="header-register">
                     <ul class="header-register__items">
                         <a href=""><li class="header-register__item">Se&nbsp;connecter</li></a>
-                        <a href="./index.php"><li class="header-register__item">S'inscrire</li></a>
+                        <a href="./"><li class="header-register__item">S'inscrire</li></a>
                     </ul>
                 </nav>
             </div>
