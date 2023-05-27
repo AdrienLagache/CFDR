@@ -1,5 +1,5 @@
 <?php
-// require __DIR__."/../Utils/Database.php";
+require __DIR__."/../Utils/Database.php";
 
 if (!empty($_POST)) {
     $flag = isset($_POST['flag']) ? $_POST['flag'] : '';
@@ -8,7 +8,7 @@ if (!empty($_POST)) {
     $track = isset($_POST['track']) ? $_POST['track'] : '';
     $date = isset($_POST['date']) ? $_POST['date'] : '';
 
-    if ($flag === '' || $race === '' || $country === '' || $track === '' || $date === '') {
+    if ($flag === '' || $country === '' || $track === '' || $date === '') {
         header('Location: ./admin');
         exit("une info n'a pas été correctement remplie");
     }

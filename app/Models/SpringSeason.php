@@ -2,7 +2,7 @@
 
 class SpringSeason {
     private $flag;
-    private $race;
+    private $id;
     private $country;
     private $track;
     private $date;
@@ -35,8 +35,8 @@ class SpringSeason {
       return $this->flag;
     }
   
-    public function race() {
-      return $this->race;
+    public function id() {
+      return $this->id;
     }
   
     public function country() {
@@ -55,9 +55,9 @@ class SpringSeason {
       $this->flag = $newFlag;
     }
   
-    public function setRace($newRace) {
-      $this->race = $newRace;
-    }
+    // public function setId($newRace) {
+    //   $this->id = $newRace;
+    // }
   
     public function setCountry($newCountry) {
       $this->country = $newCountry;

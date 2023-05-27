@@ -1,5 +1,5 @@
 <main class="admin"> 
-    <form class="admin-submit" action="./admin" method="post">
+    <form class="admin-submit" action="./" method="post">
         <label for="flag">drapeau</label>
         <select id="flag" name="flag">
             <option value="">--choisir un drapeau--</option>

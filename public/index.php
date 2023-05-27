@@ -1,27 +1,10 @@
 <?php
 require __DIR__."/../app/Utils/Database.php";
-// require __DIR__."/../app/Classes/Event.php";
 require __DIR__."/../app/Controllers/MainController.php";
+require __DIR__."/../app/Models/SpringSeason.php";
+require __DIR__."/../app/Models/FallSeason.php";
 require __DIR__."/../vendor/autoload.php";
 
-// $routes = [
-//     '/' => [
-//         'controller' => 'MainController',
-//         'method' => 'calendrier'
-//     ],
-//     '/meteo' => [
-//         'controller' => 'MainController',
-//         'method' => 'meteo'
-//     ],
-//     '/live' => [
-//         'controller' => 'MainCOntroller',
-//         'method' => 'live'
-//     ],
-//     '/admin' => [
-//         'controller' => 'MainController',
-//         'method' => 'admin'
-//     ],
-// ];
 
 $router = new AltoRouter();
 
@@ -73,7 +56,7 @@ $router->map(
 );
 
 $match = $router->match();
-dump($match);
+dump($router);
 if($match) {
     $controllerToUse = $match['target']['controller'];
     $methodToUse = $match['target']['method'];
@@ -83,14 +66,4 @@ if($match) {
 } else {
     exit('404 not found');
 }
-
-// $view = isset($_GET['page']) ? $_GET['page'] : '/';
-
-// if (isset($routes[$view])) {
-//     $controller = $routes[$view]['controller'];
-//     $controllerObject = new $controller();
-
-//     $method = $routes[$view]['method'];
-//     $controllerObject->$method();
-// }
 ?>

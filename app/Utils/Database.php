@@ -6,7 +6,7 @@ class Database
     /** @var PDO */
     private $dbh;
     private static $_instance;
-    private function __construct()
+    public function __construct()
     {
         // Récupération des données du fichier de config
         // la fonction parse_ini_file parse le fichier et retourne un array associatif
