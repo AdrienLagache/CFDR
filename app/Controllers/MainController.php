@@ -3,10 +3,11 @@
 
 class MainController {
     public function show($viewName, $viewDatas = []) {
+        $absoluteURL = isset($_SERVER['BASE_URI']) ? $_SERVER['BASE_URI'] : '';
+
         require __DIR__."/../views/header.tpl.php";
         require __DIR__."/../views/".$viewName.".tpl.php";
         require __DIR__."/../views/footer.tpl.php";
-
     }
 
     public function home() {
@@ -26,21 +27,16 @@ class MainController {
     }
 
     public function admin() {   
-        // require_once __DIR__ . "/../Utils/Database.php";
-        if (!empty($_POST)) {
-            $flag = isset($_POST['flag']) ? $_POST['flag'] : '';
-            $race = isset($_POST['race']) ? intval($_POST['race']) : '';
-            $country = isset($_POST['country']) ? $_POST['country'] : '';
-            $track = isset($_POST['track']) ? $_POST['track'] : '';
-            $date = isset($_POST['date']) ? $_POST['date'] : '';
-
-            $newFall = new FallSeason;
-            $addEvent = $newFall->addEvent($flag, $race, $country, $track, $date);
-        }
 
         if (isset($_GET['request'])) {
-            $newDelete = new FallSeason;
-            $newDelete->delete();
+            $flag = isset($_GET['flag']) ? $_GET['flag'] : '';
+            $race = isset($_GET['race']) ? intval($_GET['race']) : '';
+            $country = isset($_GET['country']) ? $_GET['country'] : '';
+            $track = isset($_GET['track']) ? $_GET['track'] : '';
+            $date = isset($_GET['date']) ? $_GET['date'] : '';
+
+            $newFall = new FallSeason;
+            $newFall->delete($flag, $race, $country, $track, $date);
         }
 
         $this->show('admin');

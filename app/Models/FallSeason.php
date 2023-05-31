@@ -31,32 +31,36 @@ class FallSeason {
         return $springEvent;
     }
 
-    public function addEvent($flag, $race, $country, $track, $date) {
+    public function addEvent($flag, $id, $country, $track, $date) {
     
-        if ($flag === '' || $country === '' || $track === '' || $date === '') {
-            // header('Location: ./admin');
-            exit("une info n'a pas été correctement remplie");
-        }
-    
-        $insertEvent = "INSERT INTO fall_season (id, flag, country, track, date)
-            VALUES ({$race}, '{$flag}', '{$country}', '{$track}', '{$date}')";
-
-        $pdo = Database::getPDO();
-        $addedLine = $pdo->exec($insertEvent);
-    
-        if ($addedLine === 1) {
-            header('Location: /');
-        } else {
-            echo 'Erreur insertion nouvel événement';
-            exit();
-        }
-        dump($addedLine);
-        return $addedLine;
+        
     }
 
-    public function delete() {
-        // var_dump('on est dans le if');
+    public function delete($flag, $id, $country, $track , $date) {
+        // dump($_GET);
         switch ($_GET['request']) {
+            case 'addOne':
+                if ($flag === '' || $country === '' || $track === '' || $date === '') {
+                  // header('Location: ./admin');
+                  exit("une info n'a pas été correctement remplie");
+                }
+            
+                $insertEvent = "INSERT INTO fall_season (id, flag, country, track, date)
+                    VALUES ({$id}, '{$flag}', '{$country}', '{$track}', '{$date}')";
+        
+                $pdo = Database::getPDO();
+                $addedLine = $pdo->exec($insertEvent);
+            
+                if ($addedLine === 1) {
+                    $reminder[$id] = $country.' le '.$date;
+                    dump($reminder); // ce dump me permet temporairement de voir la derniere entree
+                    // echo "<p>L'évènement ".$id." à ".$track." le ".$date." a bien été ajouté</p>";
+                } else {
+                    exit('Erreur insertion nouvel événement');
+                }
+
+                break;
+
             case 'allFallDelete': // je supprime toutes les courses du calendrier fall
                 $sqlDeleteAll = 'DELETE FROM fall_season';
                 $sqlResetInc = 'ALTER TABLE fall_season AUTO_INCREMENT=1'; // je remet l'auto-increment à sa valeur d'origine
@@ -66,12 +70,12 @@ class FallSeason {
                 $resetIncResult = $pdo->exec($sqlResetInc);
     
                 if ($deletedLines >= 1 && $resetIncResult === 0) {
-                    header('Location: ./');
-                    exit();
+                    dump("Le calendrier Fall a bien été supprimé");
                 } else {
-                    echo 'Erreur lors de la suppression';
+                    dump('Erreur lors de la suppression');
                     exit();
-                }        
+                }
+       
                 break;
     
             case 'lastFallDelete':
@@ -81,15 +85,13 @@ class FallSeason {
                 $pdo = Database::getPDO();
                 $deletedLine = $pdo->exec($sqlDeleteLast);
     
-                if ($deletedLine === 1) {
-                
-                    exit();
+                if ($deletedLine === 1) {                
+                    dump("Le dernier événement a bien été supprimé");
                 } else {
-                    echo 'Erreur lors de la suppression';
+                    dump('Erreur lors de la suppression');
                     exit();
                 }
-                dump($deletedLine);
-                return $deletedLine;
+                
                 break;
             default:
                 echo "Problème dans l'URL";

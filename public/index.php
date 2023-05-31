@@ -1,12 +1,13 @@
 <?php
+require __DIR__."/../vendor/autoload.php";
 require __DIR__."/../app/Utils/Database.php";
 require __DIR__."/../app/Controllers/MainController.php";
 require __DIR__."/../app/Models/SpringSeason.php";
 require __DIR__."/../app/Models/FallSeason.php";
-require __DIR__."/../vendor/autoload.php";
 
 
-$router = new AltoRouter();
+
+$router = new AltoRouter;
 
 $router->setBasePath($_SERVER['BASE_URI']);
 
@@ -56,14 +57,14 @@ $router->map(
 );
 
 $match = $router->match();
-dump($router);
+// dump($match);
 if($match) {
     $controllerToUse = $match['target']['controller'];
     $methodToUse = $match['target']['method'];
-    dump($methodToUse);
+
     $controller = new $controllerToUse();
     $controller->$methodToUse();
 } else {
-    exit('404 not found');
+    exit('404 page not found');
 }
 ?>
