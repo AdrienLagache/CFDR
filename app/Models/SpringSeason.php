@@ -11,7 +11,7 @@ class SpringSeason {
     private $track;
     private $date;
   
-    public function findAll() {
+    public static function findAll() {
         $sql = 'SELECT * FROM spring_season';
 
         $pdo = Database::getPDO();
@@ -23,7 +23,7 @@ class SpringSeason {
         return $springCalendar;
     }
 
-    public function find($id) {
+    public static function find($id) {
         $sql = 'SELECT * FROM spring_season WHERE id =' . $id;
 
         $pdo = Database::getPDO();

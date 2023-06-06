@@ -20,11 +20,9 @@ class MainController {
 
     public function home() {
 
-        $newSpring = new SpringSeason;
-        $springSeason = $newSpring->findAll();
+        $springSeason = SpringSeason::findAll();
 
-        $newFall = new FallSeason;
-        $fallSeason = $newFall->findAll();
+        $fallSeason = FallSeason::findAll();
 
         $calendarDatas = [
             'spring' => $springSeason,

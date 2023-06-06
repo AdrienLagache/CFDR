@@ -11,7 +11,7 @@ class FallSeason {
     private $track;
     private $date;
   
-    public function findAll() {
+    public static function findAll() {
         $sql = 'SELECT * FROM fall_season';
 
         $pdo = Database::getPDO();
@@ -23,7 +23,7 @@ class FallSeason {
         return $springCalendar;
     }
 
-    public function find($id) {
+    public static function find($id) {
         $sql = 'SELECT * FROM fall_season WHERE id =' . $id;
 
         $pdo = Database::getPDO();
@@ -35,34 +35,49 @@ class FallSeason {
         return $springEvent;
     }
 
-    public function addEvent($flag, $id, $country, $track, $date) {
-    
-        
+    public function insert ($id, $flag, $country, $track , $date) {
+        if ($id === '' || $flag === '' || $country === '' || $track === '' || $date === '') {
+            // header('Location: ./admin');
+            exit("une info n'a pas été correctement remplie");
+          }
+      
+          $insertEvent = "INSERT INTO fall_season (id, flag, country, track, date)
+              VALUES ({$id}, '{$flag}', '{$country}', '{$track}', '{$date}')";
+  
+          $pdo = Database::getPDO();
+          $addedLine = $pdo->exec($insertEvent);
+      
+          if ($addedLine === 1) {
+              $reminder[$id] = $country.' le '.$date;
+              dump($reminder); // ce dump me permet temporairement de voir la derniere entree
+          } else {
+              exit('Erreur insertion nouvel événement');
+          }
     }
 
     public function calendar($flag, $id, $country, $track , $date) {
         // dump($_GET);
         switch ($_GET['request']) {
-            case 'addOne':
-                if ($flag === '' || $country === '' || $track === '' || $date === '') {
-                  // header('Location: ./admin');
-                  exit("une info n'a pas été correctement remplie");
-                }
+            // case 'addOne':
+            //     if ($flag === '' || $country === '' || $track === '' || $date === '') {
+            //       // header('Location: ./admin');
+            //       exit("une info n'a pas été correctement remplie");
+            //     }
             
-                $insertEvent = "INSERT INTO fall_season (id, flag, country, track, date)
-                    VALUES ({$id}, '{$flag}', '{$country}', '{$track}', '{$date}')";
+            //     $insertEvent = "INSERT INTO fall_season (id, flag, country, track, date)
+            //         VALUES ({$id}, '{$flag}', '{$country}', '{$track}', '{$date}')";
         
-                $pdo = Database::getPDO();
-                $addedLine = $pdo->exec($insertEvent);
+            //     $pdo = Database::getPDO();
+            //     $addedLine = $pdo->exec($insertEvent);
             
-                if ($addedLine === 1) {
-                    $reminder[$id] = $country.' le '.$date;
-                    dump($reminder); // ce dump me permet temporairement de voir la derniere entree
-                } else {
-                    exit('Erreur insertion nouvel événement');
-                }
+            //     if ($addedLine === 1) {
+            //         $reminder[$id] = $country.' le '.$date;
+            //         dump($reminder); // ce dump me permet temporairement de voir la derniere entree
+            //     } else {
+            //         exit('Erreur insertion nouvel événement');
+            //     }
 
-                break;
+            //     break;
 
             case 'allFallDelete': // je supprime toutes les courses du calendrier fall
                 $sqlDeleteAll = 'DELETE FROM fall_season';
@@ -103,35 +118,35 @@ class FallSeason {
     }
   
     public function flag() {
-      return $this->flag;
+        return $this->flag;
     }
   
     public function id() {
-      return $this->id;
+        return $this->id;
     }
   
     public function country() {
-      return $this->country;
+        return $this->country;
     }
   
     public function track() {
-      return $this->track;
+        return $this->track;
     }
   
     public function date() {
-      return $this->date;
+        return $this->date;
     }
   
     public function setFlag($newFlag) {
-      $this->flag = $newFlag;
+        $this->flag = $newFlag;
     }
   
     public function setCountry($newCountry) {
-      $this->country = $newCountry;
+        $this->country = $newCountry;
     }
   
     public function setTrack($newtrack) {
-      $this->track = $newtrack;
+        $this->track = $newtrack;
     }
   
   }
