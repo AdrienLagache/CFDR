@@ -1,28 +1,27 @@
 <?php
 
-namespace App;
-
-use AltoRouter;
-
 require_once('../vendor/autoload.php');
 
-// require __DIR__."/../vendor/autoload.php";
-// require __DIR__."/../app/Utils/Database.php";
-// require __DIR__."/../app/Controllers/MainController.php";
-// require __DIR__."/../app/Models/SpringSeason.php";
-// require __DIR__."/../app/Models/FallSeason.php";
+use App\Controllers\MainController;
 
 
 
 $router = new AltoRouter;
 
-$router->setBasePath($_SERVER['BASE_URI']);
+if (array_key_exists('BASE_URI', $_SERVER)) {
+
+    $router->setBasePath($_SERVER['BASE_URI']);
+
+} else { 
+
+    $_SERVER['BASE_URI'] = '/';
+}
 
 $router->map(
     'GET',
     '/',
     [
-        'controller' => 'MainController',
+        'controller' => MainController::class,
         'method' => 'home'
     ]
 );
@@ -31,7 +30,7 @@ $router->map(
     'GET',
     '/calendrier',
     [
-        'controller' => 'MainController',
+        'controller' => MainController::class,
         'method' => 'calendrier'   
     ]
 );
@@ -40,8 +39,17 @@ $router->map(
     'GET',
     '/admin',
     [
-        'controller' => 'MainController',
+        'controller' => MainController::class,
         'method'  => 'admin'
+    ]
+);
+
+$router->map(
+    'POST',
+    '/admin',
+    [
+        'controller' => 'MainController',
+        'method'  => 'create'
     ]
 );
 
@@ -49,7 +57,7 @@ $router->map(
     'GET',
     '/meteo',
     [
-        'controller' => 'MainController',
+        'controller' => MainController::class,
         'method'  => 'meteo'
     ]
 );
@@ -58,20 +66,23 @@ $router->map(
     'GET',
     '/live',
     [
-        'controller' => 'MainController',
+        'controller' => MainController::class,
         'method'  => 'live'
     ]
 );
 
 $match = $router->match();
 // dump($match);
-if($match) {
-    $controllerToUse = 'App\\Controllers\\'.$match['target']['controller'];
-    $methodToUse = $match['target']['method'];
 
-    $controller = new $controllerToUse();
-    $controller->$methodToUse();
-} else {
-    exit('404 page not found');
-}
+$dispatcher = new Dispatcher($match, '\App\Controllers\ErrorController::err404');
+$dispatcher->dispatch();
+// if($match) {
+//     $controllerToUse = 'App\\Controllers\\'.$match['target']['controller'];
+//     $methodToUse = $match['target']['method'];
+
+//     $controller = new $controllerToUse();
+//     $controller->$methodToUse();
+// } else {
+//     exit('404 page not found');
+// }
 ?>

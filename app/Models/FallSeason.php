@@ -126,10 +126,6 @@ class FallSeason {
       $this->flag = $newFlag;
     }
   
-    // public function setId($newRace) {
-    //   $this->id = $newRace;
-    // }
-  
     public function setCountry($newCountry) {
       $this->country = $newCountry;
     }
