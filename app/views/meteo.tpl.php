@@ -1,7 +1,7 @@
 <section class="meteo">
     <h2 class="meteo-title">Météo</h2>
 
-    <form class="meteo-location" action="./meteo" method="get">
+    <form class="meteo-location" action="<?= $router->generate('main-meteo')?>" method="GET">
         <select id="meteo"  onchange="this.form.submit()" name="location">
                 <option value="18276642">--choisir un circuit--</option>
                 <option value="15472914">Yas Marina</option>

@@ -1,5 +1,7 @@
 <?php
+namespace App\Utils;
 
+use \PDO;
 // Design Pattern : Singleton
 class Database
 {

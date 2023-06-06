@@ -1,5 +1,6 @@
 <main class="admin"> 
-    <form class="admin-submit" action="./" method="post">
+    <form class="admin-submit" action="<?= $router->generate('admin-create')?>" method="POST">
+        <input type="hidden" name="request" value="addOne">
         <label for="flag">drapeau</label>
         <select id="flag" name="flag">
             <option value="">--choisir un drapeau--</option>
@@ -26,12 +27,12 @@
         <input type="text" id="date" name="date">
         <input id="admin_add" type="submit" value="Ajouter course">
     </form>
-    <form class="admin-submit" action="./admin" method="get">
-        <input type="hidden" name="request" value="lastFallDelete">
+    <form class="admin-submit" action="<?= $router->generate('admin-remove')?>" method="POST">
+        <input type="hidden" name="remove" value="lastFallDelete">
         <input id="admin-delete_last" type="submit" value="Effacer dernière course">
     </form>
-    <form class="admin-submit" action="./admin" method="get">
-        <input type="hidden" name="request" value="allFallDelete">
+    <form class="admin-submit" action="<?= $router->generate('admin-remove')?>" method="POST">
+        <input type="hidden" name="remove" value="allFallDelete">
         <input id="admin-delete_all" type="submit" value="Effacer le calendrier Fall">
     </form>
 </main>
