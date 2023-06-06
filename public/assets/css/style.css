@@ -130,14 +130,14 @@ a:hover {
     margin: 0;
 }
 
-.calendrier-title, .meteo-title {
+.calendrier-title {
     font-size: 1rem;
     padding: 2rem 0;
     text-align: center;
     font-weight: bold;
     color: rgb(228, 15, 52);
     text-transform: uppercase;
-    text-shadow: 0 0 3.5rem white;
+    text-shadow: 1px 1px 2rem white;
 }
 
 .calendrier td, .calendrier th {
@@ -166,7 +166,17 @@ a:hover {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 2.5rem;
+    gap: 2rem;
+}
+
+.meteo-title {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(228, 15, 52);
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2rem white;
 }
 
 #meteo-location {
@@ -177,10 +187,12 @@ a:hover {
 
 .meteo-widget iframe {
     padding: 1rem;
-    border: 0;
+    border-radius: 0 70px 0 70px;
+    opacity: 90%;
+    /* border: 0; */
 }
 
-.form {
+/* .form {
     display: flex;
     flex-direction: column;
     margin-left: 1rem;
@@ -194,7 +206,7 @@ a:hover {
 
 .form label {
     margin-top: 1.5rem;
-}
+} */
 
 #footer {
     background-color: rgba(0, 0, 0, 0.4);
@@ -203,6 +215,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-top: 42vh;
 }
 
 #footer img {
@@ -220,7 +233,7 @@ a:hover {
     padding: 1rem;
 }
 
-.form-group {
+.form-group, .preview {
     color: white;
     margin-top: 1rem;
 }
@@ -233,6 +246,11 @@ a:hover {
 
     .admin {
         width: 75%;
+    }
+
+    .meteo-widget iframe {
+        width: 450px;
+        height: 450px;
     }
 }
 
@@ -252,9 +270,15 @@ a:hover {
     }
 
     .meteo-widget iframe {
-        width: 450px;
+        width: 550px;
         height: 450px;
     }
+
+    .meteo-widget iframe {
+        border-radius: 0 100px 0 100px;
+    }
+
+
 }
 
 @media (min-width: 800px) {

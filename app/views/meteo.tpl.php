@@ -2,7 +2,7 @@
     <h2 class="meteo-title">Météo</h2>
 
     <form class="meteo-location" action="<?= $router->generate('main-meteo')?>" method="GET">
-        <select id="meteo"  onchange="this.form.submit()" name="location">
+        <select id="meteo" class="form-select" onchange="this.form.submit()" name="location">
                 <option value="18276642">--choisir un circuit--</option>
                 <option value="15472914">Yas Marina</option>
                 <option value="9038451">Barcelona-Catalunya</option>
@@ -23,7 +23,7 @@
     <?php $location = isset($_GET['location']) ? $_GET['location'] : '18276642';?>
 
     <div class="meteo-widget">
-        <iframe src="https://api.wo-cloud.com/content/widget/?geoObjectKey=<?=$location?>&language=fr&region=FR&timeFormat=HH:mm&windUnit=kmh&systemOfMeasurement=metric&temperatureUnit=celsius" name="CW2" scrolling="no" width="290" height="318" frameborder="0" style="border: border-radius: 8px"></iframe>
+        <iframe src="https://api.wo-cloud.com/content/widget/?geoObjectKey=<?=$location?>&language=fr&region=FR&timeFormat=HH:mm&windUnit=kmh&systemOfMeasurement=metric&temperatureUnit=celsius" name="CW2" scrolling="no" width="300" height="400" frameborder="0"></iframe>
     </div>
 </section>
 
