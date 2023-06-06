@@ -1,4 +1,8 @@
 <?php
+namespace App\Models;
+
+use \PDO;
+use App\Utils\Database;
 
 class SpringSeason {
     private $flag;
@@ -14,7 +18,7 @@ class SpringSeason {
 
         $pdoStatement = $pdo->query($sql);
 
-        $springCalendar = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'SpringSeason');
+        $springCalendar = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\\Models\\SpringSeason');
 
         return $springCalendar;
     }
@@ -26,7 +30,7 @@ class SpringSeason {
 
         $pdoStatement = $pdo->query($sql);
 
-        $springEvent = $pdoStatement->fetchObject('SpringSeason');
+        $springEvent = $pdoStatement->fetchObject('App\\Models\\SpringSeason');
 
         return $springEvent;
     }

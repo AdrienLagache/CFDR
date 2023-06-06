@@ -1,5 +1,8 @@
 <?php
+namespace App\Controllers;
 
+use App\Models\SpringSeason;
+use App\Models\FallSeason;
 
 class MainController {
     public function show($viewName, $viewDatas = []) {
@@ -36,7 +39,7 @@ class MainController {
             $date = isset($_GET['date']) ? $_GET['date'] : '';
 
             $newFall = new FallSeason;
-            $newFall->delete($flag, $race, $country, $track, $date);
+            $newFall->calendar($flag, $race, $country, $track, $date);
         }
 
         $this->show('admin');

@@ -1,4 +1,8 @@
 <?php
+namespace App\Models;
+
+use \PDO;
+use App\Utils\Database;
 
 class FallSeason {
     private $id;
@@ -14,7 +18,7 @@ class FallSeason {
 
         $pdoStatement = $pdo->query($sql);
 
-        $springCalendar = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'FallSeason');
+        $springCalendar = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\\Models\\FallSeason');
 
         return $springCalendar;
     }
@@ -26,7 +30,7 @@ class FallSeason {
 
         $pdoStatement = $pdo->query($sql);
 
-        $springEvent = $pdoStatement->fetchObject('FallSeason');
+        $springEvent = $pdoStatement->fetchObject('App\\Models\\FallSeason');
 
         return $springEvent;
     }
@@ -36,7 +40,7 @@ class FallSeason {
         
     }
 
-    public function delete($flag, $id, $country, $track , $date) {
+    public function calendar($flag, $id, $country, $track , $date) {
         // dump($_GET);
         switch ($_GET['request']) {
             case 'addOne':
@@ -54,7 +58,6 @@ class FallSeason {
                 if ($addedLine === 1) {
                     $reminder[$id] = $country.' le '.$date;
                     dump($reminder); // ce dump me permet temporairement de voir la derniere entree
-                    // echo "<p>L'évènement ".$id." à ".$track." le ".$date." a bien été ajouté</p>";
                 } else {
                     exit('Erreur insertion nouvel événement');
                 }

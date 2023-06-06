@@ -1,9 +1,16 @@
 <?php
-require __DIR__."/../vendor/autoload.php";
-require __DIR__."/../app/Utils/Database.php";
-require __DIR__."/../app/Controllers/MainController.php";
-require __DIR__."/../app/Models/SpringSeason.php";
-require __DIR__."/../app/Models/FallSeason.php";
+
+namespace App;
+
+use AltoRouter;
+
+require_once('../vendor/autoload.php');
+
+// require __DIR__."/../vendor/autoload.php";
+// require __DIR__."/../app/Utils/Database.php";
+// require __DIR__."/../app/Controllers/MainController.php";
+// require __DIR__."/../app/Models/SpringSeason.php";
+// require __DIR__."/../app/Models/FallSeason.php";
 
 
 
@@ -59,7 +66,7 @@ $router->map(
 $match = $router->match();
 // dump($match);
 if($match) {
-    $controllerToUse = $match['target']['controller'];
+    $controllerToUse = 'App\\Controllers\\'.$match['target']['controller'];
     $methodToUse = $match['target']['method'];
 
     $controller = new $controllerToUse();
