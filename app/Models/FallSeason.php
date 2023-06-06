@@ -38,6 +38,7 @@ class FallSeason {
     public function insert ($id, $flag, $country, $track , $date) {
         if ($id === '' || $flag === '' || $country === '' || $track === '' || $date === '') {
             // header('Location: ./admin');
+            dump(array($id, $flag, $country, $track, $date));
             exit("une info n'a pas été correctement remplie");
           }
       

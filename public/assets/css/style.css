@@ -116,9 +116,9 @@ a:hover {
     height: 100%;
 } */
 
-section {
+/* section {
     min-height: 86vh;
-}
+} */
 
 .calendrier {
     z-index: -1;
@@ -202,6 +202,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 #footer img {
@@ -216,47 +217,22 @@ section {
 .admin {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    height: 100vh;
     padding: 1rem;
 }
 
-.admin-submit {
-    display: flex;
-    flex-direction: column;
-}
-
-#admin_add {
-    margin: 1rem 0;
-    height: 2rem;
-}
-
-.admin-delete {
-    display: flex;
-    justify-content: space-between;
-    height: 2rem;
-}
-
-.admin label {
-    font-weight: bold;
-    margin: 1rem 0;
+.form-group {
     color: white;
+    margin-top: 1rem;
 }
-
-/* .admin-submit {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 1rem 0;
-    height: 2.5rem;
-} */
-
-
-
 
 @media (min-width: 450px) {
     .header-register__item {
         line-height: 2rem;
         font-size: 1.5rem
+    }
+
+    .admin {
+        width: 75%;
     }
 }
 
@@ -298,6 +274,10 @@ section {
 
     .calendrier td, .calendrier th {
         font-size: 1.5rem;
+    }
+
+    .admin {
+        width: 50%;
     }
 }
 
@@ -361,5 +341,9 @@ section {
         flex-direction: row;
         flex-wrap: nowrap;
         gap: 1rem;
+    }
+
+    .admin {
+        width: 33%;
     }
 }
