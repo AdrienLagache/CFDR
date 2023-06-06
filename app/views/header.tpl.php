@@ -33,7 +33,7 @@
                 <nav class="header-register" id="header-register">
                     <ul class="header-register__items">
                         <a href=""><li class="header-register__item">Se&nbsp;connecter</li></a>
-                        <a href="./"><li class="header-register__item">S'inscrire</li></a>
+                        <a href="<?= $router->generate('main-home')?>"><li class="header-register__item">S'inscrire</li></a>
                     </ul>
                 </nav>
             </div>
@@ -42,12 +42,12 @@
     
     <nav class="menu-nav" id="menu-nav">
         <ul class="menu-nav__items">
-            <a href="./admin"><li class="menu-nav__item">Infos pilote</li></a>
-            <a href="./"><li class="menu-nav__item">Calendrier</li></a>
-            <a href="./meteo"><li class="menu-nav__item">Météo</li></a>
+            <a href="<?= $router->generate('main-admin')?>"><li class="menu-nav__item">Infos pilote</li></a>
+            <a href="<?= $router->generate('main-home')?>"><li class="menu-nav__item">Calendrier</li></a>
+            <a href="<?= $router->generate('main-meteo')?>"><li class="menu-nav__item">Météo</li></a>
             <a href="index.php?page=infos"><li class="menu-nav__item">Line-up</li></a>
             <a href="index.php?page=classements"><li class="menu-nav__item">Classement</li></a>
-            <a href="./live"><li class="menu-nav__item">Live</li></a>
+            <a href="<?= $router->generate('main-live')?>"><li class="menu-nav__item">Live</li></a>
         </ul>
         <img id="benjx" src="assets/images/benjx_logo.png" alt="logo de la chaîne Twitch Benjxmotorsport">
     </nav>

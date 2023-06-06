@@ -3,6 +3,7 @@
 require_once('../vendor/autoload.php');
 
 use App\Controllers\MainController;
+use App\Controllers\AdminController;
 
 
 
@@ -23,7 +24,8 @@ $router->map(
     [
         'controller' => MainController::class,
         'method' => 'home'
-    ]
+    ],
+    'main-home'
 );
 
 $router->map(
@@ -32,25 +34,38 @@ $router->map(
     [
         'controller' => MainController::class,
         'method' => 'calendrier'   
-    ]
+    ],
+    'main-calendar'
 );
 
 $router->map(
     'GET',
     '/admin',
     [
-        'controller' => MainController::class,
+        'controller' => AdminController::class,
         'method'  => 'admin'
-    ]
+    ],
+    'main-admin'
+);
+
+$router->map(
+    'POST',
+    '/admin/delete',
+    [
+        'controller' => AdminController::class,
+        'method'  => 'delete'
+    ],
+    'admin-delete'
 );
 
 $router->map(
     'POST',
     '/admin',
     [
-        'controller' => 'MainController',
+        'controller' => AdminController::class,
         'method'  => 'create'
-    ]
+    ],
+    'admin-create'
 );
 
 $router->map(
@@ -59,7 +74,8 @@ $router->map(
     [
         'controller' => MainController::class,
         'method'  => 'meteo'
-    ]
+    ],
+    'main-meteo'
 );
 
 $router->map(
@@ -68,7 +84,8 @@ $router->map(
     [
         'controller' => MainController::class,
         'method'  => 'live'
-    ]
+    ],
+    'main-live'
 );
 
 $match = $router->match();

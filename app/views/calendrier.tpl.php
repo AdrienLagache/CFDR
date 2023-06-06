@@ -14,7 +14,7 @@
                 </thead>
                 <tbody class="table-group-divider">
         
-                <?php foreach ($viewDatas['spring'] as $Event) :?>
+                <?php foreach ($spring as $Event) :?>
                     <tr>
                         <th class="calendrier-item__flag" scope="row"><img src="assets/images/<?= $Event->flag()?>" alt="drapeaux des émirats arabes unis"></th>
                         <td class="calendrier-item__race">R<?= $Event->id()?></td>
@@ -29,7 +29,7 @@
         </div>
     </section>
     
-    <?php if ($viewDatas['fall'] !== ''):?>
+    <?php if ($fall !== ''):?>
     <section class="calendrier">
         <h2 class="calendrier-title">Calendrier saison Fall 2023</h2>
         
@@ -46,7 +46,7 @@
                 </thead>
                 <tbody class="table-group-divider">
         
-                <?php foreach ($viewDatas['fall'] as $Event) :?>
+                <?php foreach ($fall as $Event) :?>
                     <tr>
                         <th class="calendrier-item__flag" scope="row"><img src="assets/images/<?= $Event->flag()?>" alt="drapeaux des émirats arabes unis"></th>
                         <td class="calendrier-item__race">R<?= $Event->id()?></td>

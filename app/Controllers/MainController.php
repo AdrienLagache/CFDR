@@ -5,8 +5,13 @@ use App\Models\SpringSeason;
 use App\Models\FallSeason;
 
 class MainController {
+    
     public function show($viewName, $viewDatas = []) {
-        $absoluteURL = isset($_SERVER['BASE_URI']) ? $_SERVER['BASE_URI'] : '';
+        global $router;
+
+        dump(get_defined_vars());
+
+        extract($viewDatas);
 
         require __DIR__."/../views/header.tpl.php";
         require __DIR__."/../views/".$viewName.".tpl.php";
@@ -27,22 +32,6 @@ class MainController {
         ];
 
         $this->show('calendrier', $calendarDatas);
-    }
-
-    public function admin() {   
-
-        if (isset($_GET['request'])) {
-            $flag = isset($_GET['flag']) ? $_GET['flag'] : '';
-            $race = isset($_GET['race']) ? intval($_GET['race']) : '';
-            $country = isset($_GET['country']) ? $_GET['country'] : '';
-            $track = isset($_GET['track']) ? $_GET['track'] : '';
-            $date = isset($_GET['date']) ? $_GET['date'] : '';
-
-            $newFall = new FallSeason;
-            $newFall->calendar($flag, $race, $country, $track, $date);
-        }
-
-        $this->show('admin');
     }
 
     public function calendrier() {

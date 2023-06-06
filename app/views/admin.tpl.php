@@ -1,5 +1,5 @@
 <main class="admin"> 
-    <form class="admin-submit" action="./admin" method="get">
+    <form class="admin-submit" action="<?= $router->generate('admin-create')?>" method="POST">
         <input type="hidden" name="request" value="addOne">
         <label for="flag">drapeau</label>
         <select id="flag" name="flag">
@@ -27,11 +27,11 @@
         <input type="text" id="date" name="date">
         <input id="admin_add" type="submit" value="Ajouter course">
     </form>
-    <form class="admin-submit" action="./admin" method="get">
+    <form class="admin-submit" action="/admin" method="POST">
         <input type="hidden" name="request" value="lastFallDelete">
         <input id="admin-delete_last" type="submit" value="Effacer dernière course">
     </form>
-    <form class="admin-submit" action="./admin" method="get">
+    <form class="admin-submit" action="/admin" method="POST">
         <input type="hidden" name="request" value="allFallDelete">
         <input id="admin-delete_all" type="submit" value="Effacer le calendrier Fall">
     </form>
