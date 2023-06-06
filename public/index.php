@@ -50,12 +50,12 @@ $router->map(
 
 $router->map(
     'POST',
-    '/admin/delete',
+    '/admin/remove',
     [
         'controller' => AdminController::class,
-        'method'  => 'delete'
+        'method'  => 'remove'
     ],
-    'admin-delete'
+    'admin-remove'
 );
 
 $router->map(

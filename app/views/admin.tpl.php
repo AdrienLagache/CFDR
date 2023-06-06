@@ -27,12 +27,12 @@
         <input type="text" id="date" name="date">
         <input id="admin_add" type="submit" value="Ajouter course">
     </form>
-    <form class="admin-submit" action="/admin" method="POST">
-        <input type="hidden" name="request" value="lastFallDelete">
+    <form class="admin-submit" action="<?= $router->generate('admin-remove')?>" method="POST">
+        <input type="hidden" name="remove" value="lastFallDelete">
         <input id="admin-delete_last" type="submit" value="Effacer dernière course">
     </form>
-    <form class="admin-submit" action="/admin" method="POST">
-        <input type="hidden" name="request" value="allFallDelete">
+    <form class="admin-submit" action="<?= $router->generate('admin-remove')?>" method="POST">
+        <input type="hidden" name="remove" value="allFallDelete">
         <input id="admin-delete_all" type="submit" value="Effacer le calendrier Fall">
     </form>
 </main>

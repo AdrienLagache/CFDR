@@ -42,4 +42,10 @@ class AdminController extends MainController {
             'fall' => $fallSeason
         ]);
     }
+
+    public function remove() {
+                
+        $newFallSeason = new FallSeason();
+        $newFallSeason->delete();
+    }
 }
