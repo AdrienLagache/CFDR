@@ -10,9 +10,11 @@ class AdminController extends MainController {
     public function admin() {   
 
         $fallSeason = FallSeason::findAll();
+        $springSeason = SpringSeason::findAll();
 
         $this->show('admin', [
             'fall' => $fallSeason,
+            'spring' => $springSeason
         ]);
     }
 

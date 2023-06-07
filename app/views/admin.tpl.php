@@ -1,7 +1,8 @@
+<a href="<?= $router->generate('main-calendar') ?>" class="btn btn-secondary mt-4 ms-4 w-25">Retour</a>
+
 <main class="admin">
-    
-    <a href="<?= $router->generate('main-calendar') ?>" class="btn btn-secondary float-right my-3 w-25">Retour</a>
-    
+
+    <div class="admin-input">
         <form action="<?= $router->generate('admin-create')?>" method="POST" class="mt-1">
             <div class="form-group">
                 <label for="flag" class="form-label">drapeau</label>
@@ -49,11 +50,13 @@
                 <button type="submit" class="btn btn-danger btn-block mt-3 mb-3 w-100 h-100">Effacer le calendrier Fall</button>
             </form>
         </div>
+    </div>
 
 
-        <div class="container my-4">
-
-        <table class="table table-hover mt-4 preview">
+    <div class="container admin-preview">
+            
+    <table class="table preview">
+            <h3 class="preview__title">Calendrier Fall</h3>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -88,5 +91,43 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+
+        <table class="table mb-5 preview">
+            <h3 class="mt-5 preview__title">Calendrier Spring</h3>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Pays</th>
+                    
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach($spring as $event) : ?>
+                <tr>
+                    <th scope="row"><?= $event->id() ?></th>
+                    <td><?= $event->country() ?></td>
+                    
+                    <td class="text-end">
+                        <a href="" class="btn btn-sm btn-warning">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                        <!-- Example single danger button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-danger dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Oui, je veux supprimer</a>
+                                <a class="dropdown-item" href="#" data-bs-toggle="dropdown">Oups !</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
+    
 </main>
