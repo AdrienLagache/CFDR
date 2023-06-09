@@ -4,19 +4,7 @@ namespace App\Controllers;
 use App\Models\SpringSeason;
 use App\Models\FallSeason;
 
-class MainController {
-    
-    public function show($viewName, $viewDatas = []) {
-        global $router;
-
-        dump(get_defined_vars());
-
-        extract($viewDatas);
-
-        require __DIR__."/../views/header.tpl.php";
-        require __DIR__."/../views/".$viewName.".tpl.php";
-        require __DIR__."/../views/footer.tpl.php";
-    }
+class MainController extends CoreController {
 
     public function home() {
 
@@ -56,5 +44,18 @@ class MainController {
     public function live() {
         
         $this->show('live');
+    }
+
+
+    public function admin() {   
+
+        $fallSeason = FallSeason::findAll();
+        $springSeason = SpringSeason::findAll();
+
+        $this->show('admin', [
+            'fall' => $fallSeason,
+            'spring' => $springSeason,
+            'eventToAdd' => new FallSeason()
+        ]);
     }
 }

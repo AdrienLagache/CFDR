@@ -4,8 +4,7 @@ require_once('../vendor/autoload.php');
 
 use App\Controllers\MainController;
 use App\Controllers\AdminController;
-
-
+use App\Controllers\CalendarController;
 
 $router = new AltoRouter;
 
@@ -42,7 +41,7 @@ $router->map(
     'GET',
     '/admin',
     [
-        'controller' => AdminController::class,
+        'controller' => MainController::class,
         'method'  => 'admin'
     ],
     'main-admin'
@@ -52,7 +51,7 @@ $router->map(
     'POST',
     '/admin',
     [
-        'controller' => AdminController::class,
+        'controller' => CalendarController::class,
         'method'  => 'create'
     ],
     'admin-create'
@@ -62,7 +61,7 @@ $router->map(
     'GET',
     '/admin/update/[i:id]',
     [
-        'controller' => AdminController::class,
+        'controller' => CalendarController::class,
         'method'  => 'edit'
     ],
     'admin-edit'
@@ -74,7 +73,7 @@ $router->map(
     'POST',
     '/admin/remove',
     [
-        'controller' => AdminController::class,
+        'controller' => CalendarController::class,
         'method'  => 'remove'
     ],
     'admin-remove'

@@ -35,29 +35,33 @@ class FallSeason {
         return $fallEvent;
     }
 
-    public function insert ($id, $flag, $country, $track , $date) {
-        global $router;
+    public function insert () {
+        
+        $pdo = Database::getPDO();
+    
+        $sql = "INSERT INTO `fall_season` (id, flag, country, track, date)
+                VALUES (:id, :flag, :country, :track, :date)";
 
-        if ($id === '' || $flag === '' || $country === '' || $track === '' || $date === '') {
-            // header('Location: ./admin');
-            dump(array($id, $flag, $country, $track, $date));
-            exit("une info n'a pas été correctement remplie");
-          }
-      
-          $insertEvent = "INSERT INTO fall_season (id, flag, country, track, date)
-              VALUES ({$id}, '{$flag}', '{$country}', '{$track}', '{$date}')";
-  
-          $pdo = Database::getPDO();
-          $addedLine = $pdo->exec($insertEvent);
-      
-          if ($addedLine === 1) {
-              
-            header('Location: ' . $router->generate('main-admin'));
+        $pdoStatement = $pdo->prepare($sql);
 
-          } else {
-            
-              exit('Erreur insertion nouvel événement');
-          }
+        $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $pdoStatement->bindValue(':flag', $this->flag, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':country', $this->country, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':track', $this->track, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':date', $this->date, PDO::PARAM_STR);
+
+        $pdoStatement->execute();
+    
+        if (1 === $pdoStatement->rowCount()) {
+            // recuperation de l'id auto-incrémenté
+            $this->id = $pdo->lastInsertId();
+
+            return true;
+    
+        } else {
+    
+            return false;
+        }
     }
 
     public function delete() {
@@ -129,6 +133,10 @@ class FallSeason {
     public function date() {
         return $this->date;
     }
+
+    public function setId($newId) {
+        $this->id = $newId;
+    }
   
     public function setFlag($newFlag) {
         $this->flag = $newFlag;
@@ -140,6 +148,10 @@ class FallSeason {
   
     public function setTrack($newtrack) {
         $this->track = $newtrack;
+    }
+
+    public function setDate($newDate) {
+        $this->date = $newDate;
     }
   
   }
