@@ -9,7 +9,7 @@ class MainController {
     public function show($viewName, $viewDatas = []) {
         global $router;
 
-        // dump(get_defined_vars());
+        dump(get_defined_vars());
 
         extract($viewDatas);
 

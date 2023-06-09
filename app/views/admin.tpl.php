@@ -1,9 +1,9 @@
 <a href="<?= $router->generate('main-calendar') ?>" class="btn btn-secondary mt-4 ms-4 w-25">Retour</a>
 
-<main class="admin">
+<section class="admin">
 
     <div class="admin-input">
-        <form action="<?= $router->generate('admin-create')?>" method="POST" class="mt-1">
+        <form action="" method="POST" class="mt-5">
             <div class="form-group">
                 <label for="flag" class="form-label">drapeau</label>
                 <select class="form-select" name="flag" id="flag">
@@ -24,22 +24,23 @@
             </div>
             <div class="form-group">
                 <label for="race">Numero de course</label>
-                <input type="text" class="form-control" id="race" name="race" placeholder="Numéro de course">
+                <input type="text" class="form-control" id="race" name="race" value="<?= $eventToAdd->id()?>" placeholder="Numéro de course">
             </div>
             <div class="form-group">
                 <label for="country">Pays</label>
-                <input type="text" class="form-control" id="country" name="country" placeholder="Nom du pays">
+                <input type="text" class="form-control" id="country" name="country" value="<?= $eventToAdd->country()?>" placeholder="Nom du pays">
             </div>
             <div class="form-group">
                 <label for="track">Nom du circuit</label>
-                <input type="text" class="form-control" id="track" name="track" placeholder="Nom du circuit">
+                <input type="text" class="form-control" id="track" name="track" value="<?= $eventToAdd->track()?>" placeholder="Nom du circuit">
             </div>
             <div class="form-group">
                 <label for="date">Date</label>
-                <input type="text" class="form-control" id="date" name="date" placeholder="Date de l'évènement">
+                <input type="text" class="form-control" id="date" name="date" value="<?= $eventToAdd->date()?>" placeholder="Date de l'évènement">
             </div>
             <button type="submit" class="btn btn-success btn-block mt-5 w-100 h-100 admin-submit__button">Ajouter</button>
         </form>
+
         <div class="admin-delete">
             <form action="<?= $router->generate('admin-remove')?>" method="POST" class="mt-1 admin-submit">
                 <input type="hidden" name="remove" value="lastFallDelete">
@@ -66,15 +67,16 @@
                 </tr>
             </thead>
             <tbody>
-            <?php foreach($fall as $event) : ?>
+            <?php foreach($fall as $event) :?>
                 <tr>
                     <th scope="row"><?= $event->id() ?></th>
                     <td><?= $event->country() ?></td>
+                    <td><?= $event->date() ?></td>
                     
                     <td class="text-end">
-                        <a href="" class="btn btn-sm btn-warning">
+                        <!-- <a href="" class="btn btn-sm btn-warning">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a>
+                        </a> -->
                         <!-- Example single danger button -->
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-danger dropdown-toggle"
@@ -107,9 +109,10 @@
                 <tr>
                     <th scope="row"><?= $event->id() ?></th>
                     <td><?= $event->country() ?></td>
+                    <td><?= $event->date() ?></td>
                     
                     <td class="text-end">
-                        <a href="" class="btn btn-sm btn-warning">
+                        <a href="<?= $router->generate('admin-edit', ['id' => $event->id()])?>" class="btn btn-sm btn-warning">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                         <!-- Example single danger button -->
@@ -129,5 +132,5 @@
             </tbody>
         </table>
     </div>
+</section>
     
-</main>

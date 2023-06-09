@@ -50,22 +50,34 @@ $router->map(
 
 $router->map(
     'POST',
-    '/admin/remove',
-    [
-        'controller' => AdminController::class,
-        'method'  => 'remove'
-    ],
-    'admin-remove'
-);
-
-$router->map(
-    'POST',
     '/admin',
     [
         'controller' => AdminController::class,
         'method'  => 'create'
     ],
     'admin-create'
+);
+
+$router->map(
+    'GET',
+    '/admin/update/[i:id]',
+    [
+        'controller' => AdminController::class,
+        'method'  => 'edit'
+    ],
+    'admin-edit'
+);
+
+// TODO : route admin-update => meme route que admin-edit mais en POST
+
+$router->map(
+    'POST',
+    '/admin/remove',
+    [
+        'controller' => AdminController::class,
+        'method'  => 'remove'
+    ],
+    'admin-remove'
 );
 
 $router->map(
@@ -92,14 +104,7 @@ $match = $router->match();
 // dump($match);
 
 $dispatcher = new Dispatcher($match, '\App\Controllers\ErrorController::err404');
-$dispatcher->dispatch();
-// if($match) {
-//     $controllerToUse = 'App\\Controllers\\'.$match['target']['controller'];
-//     $methodToUse = $match['target']['method'];
 
-//     $controller = new $controllerToUse();
-//     $controller->$methodToUse();
-// } else {
-//     exit('404 page not found');
-// }
+$dispatcher->dispatch();
+
 ?>

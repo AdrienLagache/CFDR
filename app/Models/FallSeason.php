@@ -30,12 +30,14 @@ class FallSeason {
 
         $pdoStatement = $pdo->query($sql);
 
-        $springEvent = $pdoStatement->fetchObject('App\\Models\\FallSeason');
+        $fallEvent = $pdoStatement->fetchObject('App\\Models\\FallSeason');
 
-        return $springEvent;
+        return $fallEvent;
     }
 
     public function insert ($id, $flag, $country, $track , $date) {
+        global $router;
+
         if ($id === '' || $flag === '' || $country === '' || $track === '' || $date === '') {
             // header('Location: ./admin');
             dump(array($id, $flag, $country, $track, $date));
@@ -49,8 +51,8 @@ class FallSeason {
           $addedLine = $pdo->exec($insertEvent);
       
           if ($addedLine === 1) {
-              $reminder[$id] = $country.' le '.$date;
-              dump($reminder); // ce dump me permet temporairement de voir la derniere entree
+              
+            header('Location: ' . $router->generate('main-admin'));
 
           } else {
             
@@ -92,7 +94,7 @@ class FallSeason {
     
                 if ($deletedLine === 1) {                
 
-                    header('Location: '.$router->generate('main-calendar'));
+                    header('Location: '.$router->generate('main-admin'));
 
                 } else {
 

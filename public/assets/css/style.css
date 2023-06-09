@@ -188,7 +188,7 @@ a:hover {
 .meteo-widget iframe {
     padding: 1rem;
     border-radius: 0 70px 0 70px;
-    opacity: 90%;
+    /* opacity: 90%; cause des probleme avec z-index */
     /* border: 0; */
 }
 
@@ -215,7 +215,7 @@ a:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: baseline;
     padding: 1.5rem;
 }
 
@@ -235,6 +235,10 @@ a:hover {
 .preview__title {
     color: white;
     font-weight: bold;
+}
+
+.preview tbody th {
+    color: rgb(228, 15, 52);
 }
 
 @media (min-width: 450px) {

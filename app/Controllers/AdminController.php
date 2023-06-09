@@ -14,7 +14,8 @@ class AdminController extends MainController {
 
         $this->show('admin', [
             'fall' => $fallSeason,
-            'spring' => $springSeason
+            'spring' => $springSeason,
+            'eventToAdd' => new FallSeason()
         ]);
     }
 
@@ -42,5 +43,18 @@ class AdminController extends MainController {
                 
         $newFallSeason = new FallSeason();
         $newFallSeason->delete();
+    }
+
+    public function edit($id) {
+        // dump($id);
+        $fallSeason = FallSeason::findAll();
+        $springSeason = SpringSeason::findAll();        
+        $eventToAdd = SpringSeason::find($id);
+
+        $this->show('admin', [
+            'fall' => $fallSeason,
+            'spring' => $springSeason,
+            'eventToAdd' => $eventToAdd
+        ]);
     }
 }
