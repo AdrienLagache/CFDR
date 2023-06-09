@@ -3,7 +3,8 @@
 require_once('../vendor/autoload.php');
 
 use App\Controllers\MainController;
-use App\Controllers\AdminController;
+use App\Controllers\SpringController;
+use App\Controllers\FallController;
 use App\Controllers\CalendarController;
 
 $router = new AltoRouter;
@@ -17,6 +18,7 @@ if (array_key_exists('BASE_URI', $_SERVER)) {
     $_SERVER['BASE_URI'] = '/';
 }
 
+//--------------------------- routes principales ----------------------//
 $router->map(
     'GET',
     '/',
@@ -39,53 +41,109 @@ $router->map(
 
 $router->map(
     'GET',
-    '/admin',
+    '/admin/spring',
     [
         'controller' => MainController::class,
-        'method'  => 'admin'
+        'method'  => 'spring'
     ],
-    'main-admin'
-);
-
-$router->map(
-    'POST',
-    '/admin',
-    [
-        'controller' => CalendarController::class,
-        'method'  => 'create'
-    ],
-    'admin-create'
+    'admin-spring'
 );
 
 $router->map(
     'GET',
-    '/admin/update/[i:id]',
+    '/admin/fall',
     [
-        'controller' => CalendarController::class,
-        'method'  => 'edit'
+        'controller' => MainController::class,
+        'method'  => 'fall'
     ],
-    'admin-edit'
+    'admin-fall'
 );
+
+//-----------------------------routes calendrier spring------------------------------------------
 
 $router->map(
     'POST',
-    '/admin/update/[i:id]',
+    '/admin/spring',
     [
-        'controller' => CalendarController::class,
+        'controller' => SpringController::class,
         'method'  => 'create'
     ],
-    'admin-update'
+    'spring-create'
+);
+
+$router->map(
+    'GET',
+    '/spring/update/[i:id]',
+    [
+        'controller' => SpringController::class,
+        'method'  => 'edit'
+    ],
+    'spring-edit'
 );
 
 $router->map(
     'POST',
-    '/admin/remove',
+    '/spring/update/[i:id]',
     [
-        'controller' => CalendarController::class,
+        'controller' => SpringController::class,
+        'method'  => 'create'
+    ],
+    'spring-update'
+);
+
+$router->map(
+    'GET',
+    '/spring/remove/[i:id]',
+    [
+        'controller' => SpringController::class,
         'method'  => 'remove'
     ],
-    'admin-remove'
+    'spring-remove'
 );
+
+//-----------------------------routes calendrier fall--------------------------------------------
+
+$router->map(
+    'POST',
+    '/admin/fall',
+    [
+        'controller' => FallController::class,
+        'method'  => 'create'
+    ],
+    'fall-create'
+);
+
+$router->map(
+    'GET',
+    '/fall/update/[i:id]',
+    [
+        'controller' => FallController::class,
+        'method'  => 'edit'
+    ],
+    'fall-edit'
+);
+
+$router->map(
+    'POST',
+    '/fall/update/[i:id]',
+    [
+        'controller' => FallController::class,
+        'method'  => 'create'
+    ],
+    'fall-update'
+);
+
+$router->map(
+    'GET',
+    '/fall/remove/[i:id]',
+    [
+        'controller' => FallController::class,
+        'method'  => 'remove'
+    ],
+    'fall-remove'
+);
+
+//--------------------------------------
 
 $router->map(
     'GET',

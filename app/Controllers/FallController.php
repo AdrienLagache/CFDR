@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\SpringSeason;
 use App\Models\FallSeason;
 
-class CalendarController extends CoreController {
+class FallController extends CoreController {
 
     public function create($id = null) {
         global $router;
@@ -38,7 +38,7 @@ class CalendarController extends CoreController {
         }
 
         if ($updating) {
-            // je cherche l'évènement sélectionné
+            
             $event = FallSeason::find($id);
 
         } else {
@@ -47,6 +47,8 @@ class CalendarController extends CoreController {
 
         if (empty($errorList)) {
             // je met à jour les propriétés
+            // $id = filter_input(INPUT_POST, 'race', FILTER_VALIDATE_INT);
+
             $event->setId($id);
             $event->setFlag($flag);
             $event->setCountry($country);
@@ -57,13 +59,13 @@ class CalendarController extends CoreController {
 
                 if ($event->update()) {
 
-                    header('Location: ' . $router->generate('main-admin'));
+                    header('Location: ' . $router->generate('admin-fall'));
                 }
             } else {
                 
                 if ($event->insert()) {
             
-                    header('Location: ' . $router->generate('main-admin'));
+                    header('Location: ' . $router->generate('admin-fall'));
                     exit;
             
                 } else {
@@ -82,11 +84,10 @@ class CalendarController extends CoreController {
             $springSeason = SpringSeason::findAll();
             $fallSeason = FallSeason::findAll();
 
-            $this->show('admin', [
-                // $eventToAdd dans la template correspond a la propriété value de mes input (pré-remplissage)
+            $this->show('calendar/fall', [
+                // $eventToUpdate dans la template correspond a la propriété value de mes input (pré-remplissage)
                 'eventToAdd' => $event,
                 'fall' => $fallSeason,
-                'spring' => $springSeason,
                 'errorList' => $errorList
             ]
             );
@@ -97,19 +98,31 @@ class CalendarController extends CoreController {
     public function edit($id) {
         // dump($id);
         $fallSeason = FallSeason::findAll();
-        $springSeason = SpringSeason::findAll();        
-        $eventToAdd = FallSeason::find($id);
+        $springSeason = SpringSeason::findAll();
 
-        $this->show('admin', [
+        $eventToUpdate = FallSeason::find($id);
+
+        $this->show('calendar/fall', [
             'fall' => $fallSeason,
             'spring' => $springSeason,
-            'eventToAdd' => $eventToAdd
+            'eventToUpdate' => $eventToUpdate
         ]);
+
+        return $eventToUpdate->id();
     }
 
-    public function remove() {
-                
-        $newFallSeason = new FallSeason();
-        $newFallSeason->delete();
+    public function remove($id){
+
+        global $router;
+
+        $event = FallSeason::find($id);
+
+        if ($event->delete()) {
+
+            header("Location: " . $router->generate("admin-fall"));
+            exit;
+        } else {
+            $errorList[] = 'La suppression a échoué';
+        }
     }
 }

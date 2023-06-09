@@ -24,11 +24,14 @@ class FallSeason {
     }
 
     public static function find($id) {
-        $sql = 'SELECT * FROM fall_season WHERE id =' . $id;
+
+        $sql = 'SELECT * FROM fall_season WHERE id = :id';
 
         $pdo = Database::getPDO();
 
-        $pdoStatement = $pdo->query($sql);
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindValue(":id", $id, PDO::PARAM_STR);
+        $pdoStatement->execute();
 
         $fallEvent = $pdoStatement->fetchObject('App\\Models\\FallSeason');
 
@@ -69,7 +72,8 @@ class FallSeason {
         $pdo = Database::getPDO();
     
         $sql = "UPDATE `fall_season`
-                    SET 
+                    SET
+                        `id` = :id, 
                         `flag` = :flag,
                         `country` = :country,
                         `track` = :track,
@@ -98,53 +102,23 @@ class FallSeason {
     }
 
     public function delete() {
-        global $router;
-
-        switch ($_POST['remove']) {
-
-            case 'allFallDelete': // je supprime toutes les courses du calendrier fall
-
-                $sqlDeleteAll = 'DELETE FROM fall_season';
-                $sqlResetInc = 'ALTER TABLE fall_season AUTO_INCREMENT=1'; // je remet l'auto-increment à sa valeur d'origine
-            
-                $pdo = Database::getPDO();
-                $deletedLines = $pdo->exec($sqlDeleteAll);
-                $resetIncResult = $pdo->exec($sqlResetInc);
     
-                if ($deletedLines >= 1 && $resetIncResult === 0) {
-
-                    header('Location: '.$router->generate('main-calendar'));
-
-                } else {
-
-                    dump('Erreur lors de la suppression');
-                    exit();
-                }       
-                break;
+        $pdo = Database::getPDO();
     
-            case 'lastFallDelete':
-                // je supprime la derniere course ajoutee dans le calendrier fall
-                $sqlDeleteLast = 'DELETE FROM fall_season ORDER BY id DESC LIMIT 1';
-            
-                $pdo = Database::getPDO();
-                $deletedLine = $pdo->exec($sqlDeleteLast);
+        $sql = "DELETE FROM `fall_season` WHERE `id` = :id;";
     
-                if ($deletedLine === 1) {                
-
-                    header('Location: '.$router->generate('main-admin'));
-
-                } else {
-
-                    dump('Erreur lors de la suppression');
-                    exit();
-                }
-                
-                break;
-
-            default:
-                echo "Problème dans l'URL";
-                break;
+        $pdoStatement = $pdo->prepare($sql);
+    
+        $pdoStatement->bindValue(":id", $this->id, PDO::PARAM_INT);
+    
+        $pdoStatement->execute();
+    
+        if (1 === $pdoStatement->rowCount()) {
+    
+            return true;
         }
+        
+        return false;
     }
   
     public function flag() {

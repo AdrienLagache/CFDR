@@ -46,16 +46,25 @@ class MainController extends CoreController {
         $this->show('live');
     }
 
-
-    public function admin() {   
+    public function fall() {   
 
         $fallSeason = FallSeason::findAll();
+
+        $this->show('calendar/fall', [
+            'fall' => $fallSeason,
+            // 'spring' => $springSeason,
+            'eventToUpdate' => new FallSeason()
+        ]);
+    }
+
+    public function spring() {   
+
         $springSeason = SpringSeason::findAll();
 
-        $this->show('admin', [
-            'fall' => $fallSeason,
+        $this->show('calendar/spring', [
             'spring' => $springSeason,
-            'eventToAdd' => new FallSeason()
+            // 'spring' => $springSeason,
+            'eventToUpdate' => new FallSeason()
         ]);
     }
 }
