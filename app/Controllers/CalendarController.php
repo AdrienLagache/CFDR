@@ -7,8 +7,11 @@ use App\Models\FallSeason;
 
 class CalendarController extends CoreController {
 
-    public function create() {
+    public function create($id = null) {
         global $router;
+        //je check si en mode create ou update
+        // $id est envoyé en paramètre de la méthode par altoDispatcher
+        $updating = isset($id);
 
         $id = filter_input(INPUT_POST, 'race', FILTER_VALIDATE_INT);
         $flag = filter_input(INPUT_POST, 'flag', FILTER_SANITIZE_STRING);
@@ -34,24 +37,39 @@ class CalendarController extends CoreController {
             $errorList[] = "La date n'est pas valide";
         }
 
-        $event = new FallSeason();
+        if ($updating) {
+            // je cherche l'évènement sélectionné
+            $event = FallSeason::find($id);
+
+        } else {
+            $event = new FallSeason();
+        }
 
         if (empty($errorList)) {
-            
+            // je met à jour les propriétés
             $event->setId($id);
             $event->setFlag($flag);
             $event->setCountry($country);
             $event->setTrack($track);
             $event->setDate($date);
 
-            if ($event->insert()) {
+            if ($updating) {
 
-                header('Location: ' . $router->generate('main-admin'));
-                exit;
+                if ($event->update()) {
 
+                    header('Location: ' . $router->generate('main-admin'));
+                }
             } else {
-
-                $errorList[] = 'La sauvegarde n\'a pas fonctionné';
+                
+                if ($event->insert()) {
+            
+                    header('Location: ' . $router->generate('main-admin'));
+                    exit;
+            
+                } else {
+            
+                    $errorList[] = 'La sauvegarde n\'a pas fonctionné';
+                }
             }
 
         } else {
@@ -73,41 +91,25 @@ class CalendarController extends CoreController {
             ]
             );
         }
-
-        // $id = isset($_POST['race']) ? intval($_POST['race']) : '';
-        // $flag = isset($_POST['flag']) ? $_POST['flag'] : '';
-        // $country = isset($_POST['country']) ? $_POST['country'] : '';
-        // $track = isset($_POST['track']) ? $_POST['track'] : '';
-        // $date = isset($_POST['date']) ? $_POST['date'] : '';
-
-        // $newEvent = new FallSeason();
-        // $newEvent->insert($id, $flag, $country, $track , $date);
-
-        // $springSeason = SpringSeason::findAll();
-        // $fallSeason = FallSeason::findAll();
-
-        // $this->show('calendrier', [
-        //     'spring' => $springSeason,
-        //     'fall' => $fallSeason
-        // ]);
     }
 
-    public function remove() {
-                
-        $newFallSeason = new FallSeason();
-        $newFallSeason->delete();
-    }
 
     public function edit($id) {
         // dump($id);
         $fallSeason = FallSeason::findAll();
         $springSeason = SpringSeason::findAll();        
-        $eventToAdd = SpringSeason::find($id);
+        $eventToAdd = FallSeason::find($id);
 
         $this->show('admin', [
             'fall' => $fallSeason,
             'spring' => $springSeason,
             'eventToAdd' => $eventToAdd
         ]);
+    }
+
+    public function remove() {
+                
+        $newFallSeason = new FallSeason();
+        $newFallSeason->delete();
     }
 }

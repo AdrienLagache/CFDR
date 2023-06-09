@@ -67,7 +67,15 @@ $router->map(
     'admin-edit'
 );
 
-// TODO : route admin-update => meme route que admin-edit mais en POST
+$router->map(
+    'POST',
+    '/admin/update/[i:id]',
+    [
+        'controller' => CalendarController::class,
+        'method'  => 'create'
+    ],
+    'admin-update'
+);
 
 $router->map(
     'POST',

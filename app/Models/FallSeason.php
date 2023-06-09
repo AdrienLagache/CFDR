@@ -35,7 +35,7 @@ class FallSeason {
         return $fallEvent;
     }
 
-    public function insert () {
+    public function insert() {
         
         $pdo = Database::getPDO();
     
@@ -55,6 +55,39 @@ class FallSeason {
         if (1 === $pdoStatement->rowCount()) {
             // recuperation de l'id auto-incrémenté
             $this->id = $pdo->lastInsertId();
+
+            return true;
+    
+        } else {
+    
+            return false;
+        }
+    }
+
+    public function update() {
+        
+        $pdo = Database::getPDO();
+    
+        $sql = "UPDATE `fall_season`
+                    SET 
+                        `flag` = :flag,
+                        `country` = :country,
+                        `track` = :track,
+                        `date` = :date
+                    WHERE `id` = :id
+                ";
+
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $pdoStatement->bindValue(':flag', $this->flag, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':country', $this->country, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':track', $this->track, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':date', $this->date, PDO::PARAM_STR);
+
+        $pdoStatement->execute();
+    
+        if (1 === $pdoStatement->rowCount()) {
 
             return true;
     

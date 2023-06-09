@@ -8,18 +8,18 @@
                 <label for="flag" class="form-label">drapeau</label>
                 <select class="form-select" name="flag" id="flag">
                     <option value="">--choisir un drapeau--</option>
-                    <option value="Flag_of_the_United_Arab_Emirates.png">Abu-Dhabi</option>
-                    <option value="Flag_of_Spain.png">Espagne</option>
-                    <option value="Flag_of_Belgium.png">Belgique</option>
-                    <option value="Flag_of_the_United_Kingdom.webp">Grande-Bretagne</option>
-                    <option value="Flag_of_Norway.png">Norvège</option>
-                    <option value="Flag_of_Sweden.png">Suède</option>
-                    <option value="Flag_of_Canada.png">Canada</option>
-                    <option value="Flag_of_France.png">France</option>
-                    <option value="Flag_of_Latvia.png">Lettonie</option>
-                    <option value="Flag_of_South_Africa.png">Afrique du sud</option>
-                    <option value="Flag_of_Germany.png">Allemagne</option>
-                    <option value="Flag_of_Portugal.png">Portugal</option>
+                    <option value="Flag_of_the_United_Arab_Emirates.png" <?php if ($eventToAdd->flag() == 'Flag_of_the_United_Arab_Emirates.png') echo " selected"; ?>>Abu-Dhabi</option>
+                    <option value="Flag_of_Spain.png" <?php if ($eventToAdd->flag() == 'Flag_of_Spain.png') echo " selected"; ?>>Espagne</option>
+                    <option value="Flag_of_Belgium.png" <?php if ($eventToAdd->flag() == 'Flag_of_Belgium.png') echo " selected"; ?>>Belgique</option>
+                    <option value="Flag_of_the_United_Kingdom.webp" <?php if ($eventToAdd->flag() == 'Flag_of_the_United_Kingdom.webp') echo " selected"; ?>>Grande-Bretagne</option>
+                    <option value="Flag_of_Norway.png" <?php if ($eventToAdd->flag() == 'Flag_of_Norway.png') echo " selected"; ?>>Norvège</option>
+                    <option value="Flag_of_Sweden.png" <?php if ($eventToAdd->flag() == 'Flag_of_Sweden.png') echo " selected"; ?>>Suède</option>
+                    <option value="Flag_of_Canada.png" <?php if ($eventToAdd->flag() == 'Flag_of_Canada.png') echo " selected"; ?>>Canada</option>
+                    <option value="Flag_of_France.png" <?php if ($eventToAdd->flag() == 'Flag_of_France.png') echo " selected"; ?>>France</option>
+                    <option value="Flag_of_Latvia.png" <?php if ($eventToAdd->flag() == 'Flag_of_Latvia.png') echo " selected"; ?>>Lettonie</option>
+                    <option value="Flag_of_South_Africa.png" <?php if ($eventToAdd->flag() == 'Flag_of_South_Africa.png') echo " selected"; ?>>Afrique du sud</option>
+                    <option value="Flag_of_Germany.png" <?php if ($eventToAdd->flag() == 'Flag_of_Germany.png') echo " selected"; ?>>Allemagne</option>
+                    <option value="Flag_of_Portugal.png" <?php if ($eventToAdd->flag() == 'Flag_of_Portugal.png') echo " selected"; ?>>Portugal</option>
                 </select>
             </div>
             <div class="form-group">
@@ -74,9 +74,9 @@
                     <td><?= $event->date() ?></td>
                     
                     <td class="text-end">
-                        <!-- <a href="" class="btn btn-sm btn-warning">
+                        <a href="<?= $router->generate('admin-edit', ['id' => $event->id()])?>" class="btn btn-sm btn-warning">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a> -->
+                        </a>
                         <!-- Example single danger button -->
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-danger dropdown-toggle"
@@ -112,9 +112,9 @@
                     <td><?= $event->date() ?></td>
                     
                     <td class="text-end">
-                        <a href="<?= $router->generate('admin-edit', ['id' => $event->id()])?>" class="btn btn-sm btn-warning">
+                        <!-- <a href="" class="btn btn-sm btn-warning">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a>
+                        </a> -->
                         <!-- Example single danger button -->
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-danger dropdown-toggle"
