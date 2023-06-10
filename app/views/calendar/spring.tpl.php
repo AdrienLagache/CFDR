@@ -22,10 +22,10 @@
                     <option value="Flag_of_Portugal.png" <?php if ($eventToUpdate->flag() == 'Flag_of_Portugal.png') echo " selected"; ?>>Portugal</option>
                 </select>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="race">Numero de course</label>
                 <input type="text" class="form-control" id="race" name="race" value="<?= $eventToUpdate->id()?>" placeholder="Numéro de course">
-            </div>
+            </div> -->
             <div class="form-group">
                 <label for="country">Pays</label>
                 <input type="text" class="form-control" id="country" name="country" value="<?= $eventToUpdate->country()?>" placeholder="Nom du pays">
@@ -42,13 +42,13 @@
         </form>
 
         <div class="admin-delete">
-            <form action="<?= $router->generate('spring-remove')?>" method="POST" class="mt-1 admin-submit">
+            <!-- <form action="" method="POST" class="mt-1 admin-submit">
                 <input type="hidden" name="remove" value="lastSpringDelete">
                 <button type="submit" class="btn btn-warning btn-block mt-3 w-100 h-100">Effacer dernière course</button>
-            </form>
+            </form> -->
             <form action="<?= $router->generate('spring-remove')?>" method="POST" class="mt-1 admin-submit">
                 <input type="hidden" name="remove" value="allSpringDelete">
-                <button type="submit" class="btn btn-danger btn-block mt-3 mb-3 w-100 h-100">Effacer le calendrier Fall</button>
+                <button type="submit" class="btn btn-danger btn-block mt-3 mb-3 w-100 h-100">Effacer le calendrier Spring</button>
             </form>
         </div>
     </div>
@@ -65,9 +65,10 @@
                 </tr>
             </thead>
             <tbody>
+            <?php $i = 1;?>
             <?php foreach($spring as $event) : ?>
                 <tr>
-                    <th scope="row"><?= $event->id() ?></th>
+                    <th scope="row"><?= $i++?></th>
                     <td><?= $event->country() ?></td>
                     <td><?= $event->date() ?></td>
                     

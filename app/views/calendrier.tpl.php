@@ -13,11 +13,11 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-        
+                <?php $i = 1;?>
                 <?php foreach ($spring as $Event) :?>
                     <tr>
                         <th class="calendrier-item__flag" scope="row"><img src="assets/images/<?= $Event->flag()?>" alt="drapeaux des émirats arabes unis"></th>
-                        <td class="calendrier-item__race">R<?= $Event->id()?></td>
+                        <td class="calendrier-item__race">R<?=$i++?></td>
                         <td class="calendrier-item__country"><?= $Event->country()?></td>
                         <td class="calendrier-item__track"><?= $Event->track()?></td>
                         <td class="calendrier-item__date"><?= $Event->date()?></td>
@@ -28,8 +28,9 @@
             </table>
         </div>
     </section>
-    
-    <?php if ($fall !== ''):?>
+
+    <?php $i = 1;?>
+    <!-- if ($fall !== ''): -->
     <section class="calendrier">
         <h2 class="calendrier-title">Calendrier saison Fall 2023</h2>
         
@@ -49,14 +50,14 @@
                 <?php foreach ($fall as $Event) :?>
                     <tr>
                         <th class="calendrier-item__flag" scope="row"><img src="assets/images/<?= $Event->flag()?>" alt="drapeaux des émirats arabes unis"></th>
-                        <td class="calendrier-item__race">R<?= $Event->id()?></td>
+                        <td class="calendrier-item__race">R<?= $i++?></td>
                         <td class="calendrier-item__country"><?= $Event->country()?></td>
                         <td class="calendrier-item__track"><?= $Event->track()?></td>
                         <td class="calendrier-item__date"><?= $Event->date()?></td>
                     </tr>
                 <?php 
                     endforeach;
-                    endif;
+                    // endif;
                 ?>        
                 </tbody>
             </table>

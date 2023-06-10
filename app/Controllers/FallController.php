@@ -13,7 +13,7 @@ class FallController extends CoreController {
         // $id est envoyé en paramètre de la méthode par altoDispatcher
         $updating = isset($id);
 
-        $id = filter_input(INPUT_POST, 'race', FILTER_VALIDATE_INT);
+        // $id = filter_input(INPUT_POST, 'race', FILTER_VALIDATE_INT);
         $flag = filter_input(INPUT_POST, 'flag', FILTER_SANITIZE_STRING);
         $country = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
         $track = filter_input(INPUT_POST, 'track', FILTER_SANITIZE_STRING);
@@ -21,9 +21,9 @@ class FallController extends CoreController {
         // servira a controler et a afficher les erreurs dans la page admin.tpl.php
         $errorList = [];
 
-        if (false === $id) {
-            $errorList[] = "Le numéro de course n'est pas valide";
-        }
+        // if (false === $id) {
+        //     $errorList[] = "Le numéro de course n'est pas valide";
+        // }
         if (empty($flag)) {
             $errorList[] = "L'Url de l'image du drapeau n'est pas valide";
         }
@@ -49,7 +49,7 @@ class FallController extends CoreController {
             // je met à jour les propriétés
             // $id = filter_input(INPUT_POST, 'race', FILTER_VALIDATE_INT);
 
-            $event->setId($id);
+            // $event->setId($id);
             $event->setFlag($flag);
             $event->setCountry($country);
             $event->setTrack($track);
@@ -76,17 +76,19 @@ class FallController extends CoreController {
 
         } else {
 
+            $event = new FallSeason;
+
             $event->setFlag(filter_input(INPUT_POST, 'flag'));
             $event->setCountry(filter_input(INPUT_POST, 'country'));
             $event->setTrack(filter_input(INPUT_POST, 'track'));
             $event->setDate(filter_input(INPUT_POST, 'date'));
 
-            $springSeason = SpringSeason::findAll();
+
             $fallSeason = FallSeason::findAll();
 
             $this->show('calendar/fall', [
                 // $eventToUpdate dans la template correspond a la propriété value de mes input (pré-remplissage)
-                'eventToAdd' => $event,
+                'eventToUpdate' => $event,
                 'fall' => $fallSeason,
                 'errorList' => $errorList
             ]
