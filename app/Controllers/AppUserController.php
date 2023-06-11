@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\Appuser;
+use App\Models\AppUser;
 
 class AppUserController extends CoreController {
 
@@ -9,5 +9,15 @@ class AppUserController extends CoreController {
         global $router;
 
         $this->show('appuser/connect');
+    }
+
+    public function list() {
+        global $router;
+
+        $users = AppUSer::findAll();
+
+        $this->show('appuser/list', [
+            'users' => $users
+        ]);
     }
 }

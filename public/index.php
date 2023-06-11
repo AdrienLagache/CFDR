@@ -185,6 +185,16 @@ $router->map(
     'appuser-connect'
 );
 
+$router->map(
+    'GET',
+    '/appuser/list',
+    [
+        'controller' => AppUSerController::class,
+        'method' => 'list'
+    ],
+    'appuser-list'
+);
+
 
 
 $match = $router->match();
