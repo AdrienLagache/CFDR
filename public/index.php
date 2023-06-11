@@ -5,7 +5,7 @@ require_once('../vendor/autoload.php');
 use App\Controllers\MainController;
 use App\Controllers\SpringController;
 use App\Controllers\FallController;
-use App\Controllers\CalendarController;
+use App\Controllers\AppUserController;
 
 $router = new AltoRouter;
 
@@ -57,6 +57,26 @@ $router->map(
         'method'  => 'fall'
     ],
     'admin-fall'
+);
+
+$router->map(
+    'GET',
+    '/meteo',
+    [
+        'controller' => MainController::class,
+        'method'  => 'meteo'
+    ],
+    'main-meteo'
+);
+
+$router->map(
+    'GET',
+    '/live',
+    [
+        'controller' => MainController::class,
+        'method'  => 'live'
+    ],
+    'main-live'
 );
 
 //-----------------------------routes calendrier spring------------------------------------------
@@ -134,6 +154,16 @@ $router->map(
 );
 
 $router->map(
+    'POST',
+    '/fall/remove',
+    [
+        'controller' => FallController::class,
+        'method'  => 'removeAll'
+    ],
+    'fall-delete'
+);
+
+$router->map(
     'GET',
     '/fall/remove/[i:id]',
     [
@@ -143,27 +173,19 @@ $router->map(
     'fall-remove'
 );
 
-//--------------------------------------
+//-----------------------routes appuser----------------
 
 $router->map(
     'GET',
-    '/meteo',
+    '/appuser/connect',
     [
-        'controller' => MainController::class,
-        'method'  => 'meteo'
+        'controller' => AppUserController::class,
+        'method' => 'connect'
     ],
-    'main-meteo'
+    'appuser-connect'
 );
 
-$router->map(
-    'GET',
-    '/live',
-    [
-        'controller' => MainController::class,
-        'method'  => 'live'
-    ],
-    'main-live'
-);
+
 
 $match = $router->match();
 // dump($match);

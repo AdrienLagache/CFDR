@@ -127,4 +127,20 @@ class FallController extends CoreController {
             $errorList[] = 'La suppression a échoué';
         }
     }
+
+    public function removeAll() {
+        global $router;
+
+        $event = new FallSeason;
+
+
+        if ($event->deleteAll()) {
+
+            header('Location: ' . $router->generate('admin-fall'));
+            exit;
+
+        } else {
+            $errorList[] = 'La suppression a échouée';
+        }
+    }
 }

@@ -120,6 +120,22 @@ class FallSeason {
         
         return false;
     }
+
+    public function deleteAll() {
+
+        $pdo = Database::getPDO();
+    
+        $sql = "DELETE FROM `fall_season`";
+    
+        $pdoStatement = $pdo->exec($sql);
+    
+        if (1 === $pdoStatement) {
+    
+            return true;
+        }
+        
+        return false;
+    }
   
     public function flag() {
         return $this->flag;

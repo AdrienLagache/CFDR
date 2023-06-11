@@ -27,6 +27,9 @@
     </div>
 </section>
 
+<!-- weather widget start --><a target="_blank" href="https://hotelmix.fr/weather/lamorlaye-60028"><img src="https://w.bookcdn.com/weather/picture/32_60028_1_3_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=50707&domid=581&anc_id=62968"  alt="booked.net"/></a><!-- weather widget end -->
+
+<!-- weather widget start --><a target="_blank" href="https://hotelmix.fr/weather/pau-2673"><img src="https://w.bookcdn.com/weather/picture/32_2673_1_3_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=50707&domid=581&anc_id=62968"  alt="booked.net"/></a><!-- weather widget end -->
 
 <!-- url site du widget : https://www.meteoetradar.com/widget-meteo -->
 

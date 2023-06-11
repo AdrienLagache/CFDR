@@ -192,9 +192,23 @@ a:hover {
 
 .meteo-widget iframe {
     padding: 1rem;
-    border-radius: 0 70px 0 70px;
-    opacity: 75%;
+    /* border-radius: 70px; */
+    opacity: 80%;
     /* border: 0; */
+}
+
+.connect h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    font-weight: bold;
+    color: rgb(228, 15, 52);
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2rem white;
+} 
+
+.connect label {
+    color: white;
+    margin-top: 1rem;
 }
 
 #footer {

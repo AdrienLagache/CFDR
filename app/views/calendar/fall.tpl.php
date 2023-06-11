@@ -42,16 +42,16 @@
             <button type="submit" class="btn btn-success btn-block mt-5 w-100 h-100 admin-submit__button">Ajouter</button>
         </form>
 
-        <div class="admin-delete">
+        <!-- <div class="admin-delete"> -->
             <!-- <form action="" method="POST" class="mt-1 admin-submit">
                 <input type="hidden" name="remove" value="lastFallDelete">
                 <button type="submit" class="btn btn-warning btn-block mt-3 w-100 h-100">Effacer dernière course</button>
             </form> -->
-            <form action="<?= $router->generate('fall-remove')?>" method="POST" class="mt-1 admin-submit">
+            <!-- <form action="" method="POST" class="mt-1 admin-submit">
                 <input type="hidden" name="remove" value="allFallDelete">
                 <button type="submit" class="btn btn-danger btn-block mt-3 mb-3 w-100 h-100">Effacer le calendrier Fall</button>
             </form>
-        </div>
+        </div> -->
     </div>
 
 
