@@ -20,4 +20,11 @@ class AppUserController extends CoreController {
             'users' => $users
         ]);
     }
+
+    public function add() {
+        global $router;
+
+        $this->show('appuser/add');
+
+    }
 }

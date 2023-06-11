@@ -44,7 +44,7 @@
     
     <nav class="menu-nav" id="menu-nav">
         <ul class="menu-nav__items">
-            <a href=""><li class="menu-nav__item">Infos pilote</li></a>
+            <a href="<?= $router->generate('appuser-list')?>"><li class="menu-nav__item">Infos pilote</li></a>
             <a href="<?= $router->generate('main-home')?>"><li class="menu-nav__item">Calendrier</li></a>
             <a href="<?= $router->generate('main-meteo')?>"><li class="menu-nav__item">Météo</li></a>
             <a href=""><li class="menu-nav__item">Line-up</li></a>

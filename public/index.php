@@ -177,7 +177,7 @@ $router->map(
 
 $router->map(
     'GET',
-    '/appuser/connect',
+    '/appuser/login',
     [
         'controller' => AppUserController::class,
         'method' => 'connect'
@@ -193,6 +193,16 @@ $router->map(
         'method' => 'list'
     ],
     'appuser-list'
+);
+
+$router->map(
+    'GET',
+    '/appuser/add',
+    [
+        'controller' => AppUSerController::class,
+        'method' => 'add'
+    ],
+    'appuser-add'
 );
 
 

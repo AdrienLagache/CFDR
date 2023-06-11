@@ -1,5 +1,5 @@
 <div class="container my-4">
-    <a href="" class="btn btn-success float-end">Ajouter</a>
+    <a href="<?= $router->generate('appuser-add')?>" class="btn btn-success float-end">Ajouter</a>
     <h2>Liste des pilotes</h2>
     <!-- Affichage des messages d'erreurs éventuels -->
     <?php include __DIR__ . '/../partials/message.tpl.php' ?>
