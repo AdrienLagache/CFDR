@@ -10,6 +10,10 @@ html {
     background-attachment: fixed;
 }
 
+main {
+    min-height: 75vh;
+}
+
 a {
     text-decoration: none;
     color: white;
@@ -128,7 +132,7 @@ a:hover {
 }
 
 .calendrier table {
-    opacity: 75%;
+    opacity: 80%;
 }
 
 .table {
@@ -218,7 +222,7 @@ label, tr {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 42vh;
+    /* margin-top: 42vh; */
 }
 
 #footer img {

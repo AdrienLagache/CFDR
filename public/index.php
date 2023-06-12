@@ -205,6 +205,26 @@ $router->map(
     'appuser-add'
 );
 
+$router->map(
+    'GET',
+    '/appuser/update/[i:id]',
+    [
+        'controller' => AppUSerController::class,
+        'method' => 'edit'
+    ],
+    'appuser-edit'
+);
+
+$router->map(
+    'POST',
+    '/appuser/update[i:id]',
+    [
+        'controller' => AppUSerController::class,
+        'method' => 'update'
+    ],
+    'appuser-update'
+);
+
 
 
 $match = $router->match();

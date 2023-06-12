@@ -24,7 +24,20 @@ class AppUserController extends CoreController {
     public function add() {
         global $router;
 
-        $this->show('appuser/add');
+        $user = new AppUser();
 
+        $this->show('appuser/add', [
+            'user' => $user
+        ]);
+    }
+
+    public function edit($id) {
+        global $router;
+
+        $user = AppUser::find($id);
+
+        $this->show('appuser/add', [
+            'user' => $user
+        ]);
     }
 }

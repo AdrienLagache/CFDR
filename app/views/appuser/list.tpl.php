@@ -27,7 +27,7 @@
                     <td><?= $user->getEmail()?></td>
                     <td><?= $user->getRole()?></td>
                     <td class="text-end">
-                        <a href="" class="btn btn-sm btn-warning">
+                        <a href="<?= $router->generate('appuser-edit', ['id' => $user->getId()])?>" class="btn btn-sm btn-warning">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                         <!-- Example single danger button -->

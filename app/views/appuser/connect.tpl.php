@@ -1,5 +1,5 @@
 <div class="container my-4 connect">
-    <a href="<?= $router->generate('main-home') ?>" class="btn btn-success float-end">Retour</a>
+    <a href="<?= $router->generate('main-home') ?>" class="btn btn-secondary float-end">Retour</a>
     <h2>Se connecter</h2>
     <?php
     // Pour afficher les messages d'erreurs éventuels.
@@ -18,7 +18,7 @@
         </div>
         
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary mt-5">Valider</button>
+            <button type="submit" class="btn btn-success mt-4">Valider</button>
         </div>
     </form>
 
