@@ -10,7 +10,6 @@
                 <th scope="col">Pseudo</th>
                 <th scope="col">Team</th>
                 <th scope="col">Voiture</th>
-                <th scope="col">Mot de passe</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Role</th>
                 <th scope="col"></th>
@@ -23,7 +22,6 @@
                     <td><?= $user->getPseudo()?></td>
                     <td><?= $user->getTeam()?></td>
                     <td><?= $user->getCar()?></td>
-                    <td><?= $user->getPassword()?></td>
                     <td><?= $user->getEmail()?></td>
                     <td><?= $user->getRole()?></td>
                     <td class="text-end">

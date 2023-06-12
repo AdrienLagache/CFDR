@@ -206,6 +206,16 @@ $router->map(
 );
 
 $router->map(
+    'POST',
+    '/appuser/add',
+    [
+        'controller' => AppUSerController::class,
+        'method' => 'create'
+    ],
+    'appuser-create'
+);
+
+$router->map(
     'GET',
     '/appuser/update/[i:id]',
     [
@@ -217,10 +227,10 @@ $router->map(
 
 $router->map(
     'POST',
-    '/appuser/update[i:id]',
+    '/appuser/update/[i:id]',
     [
         'controller' => AppUSerController::class,
-        'method' => 'update'
+        'method' => 'create'
     ],
     'appuser-update'
 );

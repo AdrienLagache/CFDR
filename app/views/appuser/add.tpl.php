@@ -9,18 +9,18 @@
     <form action="" method="POST">
 
         <div class="form-group">
-            <label for="email">Pseudo</label>
-            <input type="text" class="form-control" id="email" name="email" placeholder="Votre Pseudo" value="<?= $user->getPseudo()?>">
+            <label for="pseudo">Pseudo</label>
+            <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Votre Pseudo" value="<?= $user->getPseudo()?>">
         </div>
 
         <div class="form-group">
-            <label for="email">Team</label>
-            <input type="text" class="form-control" id="email" name="email" placeholder="Le nom de la team" value="<?= $user->getTeam()?>">
+            <label for="team">Team</label>
+            <input type="text" class="form-control" id="team" name="team" placeholder="Le nom de la team" value="<?= $user->getTeam()?>">
         </div>
 
         <div class="form-group">
-            <label for="role" class="form-label">Véhicule</label>
-            <select class="form-select" name="role" id="role" aria-describedby="roleHelpBlock">
+            <label for="car" class="form-label">Véhicule</label>
+            <select class="form-select" name="car" id="car">
                 <option value="Renault Sport Mégame R.S. RX" <?php if ($user->getCar() == 'Renault Sport Mégame R.S. RX') echo 'selected'?>>Renault Sport Mégame R.S. RX</option>
                 <option value="Peugeot 208 WRX" <?php if ($user->getCar() == 'Peugeot 208 WRX') echo 'selected'?>>Peugeot 208 WRX</option>
                 <option value="Audi S1 EKS RX Quattro" <?php if ($user->getCar() == "Audi S1 EKS RX Quattro") echo 'selected'?>>Audi S1 EKS RX Quattro</option>
@@ -45,7 +45,7 @@
 
         <div class="form-group">
             <label for="role" class="form-label">Role</label>
-            <select class="form-select" name="role" id="role" aria-describedby="roleHelpBlock">
+            <select class="form-select" name="role" id="role">
                 <option value="pilote" <?php if ($user->getRole() == 'pilote') echo 'selected'?>>pilote</option>
                 <option value="admin" <?php if ($user->getRole() == 'admin') echo 'selected'?>>admin</option>
             </select>

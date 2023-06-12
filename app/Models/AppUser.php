@@ -47,6 +47,64 @@ class AppUser
         return $result;
     }
 
+    public function insert() 
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "INSERT INTO `app_user` (pseudo, team, car, `password`, email, `role`)
+                    VALUES (:pseudo, :team, :car, :password, :email, :role)";
+
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':team', $this->team, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':car', $this->car, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':role', $this->role, PDO::PARAM_STR);
+
+        $pdoStatement->execute();
+
+        if (1 === $pdoStatement->rowCount()) {
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function update() 
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "UPDATE `app_user`
+                    SET
+                        pseudo = :pseudo,
+                        team = :team,
+                        car = :car,
+                        `password` = :password,
+                        email =:email,
+                        `role` = :role";
+
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':team', $this->team, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':car', $this->car, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':role', $this->role, PDO::PARAM_STR);
+
+        $pdoStatement->execute();
+
+        if (1 === $pdoStatement->rowCount()) {
+
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Get the value of id
      */ 
@@ -150,7 +208,7 @@ class AppUser
      */ 
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
 
         return $this;
     }
