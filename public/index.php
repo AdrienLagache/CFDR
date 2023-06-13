@@ -1,6 +1,8 @@
 <?php
-
+// je charge mon autoload
 require_once('../vendor/autoload.php');
+// je démarre une session afin d'y stocker les informations pour un utilisateur connecté (admin)
+session_start();
 
 use App\Controllers\MainController;
 use App\Controllers\SpringController;
@@ -41,26 +43,6 @@ $router->map(
 
 $router->map(
     'GET',
-    '/admin/spring',
-    [
-        'controller' => MainController::class,
-        'method'  => 'spring'
-    ],
-    'admin-spring'
-);
-
-$router->map(
-    'GET',
-    '/admin/fall',
-    [
-        'controller' => MainController::class,
-        'method'  => 'fall'
-    ],
-    'admin-fall'
-);
-
-$router->map(
-    'GET',
     '/meteo',
     [
         'controller' => MainController::class,
@@ -80,6 +62,16 @@ $router->map(
 );
 
 //-----------------------------routes calendrier spring------------------------------------------
+
+$router->map(
+    'GET',
+    '/admin/spring',
+    [
+        'controller' => MainController::class,
+        'method'  => 'spring'
+    ],
+    'admin-spring'
+);
 
 $router->map(
     'POST',
@@ -124,6 +116,16 @@ $router->map(
 //-----------------------------routes calendrier fall--------------------------------------------
 
 $router->map(
+    'GET',
+    '/admin/fall',
+    [
+        'controller' => MainController::class,
+        'method'  => 'fall'
+    ],
+    'admin-fall'
+);
+
+$router->map(
     'POST',
     '/admin/fall',
     [
@@ -153,15 +155,15 @@ $router->map(
     'fall-update'
 );
 
-$router->map(
-    'POST',
-    '/fall/remove',
-    [
-        'controller' => FallController::class,
-        'method'  => 'removeAll'
-    ],
-    'fall-delete'
-);
+// $router->map(
+//     'POST',
+//     '/fall/remove',
+//     [
+//         'controller' => FallController::class,
+//         'method'  => 'removeAll'
+//     ],
+//     'fall-delete'
+// );
 
 $router->map(
     'GET',
@@ -180,9 +182,29 @@ $router->map(
     '/appuser/login',
     [
         'controller' => AppUserController::class,
-        'method' => 'connect'
+        'method' => 'login'
     ],
-    'appuser-connect'
+    'appuser-login'
+);
+
+$router->map(
+    'GET',
+    '/appuser/logout',
+    [
+        'controller' => AppUserController::class,
+        'method' => 'logout'
+    ],
+    'appuser-logout'
+);
+
+$router->map(
+    'POST',
+    '/appuser/login',
+    [
+        'controller' => AppUserController::class,
+        'method' => 'validate'
+    ],
+    'appuser-validate'
 );
 
 $router->map(
@@ -235,12 +257,11 @@ $router->map(
     'appuser-update'
 );
 
-
-
 $match = $router->match();
-// dump($match);
 
 $dispatcher = new Dispatcher($match, '\App\Controllers\ErrorController::err404');
+// je passe $router et $match en arguments de mes controlleurs
+$dispatcher->setControllersArguments($router, $match);
 
 $dispatcher->dispatch();
 

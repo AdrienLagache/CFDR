@@ -5,16 +5,59 @@ use App\Models\AppUser;
 
 class AppUserController extends CoreController {
 
-    public function connect() 
+    public function login() 
     {
-        global $router;
 
         $this->show('appuser/connect');
     }
 
+    public function logout()
+    {
+        unset($_SESSION['userId']);
+        unset($_SESSION['userObject']);
+        header('Location: ' . $this->router->generate('appuser-login'));
+        exit;
+    }
+
+    public function validate() 
+    {
+        $email      = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $password   = filter_input(INPUT_POST, 'password');
+
+        $errorList = [];
+
+        $appUser = AppUser::findByEmail($email);
+
+        if (!$appUser) {
+            $errorList[] = 'Identifiant invalide';
+        } else {
+            // if ($appUser->getPassword() != $password) {
+            if (!password_verify($password, $appUser->getPassword())) {
+                $errorList[] = 'Mot de passe erroné';
+            }
+        }
+
+        if (empty($errorList)) {
+            $_SESSION['userId']     =   $appUser->getId();
+            $_SESSION['userObject'] =   $appUser;
+
+            header('Location: ' . $this->router->generate('main-home'));
+            exit;
+        }
+
+        // on arrive ici si on n'as pas pu valider le couple email/password
+        $appUser = new AppUser();
+        $appUser->setEmail(filter_input(INPUT_POST, 'email'));
+        $appUser->setPassword(filter_input(INPUT_POST, 'password'));
+        $this->show("appuser/connect", [
+            'appUser' => $appUser,
+            'errorList' => $errorList
+        ]);
+    }
+
     public function list() 
     {
-        global $router;
+
 
         $users = AppUSer::findAll();
 
@@ -25,7 +68,7 @@ class AppUserController extends CoreController {
 
     public function add() 
     {
-        global $router;
+
 
         $user = new AppUser();
 
@@ -36,8 +79,6 @@ class AppUserController extends CoreController {
 
     public function edit($id) 
     {
-        global $router;
-
         $user = AppUser::find($id);
 
         $this->show('appuser/add', [
@@ -47,8 +88,6 @@ class AppUserController extends CoreController {
 
     public function create($id = null) 
     {
-        global $router;
-
         $updating = isset($id);
 
         $pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_STRING);
@@ -120,7 +159,7 @@ class AppUserController extends CoreController {
 
                 if ($user->update()) {
 
-                    header("Location: " . $router->generate('appuser-list'));
+                    header("Location: " . $this->router->generate('appuser-list'));
                     exit;
 
                 } else {
@@ -131,7 +170,7 @@ class AppUserController extends CoreController {
 
                 if ($user->insert()) {
 
-                    header('Location: ' . $router->generate('appuser-list'));
+                    header('Location: ' . $this->router->generate('appuser-list'));
                     exit;
 
                 } else {

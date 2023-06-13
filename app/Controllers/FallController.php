@@ -128,19 +128,20 @@ class FallController extends CoreController {
         }
     }
 
-    public function removeAll() {
-        global $router;
 
-        $event = new FallSeason;
+    // public function removeAll() {
+    //     global $router;
+
+    //     $event = new FallSeason;
 
 
-        if ($event->deleteAll()) {
+    //     if ($event->deleteAll()) {
 
-            header('Location: ' . $router->generate('admin-fall'));
-            exit;
+    //         header('Location: ' . $router->generate('admin-fall'));
+    //         exit;
 
-        } else {
-            $errorList[] = 'La suppression a échouée';
-        }
-    }
+    //     } else {
+    //         $errorList[] = 'La suppression a échouée';
+    //     }
+    // }
 }

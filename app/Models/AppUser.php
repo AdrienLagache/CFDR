@@ -47,6 +47,23 @@ class AppUser
         return $result;
     }
 
+    public static function findByEmail($email)
+    {
+                $pdo = Database::getPDO();
+
+                $sql = 'SELECT *
+                            FROM app_user
+                            WHERE email = :email';
+        
+                $pdoStatement = $pdo->prepare($sql);
+                $pdoStatement->bindValue(":email", $email, PDO::PARAM_STR);
+                $pdoStatement->execute();
+        
+                $result = $pdoStatement->fetchObject('App\Models\AppUser');
+        
+                return $result;
+    }
+
     public function insert() 
     {
         $pdo = Database::getPDO();
