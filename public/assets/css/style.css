@@ -4,7 +4,6 @@ html {
 
 .body {
     background-image: radial-gradient(circle, rgba(1, 84, 81, 0.37) 0%, rgba( 0, 39, 53, 0.897) 50%, rgb( 0, 24, 39) 100%), url('../images-test/dirt-rally-2-0-pc.jpg');
-    /* background-image: url('../images/dark_wall.png'); */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -117,26 +116,25 @@ a:hover {
     font-size: 1.2rem;
 }
 
-/* .main {
-    height: 100%;
-} */
-
-/* section {
-    min-height: 86vh;
-} */
-
 .calendrier {
-    /* z-index: -1; */
     margin-bottom: 2rem;
-    /* position: relative; */
 }
 
 .calendrier table {
     opacity: 80%;
 }
 
+.calendrier table td:nth-child(1),
+.calendrier table th:nth-child(1) {
+  display: none;
+}
+
 .table {
     margin: 0;
+}
+
+tr:hover {
+    color: rgb(228, 15, 52);
 }
 
 .calendrier-title {
@@ -161,13 +159,6 @@ a:hover {
 
 .calendrier-item__country , .thead-country {
     text-transform: uppercase;
-}
-
-.calendrier-item__flag img {
-    display: block;
-    margin-right: 50%;
-    width: 1.6rem;
-    height: 1rem;
 }
 
 .meteo {
@@ -230,10 +221,6 @@ label, tr {
     height: 1.5rem;
 }
 
-
-/******** TESTS ADMIN  ********/
-
-
 .admin {
     display: flex;
     flex-direction: row;
@@ -270,10 +257,6 @@ label, tr {
         line-height: 2rem;
         font-size: 1.5rem
     }
-
-    /* .admin {
-        width: 75%;
-    } */
 
     .meteo-widget iframe {
         width: 450px;
@@ -323,13 +306,19 @@ label, tr {
         gap: 1rem;
     }
 
+    .calendrier table td:nth-child(1),
+    .calendrier table th:nth-child(1) {
+        display: block;
+    }
+
+    .calendrier-item__flag img {
+        width: 5rem;
+        height: 3rem;
+    }
+
     .calendrier td, .calendrier th {
         font-size: 1.5rem;
     }
-
-    /* .admin {
-        width: 50%;
-    } */
 }
 
 @media (min-width: 1000px) {
@@ -393,8 +382,4 @@ label, tr {
         flex-wrap: nowrap;
         gap: 1rem;
     }
-
-    /* .admin {
-        width: 33%;
-    } */
 }

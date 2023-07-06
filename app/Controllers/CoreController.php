@@ -41,13 +41,13 @@ class CoreController {
         $viewDatas['currentPage'] = $viewName;
         $viewDatas['router'] = $this->router;
 
-        dump(get_defined_vars());
-        dump($_SESSION);
+        // dump(get_defined_vars());
+        // dump($_SESSION);
         extract($viewDatas);
 
-        require __DIR__."/../views/header.tpl.php";
+        require __DIR__."/../views/layout/header.tpl.php";
         require __DIR__."/../views/".$viewName.".tpl.php";
-        require __DIR__."/../views/footer.tpl.php";
+        require __DIR__."/../views/layout/footer.tpl.php";
     }
 
 

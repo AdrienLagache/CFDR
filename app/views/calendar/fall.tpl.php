@@ -67,10 +67,10 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
             <?php $i = 1;?>
             <?php foreach($fall as $event) :?>
-                <tr>
+                <tr class="border-bottom border-light">
                     <th scope="row"><?= $i++ ?></th>
                     <td><?= $event->country() ?></td>
                     <td><?= $event->date() ?></td>

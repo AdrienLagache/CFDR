@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="text" class="form-control" id="password" name="password" placeholder="Votre mot de passe" value="<?= $user->getPassword()?>">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe" value="<?= $user->getPassword()?>">
         </div>
 
         <div class="form-group">

@@ -43,6 +43,16 @@ $router->map(
 
 $router->map(
     'GET',
+    '/classement',
+    [
+        'controller' => MainController::class,
+        'method' => 'classement'   
+    ],
+    'main-standings'
+);
+
+$router->map(
+    'GET',
     '/meteo',
     [
         'controller' => MainController::class,
@@ -215,6 +225,16 @@ $router->map(
         'method' => 'list'
     ],
     'appuser-list'
+);
+
+$router->map(
+    'GET',
+    '/appuser/remove/[i:id]',
+    [
+        'controller' => AppUSerController::class,
+        'method' => 'remove'
+    ],
+    'appuser-remove'
 );
 
 $router->map(

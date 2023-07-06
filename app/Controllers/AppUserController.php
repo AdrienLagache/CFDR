@@ -201,4 +201,23 @@ class AppUserController extends CoreController {
             ]);
         }
     }
+
+    // suppression utilisateur
+    public function remove($id)
+    {
+        $user = AppUser::find($id);
+
+        // on appelle la méthode "delete" qui modifie en base de donnée et renvoie
+        // un booléen
+
+        if ($user->delete()) {
+            // La suppression a fonctionné
+            // Le header ne peut être apellé que si aucun affichage n'est fait (attention au dump())
+            header("Location: " . $this->router->generate("appuser-list"));
+            // toujours exit après une redirection pour éviter de charger le reste de la page
+            exit;
+        } else {
+            $errorList[] = 'La suppression a échoué';
+        }
+    }
 }

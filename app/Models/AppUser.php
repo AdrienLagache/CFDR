@@ -8,12 +8,14 @@ class AppUser
 {
     private $id;
     private $pseudo;
-    private $team;
+    private $team_id;
     private $car;
     private $points;
     private $password;
     private $email;
     private $role;
+    private $team;
+    private $manufacturer;
 
     public static function findAll()
     {
@@ -22,6 +24,23 @@ class AppUser
 
         $sql = 'SELECT *
                     FROM app_user';
+
+        $pdoStatement = $pdo->query($sql);
+
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\\Models\\AppUser');
+
+        return $results;
+    }
+
+    public static function findAllByPoints()
+    {
+
+        $pdo = Database::getPDO();
+
+        $sql = 'SELECT app_user.*, teams.name team, teams.manufacturer manufacturer
+                    FROM app_user
+                    INNER JOIN teams ON app_user.team_id = teams.id
+                    ORDER BY points DESC';
 
         $pdoStatement = $pdo->query($sql);
 
@@ -64,17 +83,42 @@ class AppUser
                 return $result;
     }
 
+    public static function getPointsByTeam()
+    {
+        $pdo = Database::getPDO();
+
+        $sql = 'SELECT teams.name team, teams.manufacturer manufacturer, SUM(app_user.points) team_points
+                    FROM app_user
+                    INNER JOIN teams ON app_user.team_id = teams.id
+                    GROUP BY teams.name
+                    ORDER BY SUM(app_user.points) DESC';
+
+        $pdoStatement = $pdo->query($sql);
+
+        $teamPoints = [];
+
+        while ($result = $pdoStatement->fetch()) {
+            $team = $result['team'];
+            $points = $result['team_points'];
+            $manufacturer = $result['manufacturer'];
+
+            $teamPoints[$team] = [$points, $manufacturer];
+        }
+
+        return $teamPoints;
+    }
+
     public function insert() 
     {
         $pdo = Database::getPDO();
 
-        $sql = "INSERT INTO `app_user` (pseudo, team, car, `password`, email, `role`)
+        $sql = "INSERT INTO `app_user` (pseudo, team_id, car, `password`, email, `role`)
                     VALUES (:pseudo, :team, :car, :password, :email, :role)";
 
         $pdoStatement = $pdo->prepare($sql);
 
         $pdoStatement->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':team', $this->team, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':team', $this->team_id, PDO::PARAM_INT);
         $pdoStatement->bindValue(':car', $this->car, PDO::PARAM_STR);
         $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
         $pdoStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
@@ -97,20 +141,22 @@ class AppUser
         $sql = "UPDATE `app_user`
                     SET
                         pseudo = :pseudo,
-                        team = :team,
+                        team_id = :team,
                         car = :car,
                         `password` = :password,
                         email =:email,
-                        `role` = :role";
+                        `role` = :role
+                    WHERE id = :id";
 
         $pdoStatement = $pdo->prepare($sql);
 
         $pdoStatement->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':team', $this->team, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':team', $this->team_id, PDO::PARAM_INT);
         $pdoStatement->bindValue(':car', $this->car, PDO::PARAM_STR);
         $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
         $pdoStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
         $pdoStatement->bindValue(':role', $this->role, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
 
         $pdoStatement->execute();
 
@@ -121,6 +167,35 @@ class AppUser
 
         return false;
     }
+
+    public function delete()
+    {
+        // Récupération de l'objet PDO représentant la connexion à la DB
+        $pdo = Database::getPDO();
+
+        // Ecriture de la requête UPDATE en préparé
+        $sql = "DELETE FROM `app_user` WHERE `id` = :id;";
+
+        // on prépare la requête
+        $pdoStatement = $pdo->prepare($sql);
+
+        // liaison des paramètres fictifs
+        $pdoStatement->bindValue(":id",         $this->id,          PDO::PARAM_INT);
+
+        // Execution de la requête d'insertion 
+        $pdoStatement->execute();
+
+        // Si une ligne supprimée
+        if (1 === $pdoStatement->rowCount()) {
+            // On retourne VRAI car l'ajout a parfaitement fonctionné
+            return true;
+            // => l'interpréteur PHP sort de cette fonction car on a retourné une donnée
+        }
+        // Si on arrive ici, c'est que quelque chose n'a pas bien fonctionné => FAUX
+        // d'où affichage du message d'erreur
+        return false;
+    }
+
 
     /**
      * Get the value of id
@@ -153,9 +228,9 @@ class AppUser
     /**
      * Get the value of team
      */ 
-    public function getTeam()
+    public function getTeamId()
     {
-        return $this->team;
+        return $this->team_id;
     }
 
     /**
@@ -163,9 +238,9 @@ class AppUser
      *
      * @return  self
      */ 
-    public function setTeam($team)
+    public function setTeamId($team)
     {
-        $this->team = $team;
+        $this->team_id = $team;
 
         return $this;
     }
@@ -266,6 +341,46 @@ class AppUser
     public function setRole($role)
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of teamName
+     */ 
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+    /**
+     * Set the value of teamName
+     *
+     * @return  self
+     */ 
+    public function setTeam($teamName)
+    {
+        $this->team = $teamName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of manufacturer
+     */ 
+    public function getManufacturer()
+    {
+        return $this->manufacturer;
+    }
+
+    /**
+     * Set the value of manufacturer
+     *
+     * @return  self
+     */ 
+    public function setManufacturer($manufacturer)
+    {
+        $this->manufacturer = $manufacturer;
 
         return $this;
     }

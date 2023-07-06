@@ -46,10 +46,10 @@
                 <input type="hidden" name="remove" value="lastSpringDelete">
                 <button type="submit" class="btn btn-warning btn-block mt-3 w-100 h-100">Effacer dernière course</button>
             </form> -->
-            <form action="<?= $router->generate('spring-remove')?>" method="POST" class="mt-1 admin-submit">
+            <!-- <form action="" method="POST" class="mt-1 admin-submit">
                 <input type="hidden" name="remove" value="allSpringDelete">
                 <button type="submit" class="btn btn-danger btn-block mt-3 mb-3 w-100 h-100">Effacer le calendrier Spring</button>
-            </form>
+            </form> -->
         </div>
     </div>
 
@@ -64,10 +64,10 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
             <?php $i = 1;?>
             <?php foreach($spring as $event) : ?>
-                <tr>
+                <tr class="border-bottom border-light">
                     <th scope="row"><?= $i++?></th>
                     <td><?= $event->country() ?></td>
                     <td><?= $event->date() ?></td>

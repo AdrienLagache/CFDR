@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/assets/css/reset.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/assets/css/reset.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <title>CFDR</title>
 </head>
@@ -44,16 +45,17 @@
     
     <nav class="menu-nav" id="menu-nav">
         <ul class="menu-nav__items">
-            <a href="<?= $this->router->generate('appuser-list')?>"><li class="menu-nav__item">Infos pilote</li></a>
-            <a href="<?= $this->router->generate('main-home')?>"><li class="menu-nav__item">Calendrier</li></a>
-            <a href="<?= $this->router->generate('main-meteo')?>"><li class="menu-nav__item">Météo</li></a>
+            <a href="<?= $router->generate('main-home')?>"><li class="menu-nav__item">Calendrier</li></a>
+            <a href="<?= $router->generate('main-meteo')?>"><li class="menu-nav__item">Météo</li></a>
             <a href=""><li class="menu-nav__item">Line-up</li></a>
-            <a href="index.php?page=classements"><li class="menu-nav__item">Classement</li></a>
-            <a href="<?= $this->router->generate('main-live')?>"><li class="menu-nav__item">Live</li></a>
+            <a href="<?= $router->generate('main-standings')?>"><li class="menu-nav__item">Classement</li></a>
+            <a href="<?= $router->generate('main-live')?>"><li class="menu-nav__item">Live</li></a>
             <?php  if(array_key_exists("userObject", $_SESSION)):?>
-            <a href="<?= $this->router->generate('admin-spring')?>"><li class="menu-nav__item">Gérer le calendrier Spring</li></a>
-            <a href="<?= $this->router->generate('admin-fall')?>"><li class="menu-nav__item">Gérer le calendrier Fall</li></a>
-            <?php endif;?>
+            <a href="<?= $router->generate('appuser-list')?>"><li class="menu-nav__item">Infos pilote</li></a>
+            <?php if($_SESSION['userObject']->getRole() == 'admin'):?>
+            <a href="<?= $router->generate('admin-spring')?>"><li class="menu-nav__item">Gérer le calendrier Spring</li></a>
+            <a href="<?= $router->generate('admin-fall')?>"><li class="menu-nav__item">Gérer le calendrier Fall</li></a>
+            <?php endif; endif;?>
         </ul>
         <img id="benjx" src="/assets/images/benjx_logo.png" alt="logo de la chaîne Twitch Benjxmotorsport">
     </nav>
