@@ -10,7 +10,7 @@ html {
 }
 
 main {
-    min-height: 75vh;
+    min-height: 79vh;
 }
 
 a {
@@ -126,11 +126,7 @@ a:hover {
 
 .calendrier table td:nth-child(1),
 .calendrier table th:nth-child(1) {
-  display: none;
-}
-
-.table {
-    margin: 0;
+    display: none;
 }
 
 tr:hover {
@@ -142,7 +138,7 @@ tr:hover {
     padding: 2rem 0;
     text-align: center;
     font-weight: bold;
-    color: rgb(228, 15, 52);
+    color: rgba(228, 15, 52, 0.8);
     text-transform: uppercase;
     text-shadow: 1px 1px 2rem white;
 }
@@ -151,14 +147,20 @@ tr:hover {
     padding: 0.5rem;
     vertical-align: middle;
     font-size: 0.8rem;
-} 
-
-.calendrier-item__race {
-    color: rgb(228, 15, 52);
 }
 
 .calendrier-item__country , .thead-country {
     text-transform: uppercase;
+}
+
+.classement-item img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.calendrier table td:nth-last-child(1) {
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .meteo {
@@ -179,17 +181,19 @@ tr:hover {
     text-shadow: 1px 1px 2rem white;
 }
 
-#meteo-location {
-    width: 150%;
-    height: 3rem;
+#meteo-location select {
+    width: 100%;
+    height: 4rem;
+}
+
+#meteo-location option:nth-child(1) {
     text-align: center;
 }
 
 .meteo-widget iframe {
     padding: 1rem;
-    /* border-radius: 70px; */
     opacity: 80%;
-    /* border: 0; */
+    border-radius: 2rem;
 }
 
 h2 {
@@ -243,7 +247,7 @@ label, tr {
     margin-top: 1rem;
 }
 
-.preview__title {
+.preview__title  {
     color: white;
     font-weight: bold;
 }
@@ -283,12 +287,6 @@ label, tr {
         width: 550px;
         height: 450px;
     }
-
-    .meteo-widget iframe {
-        border-radius: 0 100px 0 100px;
-    }
-
-
 }
 
 @media (min-width: 800px) {
@@ -311,9 +309,19 @@ label, tr {
         display: block;
     }
 
+    .calendrier table td:nth-last-child(1) {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
     .calendrier-item__flag img {
         width: 5rem;
         height: 3rem;
+    }
+
+    .classement-item img {
+        width: 4rem;
+        height: 4rem;
     }
 
     .calendrier td, .calendrier th {
@@ -358,7 +366,7 @@ label, tr {
     }    
 
     .calendrier {
-        padding: 0 10%;
+        padding: 0 15%;
     }
 
     .calendrier-title {

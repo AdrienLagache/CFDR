@@ -67,7 +67,7 @@
             <tbody class="table-group-divider">
             <?php $i = 1;?>
             <?php foreach($spring as $event) : ?>
-                <tr class="border-bottom border-light">
+                <tr class="border-top border-dark-subtl">
                     <th scope="row"><?= $i++?></th>
                     <td><?= $event->country() ?></td>
                     <td><?= $event->date() ?></td>
@@ -89,7 +89,7 @@
                         </div>
                     </td>
                 </tr>
-                <?php endforeach; ?>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>

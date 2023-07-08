@@ -1,7 +1,7 @@
 <section class="meteo">
     <h2 class="meteo-title">Météo</h2>
 
-    <form class="meteo-location" action="<?= $router->generate('main-meteo')?>" method="GET">
+    <form id="meteo-location" action="<?= $router->generate('main-meteo')?>" method="GET">
         <select id="meteo" class="form-select" onchange="this.form.submit()" name="location">
                 <option value="18276642">--choisir un circuit--</option>
                 <option value="15472914">Yas Marina</option>
@@ -26,10 +26,6 @@
         <iframe src="https://api.wo-cloud.com/content/widget/?geoObjectKey=<?=$location?>&language=fr&region=FR&timeFormat=HH:mm&windUnit=kmh&systemOfMeasurement=metric&temperatureUnit=celsius" name="CW2" scrolling="no" width="300" height="400" frameborder="0"></iframe>
     </div>
 </section>
-
-<!-- weather widget start --><a target="_blank" href="https://hotelmix.fr/weather/lamorlaye-60028"><img src="https://w.bookcdn.com/weather/picture/32_60028_1_3_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=50707&domid=581&anc_id=62968"  alt="booked.net"/></a><!-- weather widget end -->
-
-<!-- weather widget start --><a target="_blank" href="https://hotelmix.fr/weather/pau-2673"><img src="https://w.bookcdn.com/weather/picture/32_2673_1_3_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=50707&domid=581&anc_id=62968"  alt="booked.net"/></a><!-- weather widget end -->
 
 <!-- url site du widget : https://www.meteoetradar.com/widget-meteo -->
 

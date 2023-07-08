@@ -39,10 +39,8 @@ class MainController extends CoreController {
     public function classement()
     {
         $pilotes = AppUser::findAllByPoints();
-        dump($pilotes);
         // $teams = Team::findAll();
         $teamPoints = AppUser::getPointsByTeam();
-        dump($teamPoints);
 
         $this->show('classement', [
             'pilotes' => $pilotes,

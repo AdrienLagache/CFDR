@@ -18,7 +18,7 @@
         </thead>
         <tbody class="table-group-divider">
         <?php foreach ($users as $user):?>
-                <tr class="border-bottom border-light">
+                <tr class="border-top border-dark-subtl">
                     <th scope="row"><?= $user->getId()?></th>
                     <td><?= $user->getPseudo()?></td>
                     <td><?= $user->getTeam()?></td>

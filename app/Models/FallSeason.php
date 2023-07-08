@@ -73,7 +73,6 @@ class FallSeason {
     
         $sql = "UPDATE `fall_season`
                     SET
-                        -- `id` = :id, 
                         `flag` = :flag,
                         `country` = :country,
                         `track` = :track,
@@ -83,7 +82,7 @@ class FallSeason {
 
         $pdoStatement = $pdo->prepare($sql);
 
-        // $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
         $pdoStatement->bindValue(':flag', $this->flag, PDO::PARAM_STR);
         $pdoStatement->bindValue(':country', $this->country, PDO::PARAM_STR);
         $pdoStatement->bindValue(':track', $this->track, PDO::PARAM_STR);
