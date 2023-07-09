@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\AppUser;
+use App\Models\Team;
 
 class AppUserController extends CoreController {
 
@@ -57,32 +58,34 @@ class AppUserController extends CoreController {
 
     public function list() 
     {
-
-
-        $users = AppUSer::findAll();
+        $users = AppUSer::findAllByPoints();
+        $teams = Team::findAll();
 
         $this->show('appuser/list', [
-            'users' => $users
+            'users' => $users,
+            'teams' => $teams
         ]);
     }
 
     public function add() 
     {
-
-
         $user = new AppUser();
+        $teams = Team::findAll();
 
         $this->show('appuser/add', [
-            'user' => $user
+            'user' => $user,
+            'teams' => $teams
         ]);
     }
 
     public function edit($id) 
     {
         $user = AppUser::find($id);
+        $teams = Team::findAll();
 
         $this->show('appuser/add', [
-            'user' => $user
+            'user' => $user,
+            'teams' => $teams
         ]);
     }
 
@@ -91,7 +94,7 @@ class AppUserController extends CoreController {
         $updating = isset($id);
 
         $pseudo = filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_STRING);
-        $team = filter_input(INPUT_POST, 'team', FILTER_SANITIZE_STRING);
+        $team = filter_input(INPUT_POST, 'team', FILTER_VALIDATE_INT);
         $car = filter_input(INPUT_POST, 'car', FILTER_SANITIZE_STRING);
         $password = filter_input(INPUT_POST, 'password');
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
@@ -102,7 +105,7 @@ class AppUserController extends CoreController {
         if (empty($pseudo)) {
             $errorList[] = "Le pseudo n'est pas valide";
         }
-        if (empty($team)) {
+        if (false === $team) {
             $errorList[] = "Le nom de la team n'est pas valide";
         }
         if (empty($car)) {
@@ -149,7 +152,7 @@ class AppUserController extends CoreController {
         if (empty($errorList)) {
 
             $user->setPseudo($pseudo);
-            $user->setTeam($team);
+            $user->setTeamId($team);
             $user->setCar($car);
             $user->setPassword($password);
             $user->setEmail($email);
@@ -170,7 +173,7 @@ class AppUserController extends CoreController {
 
                 if ($user->insert()) {
 
-                    header('Location: ' . $this->router->generate('appuser-list'));
+                    header("Location: " . $this->router->generate('appuser-list'));
                     exit;
 
                 } else {

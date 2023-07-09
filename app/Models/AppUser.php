@@ -53,9 +53,10 @@ class AppUser
     {
         $pdo = Database::getPDO();
 
-        $sql = 'SELECT *
+        $sql = 'SELECT app_user.*, teams.name team
                     FROM app_user
-                    WHERE id = :id';
+                    INNER JOIN teams ON app_user.team_id = teams.id
+                    WHERE app_user.id = :id';
 
         $pdoStatement = $pdo->prepare($sql);
         $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);

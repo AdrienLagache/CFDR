@@ -6,9 +6,10 @@
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/36e64eecae.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/css/reset.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+
     <title>CFDR</title>
 </head>
 
@@ -19,24 +20,26 @@
 
         <div class="menus-wrapper">
 
-            <div class="menu">
-
-                <!-- <img class="header-nav__icone" src="/assets/images/icone-menu.png" alt="icone"> -->
-                <div  class="header-nav__icone">
-                <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                </svg>
-                </div>
-
-                <h3 class="header-nav__title">MENU</h3>
+            <div  class="header-nav__icon">
+                <i class="fa-solid fa-bars fa-2xl"></i>
             </div>
         
             <div class="header-register__wrapper">
-                <img class="header-register__icon" src="/assets/images/profil-icon.png">
+                <div  class="header-register__icon">
+                    <?php if (!empty($_SESSION)) :?>
+                    <i class="fa-solid fa-unlock fa-2xl"></i>
+                    <?php else :?>
+                    <i class="fa-solid fa-lock fa-2xl"></i>
+                    <?php endif ;?>
+                </div>
+                
                 <nav class="header-register" id="header-register">
                     <ul class="header-register__items">
-                        <a href="<?= $router->generate('appuser-login')?>"><li class="header-register__item">Se&nbsp;connecter</li></a>
+                        <?php if (!empty($_SESSION)) :?>
                         <a href="<?= $router->generate('appuser-logout')?>"><li class="header-register__item">Se&nbsp;déconnecter</li></a>
+                        <?php else :?>
+                        <a href="<?= $router->generate('appuser-login')?>"><li class="header-register__item">Se&nbsp;connecter</li></a>
+                        <?php endif ;?>
                     </ul>
                 </nav>
             </div>
@@ -47,7 +50,7 @@
         <ul class="menu-nav__items">
             <a href="<?= $router->generate('main-home')?>"><li class="menu-nav__item">Calendrier</li></a>
             <a href="<?= $router->generate('main-meteo')?>"><li class="menu-nav__item">Météo</li></a>
-            <a href=""><li class="menu-nav__item">Line-up</li></a>
+            <a href="<?= $router->generate('main-line_up')?>"><li class="menu-nav__item">Line-up</li></a>
             <a href="<?= $router->generate('main-standings')?>"><li class="menu-nav__item">Classement</li></a>
             <a href="<?= $router->generate('main-live')?>"><li class="menu-nav__item">Live</li></a>
             <?php  if(array_key_exists("userObject", $_SESSION)):?>

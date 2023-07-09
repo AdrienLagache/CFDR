@@ -4,6 +4,7 @@
 
     <div class="admin-input">
         <form action="" method="POST" class="mt-5">
+
             <div class="form-group">
                 <label for="flag" class="form-label">drapeau</label>
                 <select class="form-select" name="flag" id="flag">
@@ -22,76 +23,69 @@
                     <option value="Flag_of_Portugal.png" <?php if ($eventToUpdate->flag() == 'Flag_of_Portugal.png') echo " selected"; ?>>Portugal</option>
                 </select>
             </div>
-            <!-- <div class="form-group">
-                <label for="race">Numero de course</label>
-                <input type="text" class="form-control" id="race" name="race" value="<?= $eventToUpdate->id()?>" placeholder="Numéro de course">
-            </div> -->
+
             <div class="form-group">
                 <label for="country">Pays</label>
-                <input type="text" class="form-control" id="country" name="country" value="<?= $eventToUpdate->country()?>" placeholder="Nom du pays">
+                <input type="text" class="form-control" id="country" name="country" value="<?= $eventToUpdate->country() ?>" placeholder="Nom du pays">
             </div>
+
             <div class="form-group">
                 <label for="track">Nom du circuit</label>
-                <input type="text" class="form-control" id="track" name="track" value="<?= $eventToUpdate->track()?>" placeholder="Nom du circuit">
+                <input type="text" class="form-control" id="track" name="track" value="<?= $eventToUpdate->track() ?>" placeholder="Nom du circuit">
             </div>
+
             <div class="form-group">
                 <label for="date">Date</label>
-                <input type="text" class="form-control" id="date" name="date" value="<?= $eventToUpdate->date()?>" placeholder="Date de l'évènement">
+                <input type="text" class="form-control" id="date" name="date" value="<?= $eventToUpdate->date() ?>" placeholder="Date de l'évènement">
             </div>
+
             <button type="submit" class="btn btn-success btn-block mt-5 w-100 h-100 admin-submit__button">Ajouter</button>
         </form>
-
-        <div class="admin-delete">
-            <!-- <form action="" method="POST" class="mt-1 admin-submit">
-                <input type="hidden" name="remove" value="lastSpringDelete">
-                <button type="submit" class="btn btn-warning btn-block mt-3 w-100 h-100">Effacer dernière course</button>
-            </form> -->
-            <!-- <form action="" method="POST" class="mt-1 admin-submit">
-                <input type="hidden" name="remove" value="allSpringDelete">
-                <button type="submit" class="btn btn-danger btn-block mt-3 mb-3 w-100 h-100">Effacer le calendrier Spring</button>
-            </form> -->
-        </div>
     </div>
 
     <div class="container admin-preview">
+
         <table class="table mb-5 preview">
             <h3 class="mt-5 preview__title">Calendrier Spring</h3>
+
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Pays</th>
-                    
+                    <th scope="col">Circuit</th>
+                    <th scope="col">Date</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
+
             <tbody class="table-group-divider">
-            <?php $i = 1;?>
-            <?php foreach($spring as $event) : ?>
-                <tr class="border-top border-dark-subtl">
-                    <th scope="row"><?= $i++?></th>
-                    <td><?= $event->country() ?></td>
-                    <td><?= $event->date() ?></td>
-                    
-                    <td class="text-end">
-                        <a href="<?= $router->generate('spring-edit', ['id' => $event->id()])?>" class="btn btn-sm btn-warning">
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a>
-                        <!-- Example single danger button -->
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-danger dropdown-toggle"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="<?= $router->generate('spring-remove', ['id' => $event->id()])?>">Oui, je veux supprimer</a>
-                                <a class="dropdown-item" href="#" data-bs-toggle="dropdown">Oups !</a>
+                <?php $i = 1; ?>
+                <?php foreach ($spring as $event) : ?>
+
+                    <tr class="border-top border-dark-subtl">
+                        <th scope="row"><?= $i++ ?></th>
+                        <td><?= $event->country() ?></td>
+                        <td><?= $event->track() ?></td>
+                        <td><?= $event->date() ?></td>
+
+                        <td class="text-end">
+                            <a href="<?= $router->generate('spring-edit', ['id' => $event->id()]) ?>" class="btn btn-sm btn-warning">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="<?= $router->generate('spring-remove', ['id' => $event->id()]) ?>">Oui, je veux supprimer</a>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="dropdown">Oups !</a>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
+                        </td>
+                    </tr>
+                    
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </section>
-    

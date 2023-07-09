@@ -13,6 +13,21 @@ main {
     min-height: 79vh;
 }
 
+
+h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    font-weight: bold;
+    color: rgb(228, 15, 52);
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2rem white;
+} 
+
+label, tr {
+    color: white;
+    margin-top: 1rem;
+}
+
 a {
     text-decoration: none;
     color: white;
@@ -31,28 +46,18 @@ a:hover {
 
 .header {
     background: linear-gradient(rgb(1, 84, 81), 45%, rgb( 0, 24, 39));
-    padding: 1.5rem;
+    padding: 2.5rem;
 }
 
 .menus-wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     color: white;
-    align-items: center;
 }
 
-.menu {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.header-nav__icone svg {
-    display: block;
-    width: 80%;
-}
-
-.header-nav__icone :hover {
+.header-nav__icon :hover,
+.header-register__icon :hover {
     color: rgb(228, 15, 52);
 }
 
@@ -66,10 +71,6 @@ a:hover {
     justify-content: flex-end;
     align-items: center;
     gap: 1rem;
-}
-
-.header-register__icon {
-    width: 20%;
 }
 
 .header-register {
@@ -116,11 +117,13 @@ a:hover {
     font-size: 1.2rem;
 }
 
-.calendrier {
+.calendrier,
+.classement {
     margin-bottom: 2rem;
 }
 
-.calendrier table {
+.calendrier table,
+.classement table {
     opacity: 80%;
 }
 
@@ -133,7 +136,8 @@ tr:hover {
     color: rgb(228, 15, 52);
 }
 
-.calendrier-title {
+.calendrier-title,
+.classement-title {
     font-size: 1rem;
     padding: 2rem 0;
     text-align: center;
@@ -143,22 +147,26 @@ tr:hover {
     text-shadow: 1px 1px 2rem white;
 }
 
-.calendrier td, .calendrier th {
+.calendrier td, .calendrier th,
+.classement td, .classement th {
     padding: 0.5rem;
     vertical-align: middle;
     font-size: 0.8rem;
 }
 
-.calendrier-item__country , .thead-country {
+.calendrier-item:nth-child(3),
+.thead-country {
     text-transform: uppercase;
 }
 
 .classement-item img {
     width: 2rem;
     height: 2rem;
+    margin-left: 1.5rem;
 }
 
-.calendrier table td:nth-last-child(1) {
+.calendrier table td:nth-last-child(1),
+.classement table td:nth-last-child(1) {
     font-size: 1rem;
     font-weight: bold;
 }
@@ -192,22 +200,8 @@ tr:hover {
 
 .meteo-widget iframe {
     padding: 1rem;
-    opacity: 80%;
+    opacity: 90%;
     border-radius: 2rem;
-}
-
-h2 {
-    font-size: 1.5rem;
-    margin-top: 2rem;
-    font-weight: bold;
-    color: rgb(228, 15, 52);
-    text-transform: uppercase;
-    text-shadow: 1px 1px 2rem white;
-} 
-
-label, tr {
-    color: white;
-    margin-top: 1rem;
 }
 
 #footer {
@@ -217,7 +211,6 @@ label, tr {
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* margin-top: 42vh; */
 }
 
 #footer img {
@@ -256,6 +249,16 @@ label, tr {
     color: rgb(228, 15, 52);
 }
 
+.users-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.list-add {
+    margin-top: 2rem;
+}
+
 @media (min-width: 450px) {
     .header-register__item {
         line-height: 2rem;
@@ -269,16 +272,26 @@ label, tr {
 }
 
 @media (min-width: 600px) {
+    .header-nav__icon {
+        margin-left: 2rem;
+    }
+
+    .header-register__icon {
+        margin-right: 2rem;
+    }
+
     .header-register__item {
         font-size: 1.8rem;
         line-height: 2.5rem;
     }
 
-    .calendrier-title {
+    .calendrier-title,
+    .classement-title {
         font-size: 1.5rem;
     }
 
-    .calendrier td, .calendrier th {
+    .calendrier td, .calendrier th,
+    .classement td, .classement th {
         padding: 1.2rem;
         font-size: 1.2rem;
     }
@@ -300,23 +313,20 @@ label, tr {
         font-size: 2.8rem;
     }
 
-    .menu {
-        gap: 1rem;
-    }
-
     .calendrier table td:nth-child(1),
     .calendrier table th:nth-child(1) {
         display: block;
     }
 
-    .calendrier table td:nth-last-child(1) {
+    .calendrier table td:nth-last-child(1),
+    .classement table td:nth-last-child(1) {
         font-size: 1.5rem;
         font-weight: bold;
     }
 
-    .calendrier-item__flag img {
-        width: 5rem;
-        height: 3rem;
+    .calendrier-item img {
+        width: 3.1rem;
+        height: 1.8rem;
     }
 
     .classement-item img {
@@ -324,7 +334,8 @@ label, tr {
         height: 4rem;
     }
 
-    .calendrier td, .calendrier th {
+    .calendrier td, .calendrier th,
+    .classement td, .classement th {
         font-size: 1.5rem;
     }
 }
@@ -339,10 +350,6 @@ label, tr {
         width: 30%;
     }
 
-    .header-nav__icone {
-        width: 10%;
-    }
-
     .header-nav__title {
         font-size: 1.5rem;
     }
@@ -352,12 +359,6 @@ label, tr {
         top: 40%;
         right: 2rem;
         left: 2rem;
-
-    }
-
-    .header-register__icon {
-        width: 7%;
-        height: 7%;
     }
 
     .header-register__item {
@@ -365,29 +366,24 @@ label, tr {
         line-height: 2rem;
     }    
 
-    .calendrier {
+    .calendrier,
+    .classement {
         padding: 0 15%;
     }
 
-    .calendrier-title {
+    .calendrier-title,
+    .classement-title {
         padding: 5rem 0;
     }
 
-    .calendrier td, .calendrier th {
+    .calendrier td, .calendrier th,
+    .classement td, .classement th {
         font-size: 1.4rem;
     }
-
-    .calendrier-item__flag img {
-        width: 3.2rem;
-        height: 2rem;
-    }
 }
 
-@media (min-width: 1400px) {
-    .header-register__items {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 1rem;
+/* @media (min-width: 1400px) {
+    .menus-wrapper {
+        align-items: flex-start;
     }
-}
+} */

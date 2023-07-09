@@ -1,73 +1,155 @@
 <?php
-// namespace App\Models;
+namespace App\Models;
 
-// use \PDO;
-// use App\Utils\Database;
+use \PDO;
+use App\Utils\Database;
 
-// class Team {
-//     private $id;
-//     private $name;
-//     private $manufacturer;
+class Team {
+    private $id;
+    private $name;
+    private $manufacturer;
 
-//     public static function findAll()
-//     {
-//         $pdo = Database::getPDO();
+    public static function findAll()
+    {
+        $pdo = Database::getPDO();
 
-//         $sql = 'SELECT *
-//                     FROM teams';
+        $sql = 'SELECT *
+                    FROM teams';
 
-//         $pdoStatement = $pdo->query($sql);
+        $pdoStatement = $pdo->query($sql);
 
-//         $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\\Models\\Team');
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\\Models\\Team');
 
-//         return $results;
-//     }
+        return $results;
+    }
 
-//     /**
-//      * Get the value of id
-//      */ 
-//     public function getId()
-//     {
-//         return $this->id;
-//     }
+    public static function find($id)
+    {
+        $pdo = Database::getPDO();
 
-//     /**
-//      * Get the value of name
-//      */ 
-//     public function getName()
-//     {
-//         return $this->name;
-//     }
+        $sql = 'SELECT *
+                    FROM teams
+                    WHERE id = :id';
 
-//     /**
-//      * Set the value of name
-//      *
-//      * @return  self
-//      */ 
-//     public function setName($name)
-//     {
-//         $this->name = $name;
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
+        $pdoStatement->execute();
 
-//         return $this;
-//     }
+        $result = $pdoStatement->fetchObject('App\\Models\\Team');
 
-//     /**
-//      * Get the value of manufacturer
-//      */ 
-//     public function getManufacturer()
-//     {
-//         return $this->manufacturer;
-//     }
+        return $result;
+    }
 
-//     /**
-//      * Set the value of manufacturer
-//      *
-//      * @return  self
-//      */ 
-//     public function setManufacturer($manufacturer)
-//     {
-//         $this->manufacturer = $manufacturer;
+    public function insert() 
+    {
+        $pdo = Database::getPDO();
 
-//         return $this;
-//     }
-// }
+        $sql = "INSERT INTO `teams` (name, manufacturer)
+                    VALUES (:name, :manufacturer)";
+
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':manufacturer', $this->manufacturer, PDO::PARAM_STR);
+
+        $pdoStatement->execute();
+
+        if (1 === $pdoStatement->rowCount()) {
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function update() 
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "UPDATE `teams`
+                    SET
+                        name = :name,
+                        manufacturer = :manufacturer
+                    WHERE id = :id";
+
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':manufacturer', $this->manufacturer, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+
+        $pdoStatement->execute();
+
+        if (1 === $pdoStatement->rowCount()) {
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function delete()
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "DELETE FROM `teams` WHERE `id` = :id;";
+
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindValue(":id", $this->id, PDO::PARAM_INT);
+        $pdoStatement->execute();
+
+        if (1 === $pdoStatement->rowCount()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get the value of name
+     */ 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */ 
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of manufacturer
+     */ 
+    public function getManufacturer()
+    {
+        return $this->manufacturer;
+    }
+
+    /**
+     * Set the value of manufacturer
+     *
+     * @return  self
+     */ 
+    public function setManufacturer($manufacturer)
+    {
+        $this->manufacturer = $manufacturer;
+
+        return $this;
+    }
+}

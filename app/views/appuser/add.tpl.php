@@ -15,7 +15,11 @@
 
         <div class="form-group">
             <label for="team">Team</label>
-            <input type="text" class="form-control" id="team" name="team" placeholder="Le nom de la team" value="<?= $user->getTeam()?>">
+            <select class="form-select" name="team" id="team">
+                <?php foreach ($teams as $team) :?>
+                    <option value="<?= $team->getId()?>" <?php if ($team->getId() == $user->getTeamId()) echo 'selected'?>><?= $team->getName()?></option>
+                <?php endforeach; ?>
+            </select>
         </div>
 
         <div class="form-group">

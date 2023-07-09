@@ -3,13 +3,12 @@ namespace App\Controllers;
 
 use App\Models\SpringSeason;
 use App\Models\FallSeason;
-use App\Models\Team;
 use App\Models\AppUser;
 
 class MainController extends CoreController {
 
-    public function home() {
-
+    public function home()
+    {
         $springSeason = SpringSeason::findAll();
 
         $fallSeason = FallSeason::findAll();
@@ -22,8 +21,8 @@ class MainController extends CoreController {
         $this->show('calendrier', $calendarDatas);
     }
 
-    public function calendrier() {
-
+    public function calendrier()
+    {
         $springSeason = SpringSeason::findAll();
 
         $fallSeason = FallSeason::findAll();
@@ -39,28 +38,31 @@ class MainController extends CoreController {
     public function classement()
     {
         $pilotes = AppUser::findAllByPoints();
-        // $teams = Team::findAll();
         $teamPoints = AppUser::getPointsByTeam();
 
         $this->show('classement', [
             'pilotes' => $pilotes,
-            // 'teams' => $teams,
             'teamPoints' => $teamPoints
         ]);
     }
 
-    public function meteo() {
+    public function lineUp()
+    {
+        $this->show('line-up');
+    }
 
+    public function meteo()
+    {
         $this->show('meteo');
     }
 
-    public function live() {
-        
+    public function live()
+    {        
         $this->show('live');
     }
 
-    public function fall() {   
-
+    public function fall()
+    {
         $fallSeason = FallSeason::findAll();
 
         $this->show('calendar/fall', [
@@ -70,8 +72,8 @@ class MainController extends CoreController {
         ]);
     }
 
-    public function spring() {   
-
+    public function spring()
+    {
         $springSeason = SpringSeason::findAll();
 
         $this->show('calendar/spring', [

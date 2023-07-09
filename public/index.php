@@ -8,6 +8,7 @@ use App\Controllers\MainController;
 use App\Controllers\SpringController;
 use App\Controllers\FallController;
 use App\Controllers\AppUserController;
+use App\Controllers\TeamController;
 
 $router = new AltoRouter;
 
@@ -49,6 +50,16 @@ $router->map(
         'method' => 'classement'   
     ],
     'main-standings'
+);
+
+$router->map(
+    'GET',
+    '/line-up',
+    [
+        'controller' => MainController::class,
+        'method' => 'lineUp'   
+    ],
+    'main-line_up'
 );
 
 $router->map(
@@ -165,16 +176,6 @@ $router->map(
     'fall-update'
 );
 
-// $router->map(
-//     'POST',
-//     '/fall/remove',
-//     [
-//         'controller' => FallController::class,
-//         'method'  => 'removeAll'
-//     ],
-//     'fall-delete'
-// );
-
 $router->map(
     'GET',
     '/fall/remove/[i:id]',
@@ -276,6 +277,59 @@ $router->map(
     ],
     'appuser-update'
 );
+
+//------------------routes team----------------
+
+$router->map(
+    'GET',
+    '/team/add',
+    [
+        'controller' => TeamController::class,
+        'method' => 'add'
+    ],
+    'team-add'
+);
+
+$router->map(
+    'POST',
+    '/team/add',
+    [
+        'controller' => TeamController::class,
+        'method' => 'create'
+    ],
+    'team-create'
+);
+
+$router->map(
+    'GET',
+    '/team/update/[i:id]',
+    [
+        'controller' => TeamController::class,
+        'method' => 'edit'
+    ],
+    'team-edit'
+);
+
+$router->map(
+    'POST',
+    '/team/update/[i:id]',
+    [
+        'controller' => TeamController::class,
+        'method' => 'create'
+    ],
+    'team-update'
+);
+
+$router->map(
+    'GET',
+    '/team/remove/[i:id]',
+    [
+        'controller' => TeamController::class,
+        'method' => 'remove'
+    ],
+    'team-remove'
+);
+
 
 $match = $router->match();
 

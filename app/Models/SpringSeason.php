@@ -24,11 +24,13 @@ class SpringSeason {
     }
 
     public static function find($id) {
-        $sql = 'SELECT * FROM spring_season WHERE id =' . $id;
-
         $pdo = Database::getPDO();
 
-        $pdoStatement = $pdo->query($sql);
+        $sql = 'SELECT * FROM spring_season WHERE id = :id';
+
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindValue(":id", $id, PDO::PARAM_STR);
+        $pdoStatement->execute();
 
         $springEvent = $pdoStatement->fetchObject('App\\Models\\SpringSeason');
 
@@ -62,7 +64,7 @@ class SpringSeason {
   
           return false;
       }
-  }
+    }
 
     public function update() {
         
