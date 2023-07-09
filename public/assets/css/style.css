@@ -14,14 +14,14 @@ main {
 }
 
 
-h2 {
+/* h2 {
     font-size: 1.5rem;
     margin-top: 2rem;
     font-weight: bold;
     color: rgb(228, 15, 52);
     text-transform: uppercase;
     text-shadow: 1px 1px 2rem white;
-} 
+} */
 
 label, tr {
     color: white;
@@ -136,8 +136,7 @@ tr:hover {
     color: rgb(228, 15, 52);
 }
 
-.calendrier-title,
-.classement-title {
+h2 {
     font-size: 1rem;
     padding: 2rem 0;
     text-align: center;
@@ -272,6 +271,10 @@ tr:hover {
 }
 
 @media (min-width: 600px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+
     .header-nav__icon {
         margin-left: 2rem;
     }
@@ -283,11 +286,6 @@ tr:hover {
     .header-register__item {
         font-size: 1.8rem;
         line-height: 2.5rem;
-    }
-
-    .calendrier-title,
-    .classement-title {
-        font-size: 1.5rem;
     }
 
     .calendrier td, .calendrier th,
@@ -341,6 +339,10 @@ tr:hover {
 }
 
 @media (min-width: 1000px) {
+    h2 {
+        padding: 5rem 0;
+    }
+
     .header {
         position: relative;
         padding: 0.5rem;
@@ -369,11 +371,6 @@ tr:hover {
     .calendrier,
     .classement {
         padding: 0 15%;
-    }
-
-    .calendrier-title,
-    .classement-title {
-        padding: 5rem 0;
     }
 
     .calendrier td, .calendrier th,

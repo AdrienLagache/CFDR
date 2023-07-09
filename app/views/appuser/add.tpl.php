@@ -1,8 +1,11 @@
 <div class="container my-4">
     <a href="<?= $router->generate('appuser-list') ?>" class="btn btn-success float-end">Retour</a>
-    <h2>Ajouter un utilisateur</h2>
+    <h2><?= (null === $user->getId()) ? 'Ajouter un utilisateur' : 'Mettre à jour'; ?> un utilisateur</h2>
     <?php
     // Pour afficher les messages d'erreurs éventuels.
+
+                use App\Models\AppUser;
+
     include __DIR__ . '/../partials/message.tpl.php';
     ?>
     
@@ -25,7 +28,7 @@
         <div class="form-group">
             <label for="car" class="form-label">Véhicule</label>
             <select class="form-select" name="car" id="car">
-                <option value="Renault Sport Mégame R.S. RX" <?php if ($user->getCar() == 'Renault Sport Mégame R.S. RX') echo 'selected'?>>Renault Sport Mégame R.S. RX</option>
+                <option value="Renault Sport Mégane R.S. RX" <?php if ($user->getCar() == 'Renault Sport Mégane R.S. RX') echo 'selected'?>>Renault Sport Mégane R.S. RX</option>
                 <option value="Peugeot 208 WRX" <?php if ($user->getCar() == 'Peugeot 208 WRX') echo 'selected'?>>Peugeot 208 WRX</option>
                 <option value="Audi S1 EKS RX Quattro" <?php if ($user->getCar() == "Audi S1 EKS RX Quattro") echo 'selected'?>>Audi S1 EKS RX Quattro</option>
                 <option value="Renault Sport Clio R.S. RX" <?php if ($user->getCar() == "Renault Sport Clio R.S. RX") echo 'selected'?>>Renault Sport Clio R.S. RX</option>
@@ -36,15 +39,17 @@
                 <option value="Seat Ibiza RX" <?php if ($user->getCar() == "Seat Ibiza RX") echo 'selected'?>>Seat Ibiza RX</option>
             </select>
         </div>
-
+        
+        <?php if (null === $user->getId()) :?>
         <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe" value="<?= $user->getPassword()?>">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe" value="">
         </div>
+        <?php endif; ?>
 
         <div class="form-group">
             <label for="email">E-mail</label>
-        <input type="text" class="form-control" id="email" name="email" placeholder="Votre e-mail" value="<?= $user->getEmail()?>">
+            <input type="text" class="form-control" id="email" name="email" placeholder="Votre e-mail" value="<?= $user->getEmail()?>">
         </div>
 
         <div class="form-group">
@@ -54,6 +59,13 @@
                 <option value="admin" <?php if ($user->getRole() == 'admin') echo 'selected'?>>admin</option>
             </select>
         </div>
+        
+        <?php if (null !== $user->getId()) :?>
+            <div class="form-group">
+                <label for="points">Points</label>
+                <input type="text" class="form-control" id="points" name="points" placeholder="Les points actuels (vide : 0)" value="<?= $user->getPoints()?>">
+            </div>
+        <?php endif;?>
         
         <div class="d-grid gap-2">
             <button type="submit" class="btn btn-primary mt-5">Valider</button>

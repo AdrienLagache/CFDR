@@ -11,6 +11,7 @@
                     <th scope="col">Pseudo</th>
                     <th scope="col">Team</th>
                     <th scope="col">Voiture</th>
+                    <th scope="col">Points</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">Role</th>
                     <th scope="col"></th>
@@ -23,6 +24,7 @@
                         <td><?= $user->getPseudo()?></td>
                         <td><?= $user->getTeam()?></td>
                         <td><?= $user->getCar()?></td>
+                        <td><?= $user->getPoints()?></td>
                         <td><?= $user->getEmail()?></td>
                         <td><?= $user->getRole()?></td>
                         <td class="text-end">
@@ -77,7 +79,7 @@
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="<?= $router->generate('team-remove', ['id' => $user->getId()])?>">Oui, je veux supprimer</a>
+                                    <a class="dropdown-item" href="<?= $router->generate('team-remove', ['id' => $team->getId()])?>">Oui, je veux supprimer</a>
                                     <a class="dropdown-item" href="" data-bs-toggle="dropdown">Oups !</a>
                                 </div>
                             </div>

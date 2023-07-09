@@ -8,8 +8,11 @@ class AppUserController extends CoreController {
 
     public function login() 
     {
-
-        $this->show('appuser/connect');
+        $appUser = new AppUser;
+        
+        $this->show('appuser/connect', [
+            'appUser' => $appUser
+        ]);
     }
 
     public function logout()
@@ -22,12 +25,12 @@ class AppUserController extends CoreController {
 
     public function validate() 
     {
-        $email      = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-        $password   = filter_input(INPUT_POST, 'password');
+        $pseudo = filter_input(INPUT_POST, 'pseudo');
+        $password = filter_input(INPUT_POST, 'password');
 
         $errorList = [];
 
-        $appUser = AppUser::findByEmail($email);
+        $appUser = AppUser::findByPseudo($pseudo);
 
         if (!$appUser) {
             $errorList[] = 'Identifiant invalide';
@@ -48,7 +51,7 @@ class AppUserController extends CoreController {
 
         // on arrive ici si on n'as pas pu valider le couple email/password
         $appUser = new AppUser();
-        $appUser->setEmail(filter_input(INPUT_POST, 'email'));
+        $appUser->setPseudo(filter_input(INPUT_POST, 'pseudo'));
         $appUser->setPassword(filter_input(INPUT_POST, 'password'));
         $this->show("appuser/connect", [
             'appUser' => $appUser,
@@ -99,6 +102,7 @@ class AppUserController extends CoreController {
         $password = filter_input(INPUT_POST, 'password');
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $role = filter_input(INPUT_POST, 'role', FILTER_SANITIZE_STRING);
+        $points = filter_input(INPUT_POST, 'points', FILTER_VALIDATE_INT);
 
         $errorList = [];
 
@@ -111,7 +115,7 @@ class AppUserController extends CoreController {
         if (empty($car)) {
             $errorList[] = "Le nom du véhicule n'est pas valide";
         }
-        if (empty($password)) {
+        if (empty($password) && false === $updating) {
             $errorList[] = "Le mot de passe n'est pas valide";
         }
         if (false === $email) {
@@ -120,26 +124,29 @@ class AppUserController extends CoreController {
         if (empty($role)) {
             $errorList[] = "Le role n'est pas valide";
         }
-
-        if (strlen($password) < 8) {
-            $errorList[] = "Votre mot de passe doit contenir au moins 8 characteres";
+        if (false === $points && $updating) {
+            $errorList[] = "Les points ne sont pas valides";
         }
 
-        if (!preg_match('/[a-z]/', $password)) {
-            $errorList[] = "Votre mot de passe doit contenir au moins 1 minuscule";
-        }
+        // if (strlen($password) < 8) {
+        //     $errorList[] = "Votre mot de passe doit contenir au moins 8 characteres";
+        // }
 
-        if (!preg_match('/[A-Z]/', $password)) {
-            $errorList[] = "Votre mot de passe doit contenir au moins 1 majuscule";
-        }
+        // if (!preg_match('/[a-z]/', $password)) {
+        //     $errorList[] = "Votre mot de passe doit contenir au moins 1 minuscule";
+        // }
 
-        if (!preg_match('/[0-9]/', $password)) {
-            $errorList[] = "Votre mot de passe doit contenir au moins 1 chiffre";
-        }
+        // if (!preg_match('/[A-Z]/', $password)) {
+        //     $errorList[] = "Votre mot de passe doit contenir au moins 1 majuscule";
+        // }
 
-        if (!preg_match('/[_\-|%&*=@$]/', $password)) {
-            $errorList[] = "Votre mot de passe doit contenir au moins 1 caractère spécial (_\-|%&*=@$)";
-        }
+        // if (!preg_match('/[0-9]/', $password)) {
+        //     $errorList[] = "Votre mot de passe doit contenir au moins 1 chiffre";
+        // }
+
+        // if (!preg_match('/[_\-|%&*=@$]/', $password)) {
+        //     $errorList[] = "Votre mot de passe doit contenir au moins 1 caractère spécial (_\-|%&*=@$)";
+        // }
 
         if ($updating === true) {
             $user = AppUser::find($id);
@@ -154,14 +161,20 @@ class AppUserController extends CoreController {
             $user->setPseudo($pseudo);
             $user->setTeamId($team);
             $user->setCar($car);
-            $user->setPassword($password);
+            // je ne renseigne le mot de passe que lorsque je crée un utilisateur
+            if (false === $updating) {
+                $user->setPassword($password);
+            }
             $user->setEmail($email);
             $user->setRole($role);
+            // je ne change les points que lorsque je met à jour un utilisateur
+            if ($updating) {
+                $user->setPoints($points);
+            }
 
             if ($updating) {
 
                 if ($user->update()) {
-
                     header("Location: " . $this->router->generate('appuser-list'));
                     exit;
 
@@ -172,7 +185,6 @@ class AppUserController extends CoreController {
             } else {
 
                 if ($user->insert()) {
-
                     header("Location: " . $this->router->generate('appuser-list'));
                     exit;
 
@@ -192,14 +204,17 @@ class AppUserController extends CoreController {
             }
 
             $user->setPseudo(filter_input(INPUT_POST, 'pseudo'));
-            $user->setTeam(filter_input(INPUT_POST, 'team'));
+            $user->setTeamId(filter_input(INPUT_POST, 'team'));
             $user->setCar(filter_input(INPUT_POST, 'car'));
             $user->setPassword(filter_input(INPUT_POST, 'password'));
             $user->setEmail(filter_input(INPUT_POST, 'email'));
             $user->setRole(filter_input(INPUT_POST, 'role'));
 
+            $teams = Team::findAll();
+
             $this->show('appuser/add', [
                 'user' => $user,
+                'teams' => $teams,
                 'errorList' => $errorList
             ]);
         }

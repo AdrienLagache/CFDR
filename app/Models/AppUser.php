@@ -67,16 +67,16 @@ class AppUser
         return $result;
     }
 
-    public static function findByEmail($email)
+    public static function findByPseudo($pseudo)
     {
                 $pdo = Database::getPDO();
 
                 $sql = 'SELECT *
                             FROM app_user
-                            WHERE email = :email';
+                            WHERE pseudo = :pseudo';
         
                 $pdoStatement = $pdo->prepare($sql);
-                $pdoStatement->bindValue(":email", $email, PDO::PARAM_STR);
+                $pdoStatement->bindValue(":pseudo", $pseudo, PDO::PARAM_STR);
                 $pdoStatement->execute();
         
                 $result = $pdoStatement->fetchObject('App\Models\AppUser');
@@ -144,7 +144,7 @@ class AppUser
                         pseudo = :pseudo,
                         team_id = :team,
                         car = :car,
-                        `password` = :password,
+                        points = :points,
                         email =:email,
                         `role` = :role
                     WHERE id = :id";
@@ -154,9 +154,9 @@ class AppUser
         $pdoStatement->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         $pdoStatement->bindValue(':team', $this->team_id, PDO::PARAM_INT);
         $pdoStatement->bindValue(':car', $this->car, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
         $pdoStatement->bindValue(':email', $this->email, PDO::PARAM_STR);
         $pdoStatement->bindValue(':role', $this->role, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':points', $this->points, PDO::PARAM_INT);
         $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
 
         $pdoStatement->execute();

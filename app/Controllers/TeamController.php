@@ -100,7 +100,6 @@ class TeamController extends CoreController {
       $user = Team::find($id);
 
       if ($user->delete()) {
-
           header("Location: " . $this->router->generate("appuser-list"));
           exit;
 

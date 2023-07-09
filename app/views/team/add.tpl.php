@@ -9,8 +9,8 @@
     <form action="" method="POST">
 
         <div class="form-group">
-            <label for="team">Nom de la team</label>
-            <input type="text" class="form-control" id="team" name="team" placeholder="Votre Pseudo" value="<?= $team->getName()?>">
+            <label for="team">Team</label>
+            <input type="text" class="form-control" id="team" name="team" placeholder="Le nom de la team" value="<?= $team->getName()?>">
         </div>
 
         <div class="form-group">

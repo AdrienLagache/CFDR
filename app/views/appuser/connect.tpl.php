@@ -8,13 +8,13 @@
     
     <form action="" method="POST">
         <div class="form-group">
-            <label for="email">Identifiant</label>
-            <input type="text" class="form-control" id="email" name="email" placeholder="Votre e-mail" value="">
+            <label for="pseudo">Pseudo</label>
+            <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Votre Pseudo" value="<?= $appUser->getPseudo() ?>">
         </div>
 
         <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe" value="">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe" value="<?= isset($_POST['password'])? $_POST['password'] : ''; ?>">
         </div>
         
         <div class="d-grid gap-2">
