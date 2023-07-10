@@ -278,6 +278,16 @@ $router->map(
     'appuser-update'
 );
 
+$router->map(
+    'GET',
+    '/appuser/line-up',
+    [
+        'controller' => AppUSerController::class,
+        'method' => 'generate'
+    ],
+    'appuser-generate'
+);
+
 //------------------routes team----------------
 
 $router->map(

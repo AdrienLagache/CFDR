@@ -6,6 +6,15 @@ use App\Models\Team;
 
 class AppUserController extends CoreController {
 
+    public function generate()
+    {
+        $users = AppUser::findAll();
+
+        $this->show('appuser/generate', [
+            'users' => $users
+        ]);
+    }
+
     public function login() 
     {
         $appUser = new AppUser;

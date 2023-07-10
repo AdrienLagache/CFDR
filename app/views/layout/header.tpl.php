@@ -53,12 +53,12 @@
             <a href="<?= $router->generate('main-line_up')?>"><li class="menu-nav__item">Line-up</li></a>
             <a href="<?= $router->generate('main-standings')?>"><li class="menu-nav__item">Classement</li></a>
             <a href="<?= $router->generate('main-live')?>"><li class="menu-nav__item">Live</li></a>
-            <?php  if(array_key_exists("userObject", $_SESSION)):?>
+            <?php if(array_key_exists('userObject', $_SESSION) && $_SESSION['userObject']->getRole() == 'admin'):?>
             <a href="<?= $router->generate('appuser-list')?>"><li class="menu-nav__item">Infos pilote</li></a>
-            <?php if($_SESSION['userObject']->getRole() == 'admin'):?>
+            <a href="<?= $router->generate('appuser-generate')?>"><li class="menu-nav__item">Générer le line-up</li></a>
             <a href="<?= $router->generate('admin-spring')?>"><li class="menu-nav__item">Gérer le calendrier Spring</li></a>
             <a href="<?= $router->generate('admin-fall')?>"><li class="menu-nav__item">Gérer le calendrier Fall</li></a>
-            <?php endif; endif;?>
+            <?php endif; ?>
         </ul>
         <img id="benjx" src="/assets/images/benjx_logo.png" alt="logo de la chaîne Twitch Benjxmotorsport">
     </nav>
