@@ -132,9 +132,9 @@ a:hover {
     display: none;
 }
 
-tr:hover {
+/* tr:hover {
     color: rgb(228, 15, 52);
-}
+} */
 
 h2 {
     font-size: 1rem;
@@ -201,6 +201,49 @@ h2 {
     padding: 1rem;
     opacity: 90%;
     border-radius: 2rem;
+}
+
+#line-up-list {
+    color: white;
+}
+
+.line-up-generate {
+    width: 30%;
+}
+
+/* Style de base pour la classe personnalisée */
+.line-up__checkbox .btn-outline-custom {
+    background-color: white;
+    color: rgb(228, 15, 52);
+    border-color: rgb(228, 15, 52);
+}
+
+/* Style lors du survol du curseur de la souris pour le label */
+.line-up__checkbox:hover .btn-outline-custom,
+.line-up__checkbox:focus .btn-outline-custom {
+    background-color: rgb(228, 15, 52);
+    color: white;
+    border-color: white;
+}
+
+/* Style lorsqu'une checkbox est cochée */
+.line-up__checkbox .btn-check:checked + .btn-outline-custom {
+    background-color: rgb(228, 15, 52);
+    color: white;
+    border-color: white;
+}
+
+input[type="checkbox"]:hover,
+input[type="checkbox"]:focus {
+    background-color: rgb(228, 15, 52);
+    color: white;
+    border-color: white;
+}
+
+input[type="checkbox"]:checked {
+    background-color: rgb(228, 15, 52);
+    color: white;
+    border-color: white;
 }
 
 #footer {

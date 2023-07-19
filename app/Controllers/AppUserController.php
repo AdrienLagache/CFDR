@@ -15,6 +15,23 @@ class AppUserController extends CoreController {
         ]);
     }
 
+    public function lineUp()
+    {
+        AppUser::resetAvailabilities();
+
+        $selectedUsers = $_POST['selectedUsers'];
+
+        foreach ($selectedUsers as $userId) {
+            AppUser::updateAvailability($userId);
+        } 
+        // $users = AppUser::findByPseudo();
+        $users = AppUser::findAll();
+
+        $this->show('appuser/generate', [
+            'users' => $users
+        ]);
+    }
+
     public function login() 
     {
         $appUser = new AppUser;

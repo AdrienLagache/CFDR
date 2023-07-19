@@ -14,6 +14,7 @@ class AppUser
     private $password;
     private $email;
     private $role;
+    private $availability;
     private $team;
     private $manufacturer;
 
@@ -168,6 +169,26 @@ class AppUser
 
         return false;
     }
+    
+    public static function updateAvailability($id)
+    {
+        $pdo = Database::getPDO();
+    
+        $sql = "UPDATE `app_user` SET `availability` = 1 WHERE id = :id";
+    
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
+        $pdoStatement->execute();
+    
+    
+    
+        if (1 === $pdoStatement->rowCount()) {
+    
+            return true;
+        }
+    
+        return false;
+    }
 
     public function delete()
     {
@@ -194,6 +215,22 @@ class AppUser
         }
         // Si on arrive ici, c'est que quelque chose n'a pas bien fonctionné => FAUX
         // d'où affichage du message d'erreur
+        return false;
+    }
+
+    public static function resetAvailabilities()
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "UPDATE `app_user` SET `availability` = 0";
+
+        $pdoStatement = $pdo->exec($sql);
+
+        if (1 === $pdoStatement) {
+
+            return true;
+        }
+
         return false;
     }
 
@@ -382,6 +419,26 @@ class AppUser
     public function setManufacturer($manufacturer)
     {
         $this->manufacturer = $manufacturer;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of availability
+     */ 
+    public function getAvailability()
+    {
+        return $this->availability;
+    }
+
+    /**
+     * Set the value of availability
+     *
+     * @return  self
+     */ 
+    public function setAvailability($availability)
+    {
+        $this->availability = $availability;
 
         return $this;
     }

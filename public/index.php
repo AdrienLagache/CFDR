@@ -288,6 +288,16 @@ $router->map(
     'appuser-generate'
 );
 
+$router->map(
+    'POST',
+    '/appuser/line-up',
+    [
+        'controller' => AppUserController::class,
+        'method' => 'lineUp'
+    ],
+    'appuser-lineUp'
+);
+
 //------------------routes team----------------
 
 $router->map(

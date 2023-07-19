@@ -1,3 +1,3 @@
-<section id="line-up">
+<section id="line-up-list">
 
 </section>
