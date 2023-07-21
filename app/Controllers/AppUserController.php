@@ -24,7 +24,7 @@ class AppUserController extends CoreController {
         foreach ($selectedUsers as $userId) {
             AppUser::updateAvailability($userId);
         } 
-        // $users = AppUser::findByPseudo();
+
         $users = AppUser::findAll();
 
         $this->show('appuser/generate', [
@@ -129,6 +129,8 @@ class AppUserController extends CoreController {
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $role = filter_input(INPUT_POST, 'role', FILTER_SANITIZE_STRING);
         $points = filter_input(INPUT_POST, 'points', FILTER_VALIDATE_INT);
+        
+        $password = $role === 'pilote' ? 'password' : $password;
 
         $errorList = [];
 
@@ -141,12 +143,12 @@ class AppUserController extends CoreController {
         if (empty($car)) {
             $errorList[] = "Le nom du véhicule n'est pas valide";
         }
-        if (empty($password) && false === $updating) {
-            $errorList[] = "Le mot de passe n'est pas valide";
+        if (empty($password) && (false === $updating)) {
+            $errorList[] = "Le mot de passe n'est pas valide";         
         }
-        if (false === $email) {
-            $errorList[] = "L'email n'est pas valide";
-        }
+        // if (false === $email) {
+        //     $errorList[] = "L'email n'est pas valide";
+        // }
         if (empty($role)) {
             $errorList[] = "Le role n'est pas valide";
         }
@@ -195,7 +197,7 @@ class AppUserController extends CoreController {
             $user->setRole($role);
             // je ne change les points que lorsque je met à jour un utilisateur
             if ($updating) {
-                $user->setPoints($points);
+                $user->setPoints($user->getPoints() + $points);
             }
 
             if ($updating) {

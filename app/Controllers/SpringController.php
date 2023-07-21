@@ -13,7 +13,7 @@ class SpringController extends CoreController {
         // $id est envoyé en paramètre de la méthode par altoDispatcher
         $updating = isset($id);
 
-        $id = filter_input(INPUT_POST, 'race', FILTER_VALIDATE_INT);
+        // $id = filter_input(INPUT_POST, 'race', FILTER_VALIDATE_INT);
         $flag = filter_input(INPUT_POST, 'flag', FILTER_SANITIZE_STRING);
         $country = filter_input(INPUT_POST, 'country', FILTER_SANITIZE_STRING);
         $track = filter_input(INPUT_POST, 'track', FILTER_SANITIZE_STRING);
@@ -47,7 +47,7 @@ class SpringController extends CoreController {
 
         if (empty($errorList)) {
             // je met à jour les propriétés
-            $event->setId($id);
+            // $event->setId($id);
             $event->setFlag($flag);
             $event->setCountry($country);
             $event->setTrack($track);
@@ -94,7 +94,6 @@ class SpringController extends CoreController {
 
 
     public function edit($id) {
-        // dump($id);
         $springSeason = SpringSeason::findAll();
 
         $eventToUpdate = SpringSeason::find($id);

@@ -29,7 +29,7 @@ class SpringSeason {
         $sql = 'SELECT * FROM spring_season WHERE id = :id';
 
         $pdoStatement = $pdo->prepare($sql);
-        $pdoStatement->bindValue(":id", $id, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':id', $id, PDO::PARAM_INT);
         $pdoStatement->execute();
 
         $springEvent = $pdoStatement->fetchObject('App\\Models\\SpringSeason');

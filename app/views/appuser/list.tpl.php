@@ -18,9 +18,10 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
+            <?php $i = 1;?>
             <?php foreach ($users as $user):?>
                     <tr class="border-top border-dark-subtl">
-                        <th scope="row"><?= $user->getId()?></th>
+                        <th scope="row"><?= $i++?></th>
                         <td><?= $user->getPseudo()?></td>
                         <td><?= $user->getTeam()?></td>
                         <td><?= $user->getCar()?></td>

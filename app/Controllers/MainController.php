@@ -48,7 +48,11 @@ class MainController extends CoreController {
 
     public function lineUp()
     {
-        $this->show('line-up');
+        $pilotes = AppUser::findAvailablesPilotes();
+
+        $this->show('line-up', [
+            'pilotes' => $pilotes
+        ]);
     }
 
     public function meteo()

@@ -3,7 +3,7 @@ html {
 }
 
 .body {
-    background-image: radial-gradient(circle, rgba(1, 84, 81, 0.37) 0%, rgba( 0, 39, 53, 0.897) 50%, rgb( 0, 24, 39) 100%), url('../images-test/dirt-rally-2-0-pc.jpg');
+    background-image: radial-gradient(circle, rgba(1, 84, 81, 0.37) 0%, rgba( 0, 39, 53, 0.897) 50%, rgb( 0, 24, 39) 100%), url('../images/dirt-rally-2-0-pc.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -12,16 +12,6 @@ html {
 main {
     min-height: 79vh;
 }
-
-
-/* h2 {
-    font-size: 1.5rem;
-    margin-top: 2rem;
-    font-weight: bold;
-    color: rgb(228, 15, 52);
-    text-transform: uppercase;
-    text-shadow: 1px 1px 2rem white;
-} */
 
 label, tr {
     color: white;
@@ -132,16 +122,12 @@ a:hover {
     display: none;
 }
 
-/* tr:hover {
-    color: rgb(228, 15, 52);
-} */
-
 h2 {
     font-size: 1rem;
     padding: 2rem 0;
     text-align: center;
     font-weight: bold;
-    color: rgba(228, 15, 52, 0.8);
+    color: rgba(228, 15, 52);
     text-transform: uppercase;
     text-shadow: 1px 1px 2rem white;
 }
@@ -203,8 +189,31 @@ h2 {
     border-radius: 2rem;
 }
 
-#line-up-list {
+#line-up__list {
     color: white;
+    margin-bottom: 2rem;
+}
+
+.line-up__row {
+    border: 1px solid white;
+}
+
+.line-up__col {
+    padding: 1.5rem 0.5rem;
+}
+
+.line-up__col p {
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.8rem 0;
+    background-color: rgb(255,255,255, 0.8);
+    color: rgb(228, 15, 52);
+    border-radius: 5px;
+}
+
+.line-up__col span {
+    display: none;
+    /* (min-width: 800px) */
 }
 
 .line-up-generate {
@@ -379,6 +388,14 @@ input[type="checkbox"]:checked {
     .classement td, .classement th {
         font-size: 1.5rem;
     }
+
+    .line-up__col span {
+        display: inline;
+        font-size: 0.6rem;
+        background-color: rgb(228, 15, 52);
+        padding: 0.4rem;
+        border-radius: 5px;
+    }
 }
 
 @media (min-width: 1000px) {
@@ -420,10 +437,16 @@ input[type="checkbox"]:checked {
     .classement td, .classement th {
         font-size: 1.4rem;
     }
-}
 
-/* @media (min-width: 1400px) {
-    .menus-wrapper {
-        align-items: flex-start;
+    .line-up__col {
+        padding: 2rem 1rem;
     }
-} */
+
+    .line-up__col p {
+        font-size: 1.6rem;
+    }
+
+    .line-up__col span {
+        font-size: 0.8rem;
+    }
+}

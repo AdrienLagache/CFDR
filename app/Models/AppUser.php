@@ -85,6 +85,21 @@ class AppUser
                 return $result;
     }
 
+    public static function findAvailablesPilotes()
+    {
+        $pdo = Database::getPDO();
+
+        $sql = 'SELECT *
+                    FROM app_user
+                    WHERE `availability` = 1';
+
+        $pdoStatement = $pdo->query($sql);
+
+        $result = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\\Models\\AppUser');
+
+        return $result;
+    }
+
     public static function getPointsByTeam()
     {
         $pdo = Database::getPDO();

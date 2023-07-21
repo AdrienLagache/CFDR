@@ -22,7 +22,3 @@
         </div>
     </form>
 </div>
-
-<section id="line-up-list">
-
-</section>
