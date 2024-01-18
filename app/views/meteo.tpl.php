@@ -1,7 +1,7 @@
 <section class="meteo">
     <h2 class="meteo-title">Météo</h2>
 
-    <form class="meteo-location" action="<?= $router->generate('main-meteo')?>" method="GET">
+    <form id="meteo-location" action="<?= $router->generate('main-meteo')?>" method="GET">
         <select id="meteo" class="form-select" onchange="this.form.submit()" name="location">
                 <option value="18276642">--choisir un circuit--</option>
                 <option value="15472914">Yas Marina</option>
@@ -26,7 +26,6 @@
         <iframe src="https://api.wo-cloud.com/content/widget/?geoObjectKey=<?=$location?>&language=fr&region=FR&timeFormat=HH:mm&windUnit=kmh&systemOfMeasurement=metric&temperatureUnit=celsius" name="CW2" scrolling="no" width="300" height="400" frameborder="0"></iframe>
     </div>
 </section>
-
 
 <!-- url site du widget : https://www.meteoetradar.com/widget-meteo -->
 

@@ -1,7 +1,7 @@
 const menus = {
     
     init : function() {
-        const menuIcon = document.querySelector(".menu");
+        const menuIcon = document.querySelector(".header-nav__icon");
         menuIcon.addEventListener("click", this.handleMainMenu);
 
         const loginIcon = document.querySelector(".header-register__icon");

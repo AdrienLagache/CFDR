@@ -3,11 +3,19 @@ html {
 }
 
 .body {
-    background-image: radial-gradient(circle, rgba(1, 84, 81, 0.37) 0%, rgba( 0, 39, 53, 0.897) 50%, rgb( 0, 24, 39) 100%), url('../images-test/dirt-rally-2-0-pc.jpg');
-    /* background-image: url('../images/dark_wall.png'); */
+    background-image: radial-gradient(circle, rgba(1, 84, 81, 0.37) 0%, rgba( 0, 39, 53, 0.897) 50%, rgb( 0, 24, 39) 100%), url('../images/dirt-rally-2-0-pc.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+}
+
+main {
+    min-height: 79vh;
+}
+
+label, tr {
+    color: white;
+    margin-top: 1rem;
 }
 
 a {
@@ -28,28 +36,18 @@ a:hover {
 
 .header {
     background: linear-gradient(rgb(1, 84, 81), 45%, rgb( 0, 24, 39));
-    padding: 1.5rem;
+    padding: 2.5rem;
 }
 
 .menus-wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     color: white;
-    align-items: center;
 }
 
-.menu {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.header-nav__icone svg {
-    display: block;
-    width: 80%;
-}
-
-.header-nav__icone :hover {
+.header-nav__icon :hover,
+.header-register__icon :hover {
     color: rgb(228, 15, 52);
 }
 
@@ -63,10 +61,6 @@ a:hover {
     justify-content: flex-end;
     align-items: center;
     gap: 1rem;
-}
-
-.header-register__icon {
-    width: 20%;
 }
 
 .header-register {
@@ -94,6 +88,7 @@ a:hover {
     color: white;
     font-size: 1.2rem;
     position: absolute;
+    z-index: 1;
 }
 
 #benjx {
@@ -112,53 +107,53 @@ a:hover {
     font-size: 1.2rem;
 }
 
-/* .main {
-    height: 100%;
-} */
-
-/* section {
-    min-height: 86vh;
-} */
-
-.calendrier {
-    z-index: -1;
+.calendrier,
+.classement {
     margin-bottom: 2rem;
-    /* position: relative; */
 }
 
-.table {
-    margin: 0;
+.calendrier table,
+.classement table {
+    opacity: 80%;
 }
 
-.calendrier-title {
+.calendrier table td:nth-child(1),
+.calendrier table th:nth-child(1) {
+    display: none;
+}
+
+h2 {
     font-size: 1rem;
     padding: 2rem 0;
     text-align: center;
     font-weight: bold;
-    color: rgb(228, 15, 52);
+    color: rgba(228, 15, 52);
     text-transform: uppercase;
     text-shadow: 1px 1px 2rem white;
 }
 
-.calendrier td, .calendrier th {
+.calendrier td, .calendrier th,
+.classement td, .classement th {
     padding: 0.5rem;
     vertical-align: middle;
     font-size: 0.8rem;
-} 
-
-.calendrier-item__race {
-    color: rgb(228, 15, 52);
 }
 
-.calendrier-item__country , .thead-country {
+.calendrier-item:nth-child(3),
+.thead-country {
     text-transform: uppercase;
 }
 
-.calendrier-item__flag img {
-    display: block;
-    margin-right: 50%;
-    width: 1.6rem;
-    height: 1rem;
+.classement-item img {
+    width: 2rem;
+    height: 2rem;
+    margin-left: 1.5rem;
+}
+
+.calendrier table td:nth-last-child(1),
+.classement table td:nth-last-child(1) {
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .meteo {
@@ -179,17 +174,85 @@ a:hover {
     text-shadow: 1px 1px 2rem white;
 }
 
-#meteo-location {
-    width: 150%;
-    height: 3rem;
+#meteo-location select {
+    width: 100%;
+    height: 4rem;
+}
+
+#meteo-location option:nth-child(1) {
     text-align: center;
 }
 
 .meteo-widget iframe {
     padding: 1rem;
-    border-radius: 0 70px 0 70px;
     opacity: 90%;
-    /* border: 0; */
+    border-radius: 2rem;
+}
+
+#line-up__list {
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.line-up__row {
+    border: 1px solid white;
+}
+
+.line-up__col {
+    padding: 1.5rem 0.5rem;
+}
+
+.line-up__col p {
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 0.8rem 0;
+    background-color: rgb(255,255,255, 0.8);
+    color: rgb(228, 15, 52);
+    border-radius: 5px;
+}
+
+.line-up__col span {
+    display: none;
+    /* (min-width: 800px) */
+}
+
+.line-up-generate {
+    width: 30%;
+}
+
+/* Style de base pour la classe personnalisée */
+.line-up__checkbox .btn-outline-custom {
+    background-color: white;
+    color: rgb(228, 15, 52);
+    border-color: rgb(228, 15, 52);
+}
+
+/* Style lors du survol du curseur de la souris pour le label */
+.line-up__checkbox:hover .btn-outline-custom,
+.line-up__checkbox:focus .btn-outline-custom {
+    background-color: rgb(228, 15, 52);
+    color: white;
+    border-color: white;
+}
+
+/* Style lorsqu'une checkbox est cochée */
+.line-up__checkbox .btn-check:checked + .btn-outline-custom {
+    background-color: rgb(228, 15, 52);
+    color: white;
+    border-color: white;
+}
+
+input[type="checkbox"]:hover,
+input[type="checkbox"]:focus {
+    background-color: rgb(228, 15, 52);
+    color: white;
+    border-color: white;
+}
+
+input[type="checkbox"]:checked {
+    background-color: rgb(228, 15, 52);
+    color: white;
+    border-color: white;
 }
 
 #footer {
@@ -199,7 +262,6 @@ a:hover {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 42vh;
 }
 
 #footer img {
@@ -207,20 +269,17 @@ a:hover {
     height: 1.5rem;
 }
 
-
-/******** TESTS ADMIN  ********/
-
-
 .admin {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: baseline;
     padding: 1.5rem;
 }
 
 .admin-input {
     width: 40%;
+    color: white;
 }
 
 .admin-preview {
@@ -232,9 +291,23 @@ a:hover {
     margin-top: 1rem;
 }
 
-.preview__title {
+.preview__title  {
     color: white;
     font-weight: bold;
+}
+
+.preview tbody th {
+    color: rgb(228, 15, 52);
+}
+
+.users-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.list-add {
+    margin-top: 2rem;
 }
 
 @media (min-width: 450px) {
@@ -243,10 +316,6 @@ a:hover {
         font-size: 1.5rem
     }
 
-    /* .admin {
-        width: 75%;
-    } */
-
     .meteo-widget iframe {
         width: 450px;
         height: 450px;
@@ -254,16 +323,25 @@ a:hover {
 }
 
 @media (min-width: 600px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .header-nav__icon {
+        margin-left: 2rem;
+    }
+
+    .header-register__icon {
+        margin-right: 2rem;
+    }
+
     .header-register__item {
         font-size: 1.8rem;
         line-height: 2.5rem;
     }
 
-    .calendrier-title {
-        font-size: 1.5rem;
-    }
-
-    .calendrier td, .calendrier th {
+    .calendrier td, .calendrier th,
+    .classement td, .classement th {
         padding: 1.2rem;
         font-size: 1.2rem;
     }
@@ -272,12 +350,6 @@ a:hover {
         width: 550px;
         height: 450px;
     }
-
-    .meteo-widget iframe {
-        border-radius: 0 100px 0 100px;
-    }
-
-
 }
 
 @media (min-width: 800px) {
@@ -291,20 +363,46 @@ a:hover {
         font-size: 2.8rem;
     }
 
-    .menu {
-        gap: 1rem;
+    .calendrier table td:nth-child(1),
+    .calendrier table th:nth-child(1) {
+        display: block;
     }
 
-    .calendrier td, .calendrier th {
+    .calendrier table td:nth-last-child(1),
+    .classement table td:nth-last-child(1) {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .calendrier-item img {
+        width: 3.1rem;
+        height: 1.8rem;
+    }
+
+    .classement-item img {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .calendrier td, .calendrier th,
+    .classement td, .classement th {
         font-size: 1.5rem;
     }
 
-    /* .admin {
-        width: 50%;
-    } */
+    .line-up__col span {
+        display: inline;
+        font-size: 0.6rem;
+        background-color: rgb(228, 15, 52);
+        padding: 0.4rem;
+        border-radius: 5px;
+    }
 }
 
 @media (min-width: 1000px) {
+    h2 {
+        padding: 5rem 0;
+    }
+
     .header {
         position: relative;
         padding: 0.5rem;
@@ -312,10 +410,6 @@ a:hover {
 
     .header-logo__thumbnail {
         width: 30%;
-    }
-
-    .header-nav__icone {
-        width: 10%;
     }
 
     .header-nav__title {
@@ -327,12 +421,6 @@ a:hover {
         top: 40%;
         right: 2rem;
         left: 2rem;
-
-    }
-
-    .header-register__icon {
-        width: 7%;
-        height: 7%;
     }
 
     .header-register__item {
@@ -340,33 +428,25 @@ a:hover {
         line-height: 2rem;
     }    
 
-    .calendrier {
-        padding: 0 10%;
+    .calendrier,
+    .classement {
+        padding: 0 15%;
     }
 
-    .calendrier-title {
-        padding: 5rem 0;
-    }
-
-    .calendrier td, .calendrier th {
+    .calendrier td, .calendrier th,
+    .classement td, .classement th {
         font-size: 1.4rem;
     }
 
-    .calendrier-item__flag img {
-        width: 3.2rem;
-        height: 2rem;
-    }
-}
-
-@media (min-width: 1400px) {
-    .header-register__items {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 1rem;
+    .line-up__col {
+        padding: 2rem 1rem;
     }
 
-    /* .admin {
-        width: 33%;
-    } */
+    .line-up__col p {
+        font-size: 1.6rem;
+    }
+
+    .line-up__col span {
+        font-size: 0.8rem;
+    }
 }

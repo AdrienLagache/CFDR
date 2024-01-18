@@ -3,23 +3,12 @@ namespace App\Controllers;
 
 use App\Models\SpringSeason;
 use App\Models\FallSeason;
+use App\Models\AppUser;
 
-class MainController {
-    
-    public function show($viewName, $viewDatas = []) {
-        global $router;
+class MainController extends CoreController {
 
-        // dump(get_defined_vars());
-
-        extract($viewDatas);
-
-        require __DIR__."/../views/header.tpl.php";
-        require __DIR__."/../views/".$viewName.".tpl.php";
-        require __DIR__."/../views/footer.tpl.php";
-    }
-
-    public function home() {
-
+    public function home()
+    {
         $springSeason = SpringSeason::findAll();
 
         $fallSeason = FallSeason::findAll();
@@ -32,13 +21,11 @@ class MainController {
         $this->show('calendrier', $calendarDatas);
     }
 
-    public function calendrier() {
+    public function calendrier()
+    {
+        $springSeason = SpringSeason::findAll();
 
-        $newSpring = new SpringSeason;
-        $springSeason = $newSpring->findAll();
-
-        $newFall = new FallSeason;
-        $fallSeason = $newFall->findAll();
+        $fallSeason = FallSeason::findAll();
 
         $calendarDatas = [
             'spring' => $springSeason,
@@ -48,13 +35,55 @@ class MainController {
         $this->show('calendrier', $calendarDatas);
     }
 
-    public function meteo() {
+    public function classement()
+    {
+        $pilotes = AppUser::findAllByPoints();
+        $teamPoints = AppUser::getPointsByTeam();
 
+        $this->show('classement', [
+            'pilotes' => $pilotes,
+            'teamPoints' => $teamPoints
+        ]);
+    }
+
+    public function lineUp()
+    {
+        $pilotes = AppUser::findAvailablesPilotes();
+
+        $this->show('line-up', [
+            'pilotes' => $pilotes
+        ]);
+    }
+
+    public function meteo()
+    {
         $this->show('meteo');
     }
 
-    public function live() {
-        
+    public function live()
+    {        
         $this->show('live');
+    }
+
+    public function fall()
+    {
+        $fallSeason = FallSeason::findAll();
+
+        $this->show('calendar/fall', [
+            'fall' => $fallSeason,
+            // 'spring' => $springSeason,
+            'eventToUpdate' => new FallSeason()
+        ]);
+    }
+
+    public function spring()
+    {
+        $springSeason = SpringSeason::findAll();
+
+        $this->show('calendar/spring', [
+            'spring' => $springSeason,
+            // 'spring' => $springSeason,
+            'eventToUpdate' => new FallSeason()
+        ]);
     }
 }
